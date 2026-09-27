@@ -1,0 +1,6985 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>巫師3英文・跟讀練習</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#E4E7E0; --panel:#F1F3EE; --ink:#1F2B25; --muted:#5C6B62; --line:#C5CCC2;
+  --steel:#355F7C; --steel-soft:#D5E1E9; --amber:#A8741C; --amber-soft:#F1E3C4; --done:#4F7254;
+  --serif:"Gentium Book Plus","Charis SIL","Doulos SIL",Georgia,serif;
+  --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#141A17; --panel:#1C2420; --ink:#DCE3DB; --muted:#93A198; --line:#2F3A34;
+    --steel:#8DB2CC; --steel-soft:#22313B; --amber:#DDAB4E; --amber-soft:#3A2F19; --done:#8CB891;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141A17; --panel:#1C2420; --ink:#DCE3DB; --muted:#93A198; --line:#2F3A34;
+  --steel:#8DB2CC; --steel-soft:#22313B; --amber:#DDAB4E; --amber-soft:#3A2F19; --done:#8CB891;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6}
+.wrap{max-width:720px;margin:0 auto;padding:16px 16px 48px}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--steel);outline-offset:2px}
+
+/* controls */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding:10px 0 12px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center}
+.bar h1{font-size:17px;margin:0;font-weight:700;flex:1 1 100%}
+.ctl{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}
+select{font:inherit;font-size:14px;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:4px 8px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.seg button{border:0;background:var(--panel);padding:4px 10px;font-size:14px}
+.seg button[aria-pressed="true"]{background:var(--steel);color:var(--panel)}
+input[type=range]{accent-color:var(--steel);width:110px}
+.rate-val{font-variant-numeric:tabular-nums;min-width:3.2em;color:var(--ink)}
+
+/* stage: the one bold element */
+.stage{margin:20px 0 8px;padding:28px 20px 22px;background:var(--panel);border-radius:14px;border:1px solid var(--line);text-align:center}
+.pos{font-size:13px;color:var(--muted)}
+.word{font-family:var(--serif);font-size:clamp(46px,13vw,84px);line-height:1.15;margin:18px 0 6px;display:flex;justify-content:center;flex-wrap:wrap;gap:0}
+.syl{position:relative;padding:0 .04em;color:var(--muted);transition:color .15s}
+.syl + .syl::before{content:"·";color:var(--line);padding:0 .06em;font-weight:400}
+.syl.stress{color:var(--ink);font-weight:700}
+.syl.stress::after{content:"";position:absolute;left:50%;top:-.02em;width:.16em;height:.16em;margin-left:-.08em;border-radius:50%;background:var(--amber)}
+.syl.beat{color:var(--steel)}
+.syl.stress.beat{color:var(--amber)}
+.phon{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;font-family:var(--serif);font-size:22px}
+.phon span small{font-family:var(--sans);font-size:12px;color:var(--muted);margin-right:6px;vertical-align:middle}
+.meaning{margin-top:6px;font-size:18px}
+.meaning .pos-tag{color:var(--muted);font-size:14px;margin-right:6px}
+.tip{margin:14px auto 0;max-width:30em;background:var(--amber-soft);border-radius:8px;padding:8px 12px;font-size:15px;text-align:left}
+.sentence{margin:16px auto 0;max-width:32em;font-family:var(--serif);font-size:20px}
+.sentence .zh{display:block;font-family:var(--sans);font-size:14px;color:var(--muted)}
+.actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:20px}
+.btn{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:9px 16px;font-size:15px;min-height:44px}
+.btn.primary{background:var(--steel);border-color:var(--steel);color:var(--panel);font-weight:700}
+.btn[aria-pressed="true"]{background:var(--amber);border-color:var(--amber);color:var(--panel)}
+.nav{display:flex;justify-content:space-between;align-items:center;margin-top:18px;gap:8px}
+.nav .btn{min-width:84px}
+.mark{font-size:14px}
+.mark[aria-pressed="true"]{background:var(--done);border-color:var(--done);color:var(--panel)}
+.status{min-height:1.6em;margin-top:10px;font-size:14px;color:var(--steel)}
+
+/* lists */
+h2{font-size:17px;margin:34px 0 10px}
+.hint{font-size:14px;color:var(--muted);margin:-4px 0 10px}
+.list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.list li{border-bottom:1px solid var(--line)}
+.row{width:100%;display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:baseline;text-align:left;background:none;border:0;padding:10px 4px}
+.row .w{font-family:var(--serif);font-size:20px}
+.row .k{font-family:var(--serif);color:var(--muted);font-size:16px;margin-left:8px}
+.row .m{font-size:14px;color:var(--muted);grid-column:1/2}
+.row .ok{grid-row:1/3;grid-column:2;align-self:center;font-size:13px;color:var(--done);font-weight:700}
+.row[aria-current="true"]{background:var(--steel-soft)}
+.row.game .w{color:var(--muted)}
+
+.story p{margin:0}
+.sent{display:block;width:100%;text-align:left;background:none;border:0;border-left:3px solid transparent;padding:8px 10px;font-family:var(--serif);font-size:19px;line-height:1.5}
+.sent small{display:block;font-family:var(--sans);font-size:14px;color:var(--muted)}
+.sent.on{border-left-color:var(--steel);background:var(--steel-soft)}
+.pat{padding:10px 4px;border-bottom:1px solid var(--line)}
+.pat b{font-family:var(--serif);font-size:19px}
+.pat .d{font-size:14px;color:var(--muted)}
+.pat button{margin-top:6px;background:none;border:0;padding:4px 0;text-align:left;font-family:var(--serif);font-size:18px;color:var(--steel)}
+.warn{background:var(--amber-soft);padding:10px 12px;border-radius:8px;font-size:14px;margin-top:12px;display:none}
+@media (prefers-reduced-motion:reduce){.syl{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="bar">
+    <h1>巫師3英文・跟讀練習 <small style="font-weight:400;font-size:12px;color:var(--muted)">更新 09/27 09:28・共 24 課 323 字</small></h1>
+    <label class="ctl">課程 <select id="lesson"></select></label>
+    <div class="ctl">口音
+      <span class="seg" role="group" aria-label="口音">
+        <button data-acc="en-US" aria-pressed="true">美式</button><button data-acc="en-GB" aria-pressed="false">英式</button>
+      </span>
+    </div>
+    <label class="ctl">語速 <input id="rate" type="range" min="0.5" max="1.2" step="0.1" value="0.8"><span class="rate-val" id="rateVal">0.8×</span></label>
+  </div>
+
+  <div class="warn" id="warn">這個瀏覽器沒有英文語音。請改用 Safari（iPhone/iPad/Mac）或 Chrome 開啟，或在手機設定中下載英文語音。</div>
+
+  <section class="stage" aria-live="polite">
+    <div class="pos" id="pos"></div>
+    <div class="word" id="word"></div>
+    <div class="phon"><span><small>KK</small><span id="kk"></span></span><span><small>IPA</small><span id="ipa"></span></span></div>
+    <div class="meaning"><span class="pos-tag" id="ptag"></span><span id="zh"></span></div>
+    <div class="tip" id="tip"></div>
+    <div class="sentence"><span id="sen"></span><span class="zh" id="senzh"></span></div>
+    <div class="actions">
+      <button class="btn primary" id="playWord">聽單字</button>
+      <button class="btn" id="playSlow">慢速</button>
+      <button class="btn" id="playSen">聽例句</button>
+      <button class="btn" id="auto" aria-pressed="false">自動跟讀</button>
+    </div>
+    <div class="status" id="status"></div>
+    <div class="nav">
+      <button class="btn" id="prev">上一個</button>
+      <button class="btn mark" id="mark" aria-pressed="false">標記已練</button>
+      <button class="btn" id="next">下一個</button>
+    </div>
+  </section>
+
+  <h2>本課單字</h2>
+  <p class="hint">點一個字載入上方練習。灰色的是遊戲專有字和角色名，認得、會念就好。角色名的機器發音僅供參考，以遊戲配音為準。</p>
+  <ul class="list" id="list"></ul>
+
+  <h2>短文朗讀</h2>
+  <p class="hint">點任一句只念那一句；按「整篇朗讀」會一句一句念，並停頓讓你跟著唸。</p>
+  <div class="actions" style="justify-content:flex-start;margin:0 0 10px"><button class="btn" id="storyAll">整篇朗讀</button></div>
+  <div class="story" id="story"></div>
+
+  <h2>句型</h2>
+  <div id="pats"></div>
+</div>
+
+<script>
+const LESSONS=[
+ {
+  "id": "LR1616",
+  "title": "⏱ 本時段複習（09/27 08:00）",
+  "words": [
+   {
+    "w": "bottle",
+    "s": [
+     "bot",
+     "tle"
+    ],
+    "st": 0,
+    "kk": "[ˋbɑtḷ]",
+    "ipa": "/ˈbɑː.t̬əl/",
+    "p": "n.",
+    "zh": "瓶子",
+    "tip": "美式 tt 念得像輕輕的 d（第23課 食物與飲料）。",
+    "en": "Carry a bottle of water.",
+    "ez": "帶一瓶水。"
+   },
+   {
+    "w": "medium",
+    "s": [
+     "me",
+     "di",
+     "um"
+    ],
+    "st": 0,
+    "kk": "[ˋmidɪəm]",
+    "ipa": "/ˈmiː.di.əm/",
+    "p": "adj.",
+    "zh": "中等的",
+    "tip": "三個音節，重音在第一個（第10課 盔甲與武器）。",
+    "en": "Medium armor is in the middle.",
+    "ez": "中甲介於兩者之間。"
+   },
+   {
+    "w": "weapon",
+    "s": [
+     "weap",
+     "on"
+    ],
+    "st": 0,
+    "kk": "[ˋwɛpən]",
+    "ipa": "/ˈwep.ən/",
+    "p": "n.",
+    "zh": "武器",
+    "tip": "ea 念短音 [ɛ]，不是 [i]（第10課 盔甲與武器）。",
+    "en": "Geralt carries two weapons.",
+    "ez": "傑洛特帶著兩把武器。"
+   },
+   {
+    "w": "poison",
+    "s": [
+     "poi",
+     "son"
+    ],
+    "st": 0,
+    "kk": "[ˋpɔɪzn̩]",
+    "ipa": "/ˈpɔɪ.zən/",
+    "p": "n.",
+    "zh": "毒",
+    "tip": "s 念 [z]（第22課 身體與受傷）。",
+    "en": "Some monsters use poison.",
+    "ez": "有些怪物會用毒。"
+   },
+   {
+    "w": "light",
+    "s": [
+     "light"
+    ],
+    "st": 0,
+    "kk": "[laɪt]",
+    "ipa": "/laɪt/",
+    "p": "adj.",
+    "zh": "輕的",
+    "tip": "gh 不發音；l 開頭，不要念成 right [raɪt]（第10課 盔甲與武器）。",
+    "en": "Light armor is the best for stamina.",
+    "ez": "輕甲最有利於耐力。"
+   },
+   {
+    "w": "pain",
+    "s": [
+     "pain"
+    ],
+    "st": 0,
+    "kk": "[pen]",
+    "ipa": "/peɪn/",
+    "p": "n.",
+    "zh": "疼痛",
+    "tip": "ai 念 [e]（第22課 身體與受傷）。",
+    "en": "Even a witcher feels pain.",
+    "ez": "就連獵魔士也會感到疼痛。"
+   },
+   {
+    "w": "weight",
+    "s": [
+     "weight"
+    ],
+    "st": 0,
+    "kk": "[wet]",
+    "ipa": "/weɪt/",
+    "p": "n.",
+    "zh": "重量",
+    "tip": "eigh 念 [e]，gh 不發音；和 wait 同音（第10課 盔甲與武器）。",
+    "en": "Armor has three weight classes.",
+    "ez": "盔甲分成三種重量等級。"
+   },
+   {
+    "w": "protection",
+    "s": [
+     "pro",
+     "tec",
+     "tion"
+    ],
+    "st": 1,
+    "kk": "[prəˋtɛkʃən]",
+    "ipa": "/prəˈtek.ʃən/",
+    "p": "n.",
+    "zh": "保護；防護",
+    "tip": "第 4 課 protect 的名詞；-tion 念 [ʃən]（第10課 盔甲與武器）。",
+    "en": "Heavy armor gives the most protection.",
+    "ez": "重甲的防護力最高。"
+   },
+   {
+    "w": "wine",
+    "s": [
+     "wine"
+    ],
+    "st": 0,
+    "kk": "[waɪn]",
+    "ipa": "/waɪn/",
+    "p": "n.",
+    "zh": "葡萄酒",
+    "tip": "i 念 [aɪ]（第23課 食物與飲料）。",
+    "en": "Wine is also alcohol.",
+    "ez": "葡萄酒也是酒精飲料。"
+   },
+   {
+    "w": "sword",
+    "s": [
+     "sword"
+    ],
+    "st": 0,
+    "kk": "[sord]",
+    "ipa": "/sɔːrd/",
+    "p": "n.",
+    "zh": "劍",
+    "tip": "w 不發音，念 [sord]（第10課 盔甲與武器）。",
+    "en": "The silver sword is for monsters.",
+    "ez": "銀劍用來對付怪物。"
+   }
+  ],
+  "story": [
+   [
+    "Carry a bottle of water.",
+    "帶一瓶水。"
+   ],
+   [
+    "Medium armor is in the middle.",
+    "中甲介於兩者之間。"
+   ],
+   [
+    "Geralt carries two weapons.",
+    "傑洛特帶著兩把武器。"
+   ],
+   [
+    "Some monsters use poison.",
+    "有些怪物會用毒。"
+   ],
+   [
+    "Light armor is the best for stamina.",
+    "輕甲最有利於耐力。"
+   ],
+   [
+    "Even a witcher feels pain.",
+    "就連獵魔士也會感到疼痛。"
+   ],
+   [
+    "Armor has three weight classes.",
+    "盔甲分成三種重量等級。"
+   ],
+   [
+    "Heavy armor gives the most protection.",
+    "重甲的防護力最高。"
+   ],
+   [
+    "Wine is also alcohol.",
+    "葡萄酒也是酒精飲料。"
+   ],
+   [
+    "The silver sword is for monsters.",
+    "銀劍用來對付怪物。"
+   ]
+  ],
+  "patterns": [
+   {
+    "p": "a piece of / a bottle of / a cup of + 不可數名詞",
+    "d": "不可數名詞要用單位來數：a piece of bread, a bottle of water",
+    "en": "Have a piece of bread and a bottle of water.",
+    "ez": "吃一塊麵包，喝一瓶水。"
+   },
+   {
+    "p": "最高級：the + 形容詞-est / the most + 形容詞",
+    "d": "最…的；短字加 -est（the rarest），長字前加 the most（the most powerful）",
+    "en": "Heavy armor gives the most protection.",
+    "ez": "重甲的防護力最高。"
+   },
+   {
+    "p": "不規則比較：good-better-best / bad-worse-worst / little-less-least",
+    "d": "要個別背",
+    "en": "Light armor gives the least protection, but it is the best for stamina.",
+    "ez": "輕甲防護最少，但最有利於耐力。"
+   }
+  ]
+ },
+ {
+  "id": "L1",
+  "title": "第 1 課　新手指南",
+  "words": [
+   {
+    "w": "dodge",
+    "s": [
+     "dodge"
+    ],
+    "st": 0,
+    "kk": "[dɑdʒ]",
+    "ipa": "/dɑːdʒ/",
+    "p": "v.",
+    "zh": "閃避",
+    "tip": "o 發 [ɑ]，嘴巴張大像「阿」；結尾 dge 發 [dʒ]，輕輕帶過。",
+    "en": "Dodge the attack, then hit back.",
+    "ez": "閃過攻擊，再反擊。"
+   },
+   {
+    "w": "roll",
+    "s": [
+     "roll"
+    ],
+    "st": 0,
+    "kk": "[rol]",
+    "ipa": "/roʊl/",
+    "p": "v.",
+    "zh": "翻滾",
+    "tip": "o 是 [o]（歐），不是「肉」；結尾 l 舌尖頂上牙齦。",
+    "en": "Roll away from big monsters.",
+    "ez": "翻滾遠離大型怪物。"
+   },
+   {
+    "w": "enemy",
+    "s": [
+     "en",
+     "e",
+     "my"
+    ],
+    "st": 0,
+    "kk": "[ˋɛnəmɪ]",
+    "ipa": "/ˈen.ə.mi/",
+    "p": "n.",
+    "zh": "敵人",
+    "tip": "重音在第一音節；中間 e 輕讀。",
+    "en": "This enemy is very strong.",
+    "ez": "這個敵人非常強。"
+   },
+   {
+    "w": "attack",
+    "s": [
+     "at",
+     "tack"
+    ],
+    "st": 1,
+    "kk": "[əˋtæk]",
+    "ipa": "/əˈtæk/",
+    "p": "n./v.",
+    "zh": "攻擊",
+    "tip": "重音在後面；a 開頭輕讀 [ə]。",
+    "en": "Wait for the enemy to attack first.",
+    "ez": "等敵人先攻擊。"
+   },
+   {
+    "w": "damage",
+    "s": [
+     "dam",
+     "age"
+    ],
+    "st": 0,
+    "kk": "[ˋdæmɪdʒ]",
+    "ipa": "/ˈdæm.ɪdʒ/",
+    "p": "n.",
+    "zh": "傷害",
+    "tip": "常見錯誤：結尾不是「妹去」[eɪdʒ]，是短短的 [ɪdʒ]。",
+    "en": "Fire does a lot of damage to beasts.",
+    "ez": "火對野獸造成很多傷害。"
+   },
+   {
+    "w": "shield",
+    "s": [
+     "shield"
+    ],
+    "st": 0,
+    "kk": "[ʃild]",
+    "ipa": "/ʃiːld/",
+    "p": "n.",
+    "zh": "護盾；盾牌",
+    "tip": "ie 發長音 [i]；結尾 ld 都要發出來。",
+    "en": "Quen gives you a magic shield.",
+    "ez": "昆恩法印給你一個魔法護盾。"
+   },
+   {
+    "w": "weakness",
+    "s": [
+     "weak",
+     "ness"
+    ],
+    "st": 0,
+    "kk": "[ˋwiknɪs]",
+    "ipa": "/ˈwiːk.nəs/",
+    "p": "n.",
+    "zh": "弱點",
+    "tip": "重音在 weak；-ness 輕讀。",
+    "en": "Every monster has a weakness.",
+    "ez": "每種怪物都有弱點。"
+   },
+   {
+    "w": "prepare",
+    "s": [
+     "pre",
+     "pare"
+    ],
+    "st": 1,
+    "kk": "[prɪˋpɛr]",
+    "ipa": "/prɪˈper/",
+    "p": "v.",
+    "zh": "準備",
+    "tip": "重音在後面；pre 輕讀 [prɪ]。",
+    "en": "Prepare your potions before the fight.",
+    "ez": "戰鬥前先準備好藥水。"
+   },
+   {
+    "w": "explore",
+    "s": [
+     "ex",
+     "plore"
+    ],
+    "st": 1,
+    "kk": "[ɪkˋsplor]",
+    "ipa": "/ɪkˈsplɔːr/",
+    "p": "v.",
+    "zh": "探索",
+    "tip": "重音在後面；ex 發 [ɪks]。",
+    "en": "Explore the map and find treasure.",
+    "ez": "探索地圖並找到寶藏。"
+   },
+   {
+    "w": "ingredient",
+    "s": [
+     "in",
+     "gre",
+     "di",
+     "ent"
+    ],
+    "st": 1,
+    "kk": "[ɪnˋgridɪənt]",
+    "ipa": "/ɪnˈɡriː.di.ənt/",
+    "p": "n.",
+    "zh": "材料；原料",
+    "tip": "四個音節，重音在第二個 gre。",
+    "en": "You need three ingredients for this potion.",
+    "ez": "這瓶藥水需要三種材料。"
+   },
+   {
+    "w": "reward",
+    "s": [
+     "re",
+     "ward"
+    ],
+    "st": 1,
+    "kk": "[rɪˋwɔrd]",
+    "ipa": "/rɪˈwɔːrd/",
+    "p": "n.",
+    "zh": "獎勵；報酬",
+    "tip": "重音在後面；war 發 [wɔr]（同 war 戰爭）。",
+    "en": "Side quests give good rewards.",
+    "ez": "支線任務給的獎勵很好。"
+   },
+   {
+    "w": "Sign",
+    "s": [
+     "Sign"
+    ],
+    "st": 0,
+    "kk": "[saɪn]",
+    "ipa": "/saɪn/",
+    "p": "n.",
+    "zh": "法印（獵魔士的魔法）",
+    "tip": "g 不發音。",
+    "en": "Use a Sign in combat.",
+    "ez": "在戰鬥中使用法印。",
+    "game": true
+   },
+   {
+    "w": "bestiary",
+    "s": [
+     "bes",
+     "ti",
+     "ar",
+     "y"
+    ],
+    "st": 0,
+    "kk": "[ˋbɛstɪˌɛrɪ]",
+    "ipa": "/ˈbes.ti.er.i/",
+    "p": "n.",
+    "zh": "怪物圖鑑",
+    "tip": "重音在第一音節 bes。",
+    "en": "Read the bestiary before a contract.",
+    "ez": "接委託前先讀怪物圖鑑。",
+    "game": true
+   }
+  ],
+  "story": [
+   [
+    "Welcome to The Witcher 3!",
+    "歡迎來到巫師3！"
+   ],
+   [
+    "You are Geralt, a monster hunter.",
+    "你是傑洛特，一名怪物獵人。"
+   ],
+   [
+    "Here are some easy tips for new players.",
+    "這裡是給新手的幾個簡單技巧。"
+   ],
+   [
+    "In a fight, dodge more and roll less.",
+    "戰鬥時，多閃避，少翻滾。"
+   ],
+   [
+    "A dodge is fast, so you can attack again quickly.",
+    "閃避很快，所以你能很快再次攻擊。"
+   ],
+   [
+    "Use your Signs.",
+    "記得使用法印。"
+   ],
+   [
+    "Quen gives you a shield, and Igni makes fire.",
+    "昆恩給你護盾，伊格尼能放火。"
+   ],
+   [
+    "Fire does a lot of damage to beasts.",
+    "火對野獸造成很多傷害。"
+   ],
+   [
+    "Every monster has a weakness.",
+    "每種怪物都有弱點。"
+   ],
+   [
+    "Before you fight, read the bestiary and prepare the right oil.",
+    "戰鬥前，先讀怪物圖鑑，準備對的劍油。"
+   ],
+   [
+    "Explore the world and pick up ingredients.",
+    "探索世界、撿拾材料。"
+   ],
+   [
+    "You need them to make potions.",
+    "做藥水需要它們。"
+   ],
+   [
+    "Side quests give good rewards, so don't only play the main quest.",
+    "支線任務的獎勵很好，所以別只玩主線。"
+   ]
+  ],
+  "patterns": [
+   {
+    "p": "Use + A + against + B",
+    "d": "對 B 使用 A（攻略最常見的祈使句）",
+    "en": "Use Igni against beasts.",
+    "ez": "對野獸使用伊格尼法印。"
+   },
+   {
+    "p": "It's better to + V",
+    "d": "最好做某事；做…比較好",
+    "en": "It's better to dodge than to roll.",
+    "ez": "閃避比翻滾好。"
+   },
+   {
+    "p": "Before + 句子/名詞, + 祈使句",
+    "d": "在…之前，先做…",
+    "en": "Before you fight, read the bestiary.",
+    "ez": "戰鬥之前，先讀怪物圖鑑。"
+   }
+  ]
+ },
+ {
+  "id": "L2",
+  "title": "第 2 課　主要角色",
+  "words": [
+   {
+    "w": "character",
+    "s": [
+     "char",
+     "ac",
+     "ter"
+    ],
+    "st": 0,
+    "kk": "[ˋkærɪktɚ]",
+    "ipa": "/ˈkær.ək.tɚ/",
+    "p": "n.",
+    "zh": "角色；人物",
+    "tip": "ch 發 [k]；重音在第一音節。",
+    "en": "Let's meet the main characters.",
+    "ez": "來認識主要角色吧。"
+   },
+   {
+    "w": "daughter",
+    "s": [
+     "daugh",
+     "ter"
+    ],
+    "st": 0,
+    "kk": "[ˋdɔtɚ]",
+    "ipa": "/ˈdɑː.t̬ɚ/",
+    "p": "n.",
+    "zh": "女兒",
+    "tip": "gh 不發音；美式 t 常念得像輕輕的 d。",
+    "en": "Ciri is like a daughter to Geralt.",
+    "ez": "希里對傑洛特來說就像女兒。"
+   },
+   {
+    "w": "adopted",
+    "s": [
+     "a",
+     "dop",
+     "ted"
+    ],
+    "st": 1,
+    "kk": "[əˋdɑptɪd]",
+    "ipa": "/əˈdɑːp.tɪd/",
+    "p": "adj.",
+    "zh": "收養的",
+    "tip": "重音在中間；結尾 -ted 念 [tɪd]。",
+    "en": "Ciri is Geralt's adopted daughter.",
+    "ez": "希里是傑洛特的養女。"
+   },
+   {
+    "w": "brave",
+    "s": [
+     "brave"
+    ],
+    "st": 0,
+    "kk": "[brev]",
+    "ipa": "/breɪv/",
+    "p": "adj.",
+    "zh": "勇敢的",
+    "tip": "a 發 [e]；結尾 v 要上齒輕咬下唇，不能省略。",
+    "en": "She is brave and strong.",
+    "ez": "她勇敢又堅強。"
+   },
+   {
+    "w": "powerful",
+    "s": [
+     "pow",
+     "er",
+     "ful"
+    ],
+    "st": 0,
+    "kk": "[ˋpaʊɚfəl]",
+    "ipa": "/ˈpaʊ.ɚ.fəl/",
+    "p": "adj.",
+    "zh": "強大的",
+    "tip": "-ful 輕讀 [fəl]，不要念成 full。",
+    "en": "Ciri is very powerful.",
+    "ez": "希里非常強大。"
+   },
+   {
+    "w": "danger",
+    "s": [
+     "dan",
+     "ger"
+    ],
+    "st": 0,
+    "kk": "[ˋdendʒɚ]",
+    "ipa": "/ˈdeɪn.dʒɚ/",
+    "p": "n.",
+    "zh": "危險",
+    "tip": "a 發 [e]（像「黛」），常見錯誤念成「單哥」。",
+    "en": "Ciri is in danger.",
+    "ez": "希里有危險。"
+   },
+   {
+    "w": "look for",
+    "s": [
+     "look",
+     "for"
+    ],
+    "st": 0,
+    "kk": "[ˋlʊk fɔr]",
+    "ipa": "/lʊk fɔːr/",
+    "p": "phr. v.",
+    "zh": "尋找",
+    "tip": "重音在 look；兩個字連起來念。",
+    "en": "Geralt is looking for Ciri.",
+    "ez": "傑洛特正在尋找希里。"
+   },
+   {
+    "w": "search",
+    "s": [
+     "search"
+    ],
+    "st": 0,
+    "kk": "[sɝtʃ]",
+    "ipa": "/sɝːtʃ/",
+    "p": "v.",
+    "zh": "搜尋",
+    "tip": "ear 發捲舌的 [ɝ]；結尾 ch 發 [tʃ]。",
+    "en": "They search for Ciri together.",
+    "ez": "他們一起搜尋希里。"
+   },
+   {
+    "w": "loyal",
+    "s": [
+     "loy",
+     "al"
+    ],
+    "st": 0,
+    "kk": "[ˋlɔɪəl]",
+    "ipa": "/ˈlɔɪ.əl/",
+    "p": "adj.",
+    "zh": "忠誠的",
+    "tip": "兩個音節，不要念成一個音。",
+    "en": "Vesemir is a loyal friend.",
+    "ez": "維瑟米爾是忠誠的朋友。"
+   },
+   {
+    "w": "adventure",
+    "s": [
+     "ad",
+     "ven",
+     "ture"
+    ],
+    "st": 1,
+    "kk": "[ədˋvɛntʃɚ]",
+    "ipa": "/ədˈven.tʃɚ/",
+    "p": "n.",
+    "zh": "冒險",
+    "tip": "重音在中間；-ture 念 [tʃɚ]。",
+    "en": "He writes songs about Geralt's adventures.",
+    "ez": "他寫關於傑洛特冒險的歌。"
+   },
+   {
+    "w": "witcher",
+    "s": [
+     "witch",
+     "er"
+    ],
+    "st": 0,
+    "kk": "[ˋwɪtʃɚ]",
+    "ipa": "/ˈwɪtʃ.ɚ/",
+    "p": "n.",
+    "zh": "獵魔士",
+    "tip": "tch 一起發 [tʃ]，t 不單獨發音。",
+    "en": "Geralt is a witcher.",
+    "ez": "傑洛特是一名獵魔士。",
+    "game": true
+   },
+   {
+    "w": "sorceress",
+    "s": [
+     "sor",
+     "cer",
+     "ess"
+    ],
+    "st": 0,
+    "kk": "[ˋsɔrsərɪs]",
+    "ipa": "/ˈsɔːr.sɚ.ɪs/",
+    "p": "n.",
+    "zh": "女術士；女巫師",
+    "tip": "重音在第一音節；-ess 表示女性。",
+    "en": "Yennefer is a sorceress.",
+    "ez": "葉妮芙是一名女術士。",
+    "game": true
+   },
+   {
+    "w": "bard",
+    "s": [
+     "bard"
+    ],
+    "st": 0,
+    "kk": "[bɑrd]",
+    "ipa": "/bɑːrd/",
+    "p": "n.",
+    "zh": "吟遊詩人",
+    "tip": "ar 發 [ɑr]，嘴張大再捲舌。",
+    "en": "Dandelion is a bard.",
+    "ez": "丹德里恩是一名吟遊詩人。",
+    "game": true
+   },
+   {
+    "w": "Geralt",
+    "s": [
+     "Ger",
+     "alt"
+    ],
+    "st": 0,
+    "kk": "[ˋgɛrəlt]",
+    "ipa": "/ˈɡɛr.əlt/",
+    "p": "名",
+    "zh": "傑洛特（主角）",
+    "tip": "g 是硬音 [g]，不是 [dʒ]；英文配音念法。",
+    "en": "Geralt of Rivia is a witcher.",
+    "ez": "利維亞的傑洛特是一名獵魔士。",
+    "game": true
+   },
+   {
+    "w": "Ciri",
+    "s": [
+     "Ci",
+     "ri"
+    ],
+    "st": 0,
+    "kk": "[ˋsɪrɪ]",
+    "ipa": "/ˈsɪr.i/",
+    "p": "名",
+    "zh": "希里",
+    "tip": "c 念 [s]，和 Siri 同音。",
+    "en": "Geralt is looking for Ciri.",
+    "ez": "傑洛特正在尋找希里。",
+    "game": true
+   },
+   {
+    "w": "Yennefer",
+    "s": [
+     "Yen",
+     "ne",
+     "fer"
+    ],
+    "st": 0,
+    "kk": "[ˋjɛnəfɚ]",
+    "ipa": "/ˈjen.ə.fɚ/",
+    "p": "名",
+    "zh": "葉妮芙",
+    "tip": "Y 發 [j]（像「耶」）；重音在第一音節。",
+    "en": "Yennefer loves Geralt.",
+    "ez": "葉妮芙愛著傑洛特。",
+    "game": true
+   },
+   {
+    "w": "Triss",
+    "s": [
+     "Triss"
+    ],
+    "st": 0,
+    "kk": "[trɪs]",
+    "ipa": "/trɪs/",
+    "p": "名",
+    "zh": "特莉絲",
+    "tip": "tr 連在一起，不要念成「特-瑞斯」。",
+    "en": "Triss is Geralt's old friend.",
+    "ez": "特莉絲是傑洛特的老朋友。",
+    "game": true
+   },
+   {
+    "w": "Dandelion",
+    "s": [
+     "Dan",
+     "de",
+     "li",
+     "on"
+    ],
+    "st": 0,
+    "kk": "[ˋdændɪˌlaɪən]",
+    "ipa": "/ˈdæn.dɪ.laɪ.ən/",
+    "p": "名",
+    "zh": "丹德里恩",
+    "tip": "其實是英文單字「蒲公英」；四個音節。",
+    "en": "Dandelion is a bard.",
+    "ez": "丹德里恩是一名吟遊詩人。",
+    "game": true
+   },
+   {
+    "w": "Vesemir",
+    "s": [
+     "Ve",
+     "se",
+     "mir"
+    ],
+    "st": 0,
+    "kk": "[ˋvɛsəˌmɪr]",
+    "ipa": "/ˈves.ə.mɪr/",
+    "p": "名",
+    "zh": "維瑟米爾",
+    "tip": "V 上齒咬下唇；結尾 mir 像 mere。",
+    "en": "Vesemir was Geralt's teacher.",
+    "ez": "維瑟米爾是傑洛特的老師。",
+    "game": true
+   }
+  ],
+  "story": [
+   [
+    "Let's meet the main characters.",
+    "來認識主要角色吧。"
+   ],
+   [
+    "Geralt of Rivia is a witcher.",
+    "利維亞的傑洛特是一名獵魔士。"
+   ],
+   [
+    "He kills monsters for money.",
+    "他靠獵殺怪物賺錢。"
+   ],
+   [
+    "Ciri is Geralt's adopted daughter.",
+    "希里是傑洛特的養女。"
+   ],
+   [
+    "She is brave and very powerful.",
+    "她勇敢又非常強大。"
+   ],
+   [
+    "The Wild Hunt wants her, so she is in danger.",
+    "狂獵想抓她，所以她有危險。"
+   ],
+   [
+    "Geralt is looking for her.",
+    "傑洛特正在尋找她。"
+   ],
+   [
+    "Yennefer is a sorceress.",
+    "葉妮芙是一名女術士。"
+   ],
+   [
+    "She loves Geralt, and she helps him search for Ciri.",
+    "她愛著傑洛特，也幫他搜尋希里。"
+   ],
+   [
+    "Triss is also a sorceress. She is Geralt's old friend.",
+    "特莉絲也是女術士，是傑洛特的老朋友。"
+   ],
+   [
+    "Dandelion is a bard. He writes songs about Geralt's adventures.",
+    "丹德里恩是吟遊詩人，他寫關於傑洛特冒險的歌。"
+   ],
+   [
+    "Vesemir is the oldest witcher. He was Geralt's teacher, and he is very loyal.",
+    "維瑟米爾是最年長的獵魔士，他是傑洛特的老師，而且非常忠誠。"
+   ]
+  ],
+  "patterns": [
+   {
+    "p": "A is B's + 名詞",
+    "d": "A 是 B 的…（所有格 's）",
+    "en": "Ciri is Geralt's adopted daughter.",
+    "ez": "希里是傑洛特的養女。"
+   },
+   {
+    "p": "be + looking for + 人/物",
+    "d": "正在尋找…（現在進行式）",
+    "en": "Geralt is looking for Ciri.",
+    "ez": "傑洛特正在尋找希里。"
+   },
+   {
+    "p": "one of the most + 形容詞 + 複數名詞",
+    "d": "最…的之一",
+    "en": "Yennefer is one of the most powerful sorceresses.",
+    "ez": "葉妮芙是最強大的女術士之一。"
+   }
+  ]
+ },
+ {
+  "id": "L3",
+  "title": "第 3 課　怪物圖鑑",
+  "words": [
+   {
+    "w": "creature",
+    "s": [
+     "crea",
+     "ture"
+    ],
+    "st": 0,
+    "kk": "[ˋkritʃɚ]",
+    "ipa": "/ˈkriː.tʃɚ/",
+    "p": "n.",
+    "zh": "生物",
+    "tip": "ea 發長音 [i]；-ture 念 [tʃɚ]；不要和 create 搞混。",
+    "en": "A griffin is a big flying creature.",
+    "ez": "獅鷲是一種會飛的大型生物。"
+   },
+   {
+    "w": "dangerous",
+    "s": [
+     "dan",
+     "ger",
+     "ous"
+    ],
+    "st": 0,
+    "kk": "[ˋdendʒərəs]",
+    "ipa": "/ˈdeɪn.dʒɚ.əs/",
+    "p": "adj.",
+    "zh": "危險的",
+    "tip": "第 2 課 danger 加 -ous；a 一樣念 [e]。",
+    "en": "Drowners are dangerous in groups.",
+    "ez": "水鬼成群時很危險。"
+   },
+   {
+    "w": "drown",
+    "s": [
+     "drown"
+    ],
+    "st": 0,
+    "kk": "[draʊn]",
+    "ipa": "/draʊn/",
+    "p": "v.",
+    "zh": "淹死；溺水",
+    "tip": "ow 念 [aʊ]（像「凹」），常見錯誤念成 drone [dron]。",
+    "en": "Some people drown in the lake.",
+    "ez": "有些人在湖裡溺水。"
+   },
+   {
+    "w": "corpse",
+    "s": [
+     "corpse"
+    ],
+    "st": 0,
+    "kk": "[kɔrps]",
+    "ipa": "/kɔːrps/",
+    "p": "n.",
+    "zh": "屍體",
+    "tip": "結尾 p 和 s 都要發出來。",
+    "en": "Drowners come from corpses in the water.",
+    "ez": "水鬼來自水中的屍體。"
+   },
+   {
+    "w": "underwater",
+    "s": [
+     "un",
+     "der",
+     "wa",
+     "ter"
+    ],
+    "st": 2,
+    "kk": "[ˌʌndɚˋwɔtɚ]",
+    "ipa": "/ˌʌn.dɚˈwɑː.t̬ɚ/",
+    "p": "adv.",
+    "zh": "在水下",
+    "tip": "主重音在 wa；under 次重音。",
+    "en": "Your sword doesn't work underwater.",
+    "ez": "你的劍在水下沒用。"
+   },
+   {
+    "w": "burn",
+    "s": [
+     "burn"
+    ],
+    "st": 0,
+    "kk": "[bɝn]",
+    "ipa": "/bɝːn/",
+    "p": "v.",
+    "zh": "燃燒；燒",
+    "tip": "ur 發捲舌 [ɝ]，和 search 的 ear 同音。",
+    "en": "Burn them with Igni.",
+    "ez": "用伊格尼燒它們。"
+   },
+   {
+    "w": "eagle",
+    "s": [
+     "ea",
+     "gle"
+    ],
+    "st": 0,
+    "kk": "[ˋigḷ]",
+    "ipa": "/ˈiː.ɡəl/",
+    "p": "n.",
+    "zh": "老鷹",
+    "tip": "ea 長音 [i]；結尾 gle 念 [gḷ]，不是「狗」。",
+    "en": "It has the head of an eagle.",
+    "ez": "它有老鷹的頭。"
+   },
+   {
+    "w": "bleeding",
+    "s": [
+     "bleed",
+     "ing"
+    ],
+    "st": 0,
+    "kk": "[ˋblidɪŋ]",
+    "ipa": "/ˈbliː.dɪŋ/",
+    "p": "n.",
+    "zh": "流血",
+    "tip": "長音 [i]；-ing 的 ng 是鼻音，不要念成「英格」。",
+    "en": "Its attacks cause bleeding.",
+    "ez": "它的攻擊會造成流血。"
+   },
+   {
+    "w": "weak against",
+    "s": [
+     "weak",
+     "a",
+     "gainst"
+    ],
+    "st": 0,
+    "kk": "[wik əˋgɛnst]",
+    "ipa": "/wiːk əˈɡenst/",
+    "p": "phr.",
+    "zh": "怕…；對…較弱",
+    "tip": "against 念 [əˋgɛnst]，gai 發 [ɛ] 不是 [e]。",
+    "en": "Drowners are weak against fire.",
+    "ez": "水鬼怕火。"
+   },
+   {
+    "w": "silver",
+    "s": [
+     "sil",
+     "ver"
+    ],
+    "st": 0,
+    "kk": "[ˋsɪlvɚ]",
+    "ipa": "/ˈsɪl.vɚ/",
+    "p": "n./adj.",
+    "zh": "銀；銀製的",
+    "tip": "v 要咬唇；-er 捲舌。",
+    "en": "Use your silver sword for monsters.",
+    "ez": "用銀劍對付怪物。"
+   },
+   {
+    "w": "steel",
+    "s": [
+     "steel"
+    ],
+    "st": 0,
+    "kk": "[stil]",
+    "ipa": "/stiːl/",
+    "p": "n.",
+    "zh": "鋼；鋼製的",
+    "tip": "長音 [i]；和短音的 still [stɪl]（仍然）區分。",
+    "en": "Use your steel sword for people.",
+    "ez": "用鋼劍對付人。"
+   },
+   {
+    "w": "drowner",
+    "s": [
+     "drown",
+     "er"
+    ],
+    "st": 0,
+    "kk": "[ˋdraʊnɚ]",
+    "ipa": "/ˈdraʊ.nɚ/",
+    "p": "n.",
+    "zh": "水鬼（怪物）",
+    "tip": "drown 加 -er；ow 念 [aʊ]。",
+    "en": "Drowners live near water.",
+    "ez": "水鬼住在水邊。",
+    "game": true
+   },
+   {
+    "w": "griffin",
+    "s": [
+     "grif",
+     "fin"
+    ],
+    "st": 0,
+    "kk": "[ˋgrɪfɪn]",
+    "ipa": "/ˈɡrɪf.ɪn/",
+    "p": "n.",
+    "zh": "獅鷲",
+    "tip": "重音在前；兩個 i 都是短音 [ɪ]。",
+    "en": "The griffin attacks from the sky.",
+    "ez": "獅鷲從空中攻擊。",
+    "game": true
+   },
+   {
+    "w": "necrophage",
+    "s": [
+     "nec",
+     "ro",
+     "phage"
+    ],
+    "st": 0,
+    "kk": "[ˋnɛkrəˌfedʒ]",
+    "ipa": "/ˈnek.rə.feɪdʒ/",
+    "p": "n.",
+    "zh": "食屍類怪物",
+    "tip": "phage 念 [fedʒ]；necro＝死亡、phage＝吃。",
+    "en": "Drowners are necrophages.",
+    "ez": "水鬼屬於食屍類怪物。",
+    "game": true
+   },
+   {
+    "w": "crossbow",
+    "s": [
+     "cross",
+     "bow"
+    ],
+    "st": 0,
+    "kk": "[ˋkrɔsˌbo]",
+    "ipa": "/ˈkrɑːs.boʊ/",
+    "p": "n.",
+    "zh": "十字弓",
+    "tip": "bow（弓）念 [bo]；念 [baʊ] 是「鞠躬」。",
+    "en": "Use your crossbow underwater.",
+    "ez": "在水下用十字弓。",
+    "game": true
+   }
+  ],
+  "story": [
+   [
+    "Let's open the bestiary.",
+    "來打開怪物圖鑑吧。"
+   ],
+   [
+    "Drowners live near water.",
+    "水鬼住在水邊。"
+   ],
+   [
+    "People say they come from the corpses of people who drowned.",
+    "據說它們來自溺死者的屍體。"
+   ],
+   [
+    "They are not very strong, but they are dangerous in groups.",
+    "它們不算很強，但成群時很危險。"
+   ],
+   [
+    "Drowners are weak against fire, so burn them with Igni.",
+    "水鬼怕火，所以用伊格尼燒它們。"
+   ],
+   [
+    "Underwater, your sword doesn't work. Use your crossbow.",
+    "在水下，劍沒有用，要用十字弓。"
+   ],
+   [
+    "Griffins are big flying creatures.",
+    "獅鷲是會飛的大型生物。"
+   ],
+   [
+    "A griffin has the body of a lion and the head of an eagle.",
+    "獅鷲有獅子的身體和老鷹的頭。"
+   ],
+   [
+    "Its attacks cause bleeding.",
+    "它的攻擊會造成流血。"
+   ],
+   [
+    "Use Aard to bring it down to the ground.",
+    "用亞爾德法印把它打到地上。"
+   ],
+   [
+    "Remember: use your silver sword for monsters and your steel sword for people.",
+    "記住：銀劍對付怪物，鋼劍對付人。"
+   ]
+  ],
+  "patterns": [
+   {
+    "p": "A is weak against B",
+    "d": "A 怕 B；A 對 B 比較弱",
+    "en": "Drowners are weak against fire.",
+    "ez": "水鬼怕火。"
+   },
+   {
+    "p": "have the + 名詞 + of + 名詞",
+    "d": "有…的…（描述外型）",
+    "en": "A griffin has the body of a lion and the head of an eagle.",
+    "ez": "獅鷲有獅子的身體和老鷹的頭。"
+   },
+   {
+    "p": "Use A for B",
+    "d": "用 A 對付 B（比較第 1 課的 Use A against B）",
+    "en": "Use your silver sword for monsters.",
+    "ez": "用銀劍對付怪物。"
+   }
+  ]
+ },
+ {
+  "id": "L4",
+  "title": "第 4 課　法印",
+  "words": [
+   {
+    "w": "magic",
+    "s": [
+     "mag",
+     "ic"
+    ],
+    "st": 0,
+    "kk": "[ˋmædʒɪk]",
+    "ipa": "/ˈmædʒ.ɪk/",
+    "p": "n./adj.",
+    "zh": "魔法；魔法的",
+    "tip": "g 念 [dʒ]（像「居」的聲母），不是 [g]。",
+    "en": "Geralt has five magic Signs.",
+    "ez": "傑洛特有五種魔法法印。"
+   },
+   {
+    "w": "knock down",
+    "s": [
+     "knock",
+     "down"
+    ],
+    "st": 0,
+    "kk": "[nɑk daʊn]",
+    "ipa": "/nɑːk daʊn/",
+    "p": "phr. v.",
+    "zh": "擊倒",
+    "tip": "knock 的 k 不發音，念 [nɑk]。",
+    "en": "Aard can knock enemies down.",
+    "ez": "亞爾德能把敵人擊倒。"
+   },
+   {
+    "w": "stun",
+    "s": [
+     "stun"
+    ],
+    "st": 0,
+    "kk": "[stʌn]",
+    "ipa": "/stʌn/",
+    "p": "v.",
+    "zh": "使暈眩",
+    "tip": "u 念短短的 [ʌ]，像「餓」但更短。",
+    "en": "Axii can stun an enemy for a moment.",
+    "ez": "亞克席能讓敵人暈眩一下。"
+   },
+   {
+    "w": "slow down",
+    "s": [
+     "slow",
+     "down"
+    ],
+    "st": 0,
+    "kk": "[slo daʊn]",
+    "ipa": "/sloʊ daʊn/",
+    "p": "phr. v.",
+    "zh": "使減速",
+    "tip": "slow 的 ow 念 [o]，down 的 ow 念 [aʊ]，同拼法不同音。",
+    "en": "Yrden slows enemies down.",
+    "ez": "亞登讓敵人變慢。"
+   },
+   {
+    "w": "protect",
+    "s": [
+     "pro",
+     "tect"
+    ],
+    "st": 1,
+    "kk": "[prəˋtɛkt]",
+    "ipa": "/prəˈtekt/",
+    "p": "v.",
+    "zh": "保護",
+    "tip": "重音在後；pro 輕讀 [prə]；結尾 ct 都要發。",
+    "en": "Quen protects you.",
+    "ez": "昆恩保護你。"
+   },
+   {
+    "w": "confuse",
+    "s": [
+     "con",
+     "fuse"
+    ],
+    "st": 1,
+    "kk": "[kənˋfjuz]",
+    "ipa": "/kənˈfjuːz/",
+    "p": "v.",
+    "zh": "使困惑",
+    "tip": "重音在後；結尾 s 念 [z]。",
+    "en": "Axii can confuse an enemy.",
+    "ez": "亞克席能讓敵人困惑。"
+   },
+   {
+    "w": "trap",
+    "s": [
+     "trap"
+    ],
+    "st": 0,
+    "kk": "[træp]",
+    "ipa": "/træp/",
+    "p": "n.",
+    "zh": "陷阱",
+    "tip": "a 念 [æ]，嘴角往兩邊拉開。",
+    "en": "Yrden is a magic trap.",
+    "ez": "亞登是一個魔法陷阱。"
+   },
+   {
+    "w": "stamina",
+    "s": [
+     "stam",
+     "i",
+     "na"
+    ],
+    "st": 0,
+    "kk": "[ˋstæmənə]",
+    "ipa": "/ˈstæm.ə.nə/",
+    "p": "n.",
+    "zh": "耐力；體力",
+    "tip": "重音在第一音節；後兩個音節都輕讀。",
+    "en": "Each Sign uses stamina.",
+    "ez": "每個法印都會消耗耐力。"
+   },
+   {
+    "w": "ghost",
+    "s": [
+     "ghost"
+    ],
+    "st": 0,
+    "kk": "[gost]",
+    "ipa": "/ɡoʊst/",
+    "p": "n.",
+    "zh": "鬼；幽靈",
+    "tip": "h 不發音；o 念 [o]。",
+    "en": "Yrden is good against ghosts.",
+    "ez": "亞登很適合對付鬼魂。"
+   },
+   {
+    "w": "control",
+    "s": [
+     "con",
+     "trol"
+    ],
+    "st": 1,
+    "kk": "[kənˋtrol]",
+    "ipa": "/kənˈtroʊl/",
+    "p": "v.",
+    "zh": "控制",
+    "tip": "重音在後，常見錯誤是重音放在前面。",
+    "en": "Use Axii to control people.",
+    "ez": "用亞克席控制別人。"
+   },
+   {
+    "w": "wraith",
+    "s": [
+     "wraith"
+    ],
+    "st": 0,
+    "kk": "[reθ]",
+    "ipa": "/reɪθ/",
+    "p": "n.",
+    "zh": "妖靈；幽魂",
+    "tip": "w 不發音；結尾 th 念 [θ]，舌尖輕咬。",
+    "en": "Use Yrden against wraiths.",
+    "ez": "用亞登對付妖靈。",
+    "game": true
+   },
+   {
+    "w": "Aard",
+    "s": [
+     "Aard"
+    ],
+    "st": 0,
+    "kk": "[ɑrd]",
+    "ipa": "/ɑːrd/",
+    "p": "名",
+    "zh": "亞爾德（衝擊法印）",
+    "tip": "兩個 a 只念一個 [ɑ]，嘴張大。",
+    "en": "Aard pushes enemies away.",
+    "ez": "亞爾德把敵人推開。",
+    "game": true
+   },
+   {
+    "w": "Igni",
+    "s": [
+     "Ig",
+     "ni"
+    ],
+    "st": 0,
+    "kk": "[ˋɪgnɪ]",
+    "ipa": "/ˈɪɡ.ni/",
+    "p": "名",
+    "zh": "伊格尼（火焰法印）",
+    "tip": "g 和 n 分開念：ig-ni。",
+    "en": "Igni makes fire.",
+    "ez": "伊格尼產生火焰。",
+    "game": true
+   },
+   {
+    "w": "Yrden",
+    "s": [
+     "Yr",
+     "den"
+    ],
+    "st": 0,
+    "kk": "[ˋɪrdən]",
+    "ipa": "/ˈɪr.dən/",
+    "p": "名",
+    "zh": "亞登（陷阱法印）",
+    "tip": "Y 在這裡念 [ɪ]，不是「耶」。",
+    "en": "Yrden slows enemies down.",
+    "ez": "亞登讓敵人變慢。",
+    "game": true
+   },
+   {
+    "w": "Quen",
+    "s": [
+     "Quen"
+    ],
+    "st": 0,
+    "kk": "[kwɛn]",
+    "ipa": "/kwen/",
+    "p": "名",
+    "zh": "昆恩（護盾法印）",
+    "tip": "qu 念 [kw]，和 queen 開頭一樣。",
+    "en": "Quen makes a shield around you.",
+    "ez": "昆恩在你周圍形成護盾。",
+    "game": true
+   },
+   {
+    "w": "Axii",
+    "s": [
+     "Ax",
+     "ii"
+    ],
+    "st": 0,
+    "kk": "[ˋæksɪ]",
+    "ipa": "/ˈæk.si/",
+    "p": "名",
+    "zh": "亞克席（控制法印）",
+    "tip": "a 念 [æ]；兩個 i 只念一個 [ɪ]。",
+    "en": "Axii can confuse an enemy.",
+    "ez": "亞克席能讓敵人困惑。",
+    "game": true
+   }
+  ],
+  "story": [
+   [
+    "Geralt has five magic Signs.",
+    "傑洛特有五種魔法法印。"
+   ],
+   [
+    "Each Sign uses stamina.",
+    "每個法印都會消耗耐力。"
+   ],
+   [
+    "Aard pushes enemies away. It can knock them down.",
+    "亞爾德把敵人推開，還能把他們擊倒。"
+   ],
+   [
+    "Igni makes fire. Use it to burn your enemies.",
+    "伊格尼產生火焰，用它燒敵人。"
+   ],
+   [
+    "Yrden is a magic trap. It slows enemies down.",
+    "亞登是魔法陷阱，能讓敵人變慢。"
+   ],
+   [
+    "It is also very good against ghosts and wraiths.",
+    "它也很適合對付鬼魂和妖靈。"
+   ],
+   [
+    "Quen protects you. It makes a shield around you.",
+    "昆恩保護你，在你周圍形成護盾。"
+   ],
+   [
+    "Axii can confuse an enemy.",
+    "亞克席能讓敵人困惑。"
+   ],
+   [
+    "You can also use it in conversations to control people.",
+    "你也可以在對話中用它控制別人。"
+   ],
+   [
+    "When your stamina is low, wait a moment before you use another Sign.",
+    "耐力低的時候，等一下再用下一個法印。"
+   ]
+  ],
+  "patterns": [
+   {
+    "p": "It can + 動詞",
+    "d": "它能夠…（can 後面接原形動詞）",
+    "en": "Aard can knock enemies down.",
+    "ez": "亞爾德能把敵人擊倒。"
+   },
+   {
+    "p": "動詞 + 受詞 + down",
+    "d": "片語動詞，受詞可以放中間（knock enemies down / slow enemies down）",
+    "en": "Yrden slows enemies down.",
+    "ez": "亞登讓敵人變慢。"
+   },
+   {
+    "p": "When + 句子, + 命令句",
+    "d": "當…的時候，就…",
+    "en": "When your stamina is low, wait a moment.",
+    "ez": "耐力低的時候，就等一下。"
+   }
+  ]
+ },
+ {
+  "id": "L5",
+  "title": "第 5 課　新手技巧",
+  "words": [
+   {
+    "w": "notice board",
+    "s": [
+     "no",
+     "tice",
+     "board"
+    ],
+    "st": 0,
+    "kk": "[ˋnotɪs ˌbɔrd]",
+    "ipa": "/ˈnoʊ.t̬ɪs bɔːrd/",
+    "p": "n.",
+    "zh": "佈告欄",
+    "tip": "notice 的 o 念 [o]；ce 念 [s]。",
+    "en": "Read the notice boards in every village.",
+    "ez": "看看每個村子的佈告欄。"
+   },
+   {
+    "w": "repair",
+    "s": [
+     "re",
+     "pair"
+    ],
+    "st": 1,
+    "kk": "[rɪˋpɛr]",
+    "ipa": "/rɪˈper/",
+    "p": "v.",
+    "zh": "修理",
+    "tip": "重音在後；pair 和 pear（梨子）同音。",
+    "en": "You should repair your sword often.",
+    "ez": "你應該常修理你的劍。"
+   },
+   {
+    "w": "blacksmith",
+    "s": [
+     "black",
+     "smith"
+    ],
+    "st": 0,
+    "kk": "[ˋblækˌsmɪθ]",
+    "ipa": "/ˈblæk.smɪθ/",
+    "p": "n.",
+    "zh": "鐵匠",
+    "tip": "結尾 th 念 [θ]，舌尖輕咬，不是 [s]。",
+    "en": "Visit a blacksmith to fix your sword.",
+    "ez": "去找鐵匠修你的劍。"
+   },
+   {
+    "w": "meditate",
+    "s": [
+     "med",
+     "i",
+     "tate"
+    ],
+    "st": 0,
+    "kk": "[ˋmɛdəˌtet]",
+    "ipa": "/ˈmed.ə.teɪt/",
+    "p": "v.",
+    "zh": "冥想",
+    "tip": "重音在第一音節；結尾 tate 念 [tet]。",
+    "en": "Meditate to rest and heal.",
+    "ez": "冥想來休息和恢復。"
+   },
+   {
+    "w": "heal",
+    "s": [
+     "heal"
+    ],
+    "st": 0,
+    "kk": "[hil]",
+    "ipa": "/hiːl/",
+    "p": "v.",
+    "zh": "治療；恢復",
+    "tip": "長音 [i]；念短了會變成 hill [hɪl]（山丘）。",
+    "en": "Food can heal you.",
+    "ez": "食物能讓你恢復生命。"
+   },
+   {
+    "w": "refill",
+    "s": [
+     "re",
+     "fill"
+    ],
+    "st": 1,
+    "kk": "[riˋfɪl]",
+    "ipa": "/ˌriːˈfɪl/",
+    "p": "v.",
+    "zh": "補充；再裝滿",
+    "tip": "當動詞時重音在後；re＝再一次。",
+    "en": "Meditation refills your potions.",
+    "ez": "冥想會補充你的藥水。"
+   },
+   {
+    "w": "merchant",
+    "s": [
+     "mer",
+     "chant"
+    ],
+    "st": 0,
+    "kk": "[ˋmɝtʃənt]",
+    "ipa": "/ˈmɝː.tʃənt/",
+    "p": "n.",
+    "zh": "商人",
+    "tip": "er 捲舌 [ɝ]；ch 念 [tʃ]。",
+    "en": "Don't sell your armor to a merchant.",
+    "ez": "別把盔甲賣給商人。"
+   },
+   {
+    "w": "heavy",
+    "s": [
+     "heav",
+     "y"
+    ],
+    "st": 0,
+    "kk": "[ˋhɛvɪ]",
+    "ipa": "/ˈhev.i/",
+    "p": "adj.",
+    "zh": "重的",
+    "tip": "ea 念短音 [ɛ]，和 heal 的 ea 不一樣。",
+    "en": "Don't carry too many heavy things.",
+    "ez": "別帶太多重的東西。"
+   },
+   {
+    "w": "rush",
+    "s": [
+     "rush"
+    ],
+    "st": 0,
+    "kk": "[rʌʃ]",
+    "ipa": "/rʌʃ/",
+    "p": "v.",
+    "zh": "趕；急著做",
+    "tip": "u 念 [ʌ]；sh 念 [ʃ]，嘴唇嘟起。",
+    "en": "Don't rush. Take your time.",
+    "ez": "別急，慢慢來。"
+   },
+   {
+    "w": "guard",
+    "s": [
+     "guard"
+    ],
+    "st": 0,
+    "kk": "[gɑrd]",
+    "ipa": "/ɡɑːrd/",
+    "p": "n.",
+    "zh": "守衛",
+    "tip": "u 不發音，念 [gɑrd]。",
+    "en": "The guards will attack you.",
+    "ez": "守衛會攻擊你。"
+   },
+   {
+    "w": "worry",
+    "s": [
+     "wor",
+     "ry"
+    ],
+    "st": 0,
+    "kk": "[ˋwɝɪ]",
+    "ipa": "/ˈwɝː.i/",
+    "p": "v.",
+    "zh": "擔心",
+    "tip": "o 念捲舌的 [ɝ]，不是「沃」。",
+    "en": "Don't worry. You'll learn fast.",
+    "ez": "別擔心，你會學得很快。"
+   },
+   {
+    "w": "inventory",
+    "s": [
+     "in",
+     "ven",
+     "to",
+     "ry"
+    ],
+    "st": 0,
+    "kk": "[ˋɪnvənˌtorɪ]",
+    "ipa": "/ˈɪn.vən.tɔːr.i/",
+    "p": "n.",
+    "zh": "物品欄；庫存",
+    "tip": "重音在第一音節，不是 ven。",
+    "en": "Check your inventory.",
+    "ez": "檢查你的物品欄。"
+   },
+   {
+    "w": "Roach",
+    "s": [
+     "Roach"
+    ],
+    "st": 0,
+    "kk": "[rotʃ]",
+    "ipa": "/roʊtʃ/",
+    "p": "名",
+    "zh": "蘿蔔（傑洛特的馬）",
+    "tip": "oa 念 [o]；傑洛特的馬的名字。",
+    "en": "Ride Roach to explore the map.",
+    "ez": "騎蘿蔔探索地圖。",
+    "game": true
+   }
+  ],
+  "story": [
+   [
+    "Here are some tips for new witchers.",
+    "這裡有一些給新手獵魔士的技巧。"
+   ],
+   [
+    "Don't rush. The world is big, so take your time.",
+    "別急。世界很大，慢慢來。"
+   ],
+   [
+    "You should read the notice boards in every village. They give you new quests.",
+    "你應該看看每個村子的佈告欄，它們會給你新任務。"
+   ],
+   [
+    "You should repair your sword and armor often. Visit a blacksmith or an armorer.",
+    "你應該常修理劍和盔甲，去找鐵匠或盔甲匠。"
+   ],
+   [
+    "Meditate to heal and refill your potions.",
+    "冥想可以恢復生命並補充藥水。"
+   ],
+   [
+    "Loot everything, but don't carry too many heavy things. Check your inventory.",
+    "什麼都撿，但別帶太多重的東西，要檢查物品欄。"
+   ],
+   [
+    "Don't sell your starting armor to a merchant. You can make it better later.",
+    "不要把初始盔甲賣給商人，之後可以升級它。"
+   ],
+   [
+    "Never break the law. The guards will attack you and take your money.",
+    "絕對不要犯法，守衛會攻擊你並拿走你的錢。"
+   ],
+   [
+    "Ride Roach, your horse, to explore the map.",
+    "騎你的馬蘿蔔去探索地圖。"
+   ],
+   [
+    "Don't worry. You'll learn fast!",
+    "別擔心，你會學得很快！"
+   ]
+  ],
+  "patterns": [
+   {
+    "p": "You should + 動詞",
+    "d": "你應該…（給建議）；should 的 l 不發音 [ʃʊd]",
+    "en": "You should read the notice boards.",
+    "ez": "你應該看看佈告欄。"
+   },
+   {
+    "p": "Don't + 動詞 / You shouldn't + 動詞",
+    "d": "不要…／你不應該…",
+    "en": "Don't sell your starting armor.",
+    "ez": "不要賣掉你的初始盔甲。"
+   },
+   {
+    "p": "Always / Never + 命令句",
+    "d": "一定要…／絕對不要…",
+    "en": "Never break the law.",
+    "ez": "絕對不要犯法。"
+   }
+  ]
+ },
+ {
+  "id": "L6",
+  "title": "第 6 課　獵魔委託",
+  "words": [
+   {
+    "w": "contract",
+    "s": [
+     "con",
+     "tract"
+    ],
+    "st": 0,
+    "kk": "[ˋkɑntrækt]",
+    "ipa": "/ˈkɑːn.trækt/",
+    "p": "n.",
+    "zh": "委託；合約",
+    "tip": "當名詞時重音在前；當動詞時重音在後（con・TRACT）。",
+    "en": "Geralt read a contract on the notice board.",
+    "ez": "傑洛特在佈告欄上看到一份委託。"
+   },
+   {
+    "w": "well",
+    "s": [
+     "well"
+    ],
+    "st": 0,
+    "kk": "[wɛl]",
+    "ipa": "/wel/",
+    "p": "n.",
+    "zh": "井",
+    "tip": "和「很好」的 well 同音同拼，看上下文判斷。",
+    "en": "A ghost lived by the old well.",
+    "ez": "一個鬼魂住在老井旁邊。"
+   },
+   {
+    "w": "toxic",
+    "s": [
+     "tox",
+     "ic"
+    ],
+    "st": 0,
+    "kk": "[ˋtɑksɪk]",
+    "ipa": "/ˈtɑːk.sɪk/",
+    "p": "adj.",
+    "zh": "有毒的",
+    "tip": "o 念 [ɑ]，嘴張大；x 念 [ks]。",
+    "en": "She drank toxic water.",
+    "ez": "她喝了有毒的水。"
+   },
+   {
+    "w": "abandoned",
+    "s": [
+     "a",
+     "ban",
+     "doned"
+    ],
+    "st": 1,
+    "kk": "[əˋbændənd]",
+    "ipa": "/əˈbæn.dənd/",
+    "p": "adj.",
+    "zh": "廢棄的",
+    "tip": "重音在中間；結尾 -ed 念 [d]。",
+    "en": "Geralt went to the abandoned village.",
+    "ez": "傑洛特去了廢棄的村莊。"
+   },
+   {
+    "w": "investigate",
+    "s": [
+     "in",
+     "ves",
+     "ti",
+     "gate"
+    ],
+    "st": 1,
+    "kk": "[ɪnˋvɛstəˌget]",
+    "ipa": "/ɪnˈves.tə.ɡeɪt/",
+    "p": "v.",
+    "zh": "調查",
+    "tip": "重音在第二音節 ves。",
+    "en": "He investigated the village.",
+    "ez": "他調查了那個村莊。"
+   },
+   {
+    "w": "clue",
+    "s": [
+     "clue"
+    ],
+    "st": 0,
+    "kk": "[klu]",
+    "ipa": "/kluː/",
+    "p": "n.",
+    "zh": "線索",
+    "tip": "ue 念長音 [u]。",
+    "en": "He looked for clues.",
+    "ez": "他尋找線索。"
+   },
+   {
+    "w": "evidence",
+    "s": [
+     "ev",
+     "i",
+     "dence"
+    ],
+    "st": 0,
+    "kk": "[ˋɛvədəns]",
+    "ipa": "/ˈev.ə.dəns/",
+    "p": "n.",
+    "zh": "證據",
+    "tip": "重音在第一音節；後兩個音節輕讀。",
+    "en": "The evidence told him the truth.",
+    "ez": "證據告訴了他真相。"
+   },
+   {
+    "w": "diary",
+    "s": [
+     "di",
+     "a",
+     "ry"
+    ],
+    "st": 0,
+    "kk": "[ˋdaɪərɪ]",
+    "ipa": "/ˈdaɪ.ə.ri/",
+    "p": "n.",
+    "zh": "日記",
+    "tip": "不要和 dairy [ˋdɛrɪ]（乳製品）搞混。",
+    "en": "He found a diary.",
+    "ez": "他找到一本日記。"
+   },
+   {
+    "w": "bracelet",
+    "s": [
+     "brace",
+     "let"
+    ],
+    "st": 0,
+    "kk": "[ˋbreslɪt]",
+    "ipa": "/ˈbreɪ.slət/",
+    "p": "n.",
+    "zh": "手環；手鐲",
+    "tip": "a 念 [e]；ce 念 [s]。",
+    "en": "He found a bracelet near the well.",
+    "ez": "他在井邊找到一個手環。"
+   },
+   {
+    "w": "noon",
+    "s": [
+     "noon"
+    ],
+    "st": 0,
+    "kk": "[nun]",
+    "ipa": "/nuːn/",
+    "p": "n.",
+    "zh": "正午",
+    "tip": "oo 念長音 [u]。",
+    "en": "The ghost appears at noon.",
+    "ez": "鬼魂在正午出現。"
+   },
+   {
+    "w": "price",
+    "s": [
+     "price"
+    ],
+    "st": 0,
+    "kk": "[praɪs]",
+    "ipa": "/praɪs/",
+    "p": "n.",
+    "zh": "價格",
+    "tip": "結尾 ce 念 [s]；念成 [z] 就變成 prize（獎品）。",
+    "en": "They agreed on a price.",
+    "ez": "他們談好了價錢。"
+   },
+   {
+    "w": "noonwraith",
+    "s": [
+     "noon",
+     "wraith"
+    ],
+    "st": 0,
+    "kk": "[ˋnunˌreθ]",
+    "ipa": "/ˈnuːn.reɪθ/",
+    "p": "n.",
+    "zh": "午時妖靈",
+    "tip": "noon＋wraith；w 不發音。",
+    "en": "The ghost was a noonwraith.",
+    "ez": "那個鬼魂是午時妖靈。",
+    "game": true
+   },
+   {
+    "w": "Witcher Senses",
+    "s": [
+     "Witch",
+     "er",
+     "Sen",
+     "ses"
+    ],
+    "st": 0,
+    "kk": "[ˋwɪtʃɚ ˌsɛnsɪz]",
+    "ipa": "/ˈwɪtʃ.ɚ ˈsen.sɪz/",
+    "p": "n.",
+    "zh": "獵魔士感官",
+    "tip": "senses 結尾 -es 念 [ɪz]。",
+    "en": "He used his Witcher Senses.",
+    "ez": "他使用了獵魔士感官。",
+    "game": true
+   },
+   {
+    "w": "specter",
+    "s": [
+     "spec",
+     "ter"
+    ],
+    "st": 0,
+    "kk": "[ˋspɛktɚ]",
+    "ipa": "/ˈspek.tɚ/",
+    "p": "n.",
+    "zh": "幽靈；怨靈",
+    "tip": "英式拼法是 spectre，念法相同。",
+    "en": "Use specter oil against ghosts.",
+    "ez": "對付鬼魂用怨靈劍油。",
+    "game": true
+   }
+  ],
+  "story": [
+   [
+    "Geralt read a contract on the notice board.",
+    "傑洛特在佈告欄上看到一份委託。"
+   ],
+   [
+    "A man named Odolan needed help.",
+    "一個叫歐多蘭的男人需要幫忙。"
+   ],
+   [
+    "His daughter drank toxic water from the river, and she fell ill.",
+    "他的女兒喝了河裡有毒的水，病倒了。"
+   ],
+   [
+    "She needed clean water from an old well.",
+    "她需要一口老井裡的乾淨水。"
+   ],
+   [
+    "But a ghost lived by the well, and nobody could go there.",
+    "但井邊住著一個鬼魂，沒有人能靠近。"
+   ],
+   [
+    "Geralt and Odolan agreed on a price.",
+    "傑洛特和歐多蘭談好了價錢。"
+   ],
+   [
+    "Then Geralt went to the abandoned village.",
+    "然後傑洛特去了廢棄的村莊。"
+   ],
+   [
+    "He used his Witcher Senses and investigated.",
+    "他使用獵魔士感官進行調查。"
+   ],
+   [
+    "He looked for clues. He found burned grass, a diary, and a bracelet.",
+    "他尋找線索，找到了燒焦的草、一本日記和一個手環。"
+   ],
+   [
+    "The evidence told him the truth. The ghost was a noonwraith.",
+    "證據告訴了他真相：那個鬼魂是午時妖靈。"
+   ],
+   [
+    "It appeared at noon, and it was weak against Yrden.",
+    "它在正午出現，而且怕亞登法印。"
+   ],
+   [
+    "Geralt prepared specter oil, fought the noonwraith, and won.",
+    "傑洛特準備了怨靈劍油，和午時妖靈戰鬥，並且贏了。"
+   ]
+  ],
+  "patterns": [
+   {
+    "p": "規則過去式：動詞 + ed（三種念法）",
+    "d": "無聲子音後念 [t]（asked）；有聲音後念 [d]（burned）；t/d 後念 [ɪd]（investigated）",
+    "en": "He asked, burned, and investigated.",
+    "ez": "他問了、燒了、也調查了。"
+   },
+   {
+    "p": "不規則過去式",
+    "d": "drink→drank, fall→fell, find→found, go→went, read→read（念 [rɛd]）",
+    "en": "His daughter drank toxic water and fell ill.",
+    "ez": "他的女兒喝了有毒的水，病倒了。"
+   },
+   {
+    "p": "was / were + 形容詞或名詞",
+    "d": "過去的狀態：單數用 was，複數用 were",
+    "en": "The village was abandoned.",
+    "ez": "那個村莊被廢棄了。"
+   }
+  ]
+ },
+ {
+  "id": "L7",
+  "title": "第 7 課　技能樹",
+  "words": [
+   {
+    "w": "ability",
+    "s": [
+     "a",
+     "bil",
+     "i",
+     "ty"
+    ],
+    "st": 1,
+    "kk": "[əˋbɪlətɪ]",
+    "ipa": "/əˈbɪl.ə.t̬i/",
+    "p": "n.",
+    "zh": "能力；技能",
+    "tip": "重音在第二音節 bil。",
+    "en": "You get an ability point when you level up.",
+    "ez": "升級時你會得到一個技能點數。"
+   },
+   {
+    "w": "skill",
+    "s": [
+     "skill"
+    ],
+    "st": 0,
+    "kk": "[skɪl]",
+    "ipa": "/skɪl/",
+    "p": "n.",
+    "zh": "技能",
+    "tip": "s 後面的 k 不送氣，聽起來接近 [g]。",
+    "en": "Skills make Geralt stronger.",
+    "ez": "技能讓傑洛特變得更強。"
+   },
+   {
+    "w": "level up",
+    "s": [
+     "lev",
+     "el",
+     "up"
+    ],
+    "st": 0,
+    "kk": "[ˋlɛvḷ ˌʌp]",
+    "ipa": "/ˈlev.əl ʌp/",
+    "p": "phr. v.",
+    "zh": "升級",
+    "tip": "兩個字連起來念，像 le-vlup。",
+    "en": "You unlock more slots when you level up.",
+    "ez": "升級時你會解鎖更多欄位。"
+   },
+   {
+    "w": "unlock",
+    "s": [
+     "un",
+     "lock"
+    ],
+    "st": 1,
+    "kk": "[ʌnˋlɑk]",
+    "ipa": "/ʌnˈlɑːk/",
+    "p": "v.",
+    "zh": "解鎖",
+    "tip": "重音在後；un＝相反，lock＝鎖。",
+    "en": "Use your points to unlock new skills.",
+    "ez": "用點數解鎖新技能。"
+   },
+   {
+    "w": "increase",
+    "s": [
+     "in",
+     "crease"
+    ],
+    "st": 1,
+    "kk": "[ɪnˋkris]",
+    "ipa": "/ɪnˈkriːs/",
+    "p": "v.",
+    "zh": "增加",
+    "tip": "當動詞時重音在後；當名詞時重音在前（IN・crease）。",
+    "en": "This skill increases damage by 5 percent.",
+    "ez": "這個技能讓傷害增加 5%。"
+   },
+   {
+    "w": "reduce",
+    "s": [
+     "re",
+     "duce"
+    ],
+    "st": 1,
+    "kk": "[rɪˋdus]",
+    "ipa": "/rɪˈduːs/",
+    "p": "v.",
+    "zh": "減少",
+    "tip": "重音在後；英式念 [rɪˋdjus]。",
+    "en": "This skill reduces damage by 20 percent.",
+    "ez": "這個技能讓受到的傷害減少 20%。"
+   },
+   {
+    "w": "percent",
+    "s": [
+     "per",
+     "cent"
+    ],
+    "st": 1,
+    "kk": "[pɚˋsɛnt]",
+    "ipa": "/pɚˈsent/",
+    "p": "n.",
+    "zh": "百分比",
+    "tip": "重音在後，不要念成 PER-cent。",
+    "en": "Five percent is not much, but it helps.",
+    "ez": "5% 不多，但有幫助。"
+   },
+   {
+    "w": "health",
+    "s": [
+     "health"
+    ],
+    "st": 0,
+    "kk": "[hɛlθ]",
+    "ipa": "/helθ/",
+    "p": "n.",
+    "zh": "生命值；健康",
+    "tip": "ea 念短音 [ɛ]（和 heavy 一樣）；結尾 th 念 [θ]。",
+    "en": "Green mutagens give you more health.",
+    "ez": "綠色突變誘發物讓你生命值更多。"
+   },
+   {
+    "w": "critical",
+    "s": [
+     "crit",
+     "i",
+     "cal"
+    ],
+    "st": 0,
+    "kk": "[ˋkrɪtɪkḷ]",
+    "ipa": "/ˈkrɪt̬.ɪ.kəl/",
+    "p": "adj.",
+    "zh": "暴擊的；關鍵的",
+    "tip": "重音在第一音節；結尾 cal 念 [kḷ]。",
+    "en": "This skill increases your critical chance.",
+    "ez": "這個技能提高你的暴擊率。"
+   },
+   {
+    "w": "slot",
+    "s": [
+     "slot"
+    ],
+    "st": 0,
+    "kk": "[slɑt]",
+    "ipa": "/slɑːt/",
+    "p": "n.",
+    "zh": "欄位；槽",
+    "tip": "o 念 [ɑ]，嘴張大。",
+    "en": "Put the skill in a slot.",
+    "ez": "把技能放進欄位。"
+   },
+   {
+    "w": "active",
+    "s": [
+     "ac",
+     "tive"
+    ],
+    "st": 0,
+    "kk": "[ˋæktɪv]",
+    "ipa": "/ˈæk.tɪv/",
+    "p": "adj.",
+    "zh": "啟用的；活躍的",
+    "tip": "a 念 [æ]；結尾 v 要咬唇。",
+    "en": "A skill only works when it is active.",
+    "ez": "技能只有在啟用時才有效。"
+   },
+   {
+    "w": "maximum",
+    "s": [
+     "max",
+     "i",
+     "mum"
+    ],
+    "st": 0,
+    "kk": "[ˋmæksəməm]",
+    "ipa": "/ˈmæk.sə.məm/",
+    "p": "n./adj.",
+    "zh": "最大值；最大的",
+    "tip": "重音在第一音節；常縮寫成 max。",
+    "en": "You can have a maximum of 12 active skills.",
+    "ez": "你最多可以啟用 12 個技能。"
+   },
+   {
+    "w": "adrenaline",
+    "s": [
+     "a",
+     "dren",
+     "a",
+     "line"
+    ],
+    "st": 1,
+    "kk": "[əˋdrɛnḷɪn]",
+    "ipa": "/əˈdren.əl.ɪn/",
+    "p": "n.",
+    "zh": "腎上腺素",
+    "tip": "結尾 line 念 [ɪn]，不是 [laɪn]。",
+    "en": "Adrenaline points increase your damage.",
+    "ez": "腎上腺素點數會提高你的傷害。"
+   },
+   {
+    "w": "toxicity",
+    "s": [
+     "tox",
+     "ic",
+     "i",
+     "ty"
+    ],
+    "st": 1,
+    "kk": "[tɑkˋsɪsətɪ]",
+    "ipa": "/tɑːkˈsɪs.ə.t̬i/",
+    "p": "n.",
+    "zh": "毒性",
+    "tip": "第 6 課 toxic 重音在前，加上 -ity 後重音移到 ic。",
+    "en": "Potions increase your toxicity.",
+    "ez": "藥水會提高你的毒性。"
+   },
+   {
+    "w": "mutagen",
+    "s": [
+     "mu",
+     "ta",
+     "gen"
+    ],
+    "st": 0,
+    "kk": "[ˋmjutədʒən]",
+    "ipa": "/ˈmjuː.tə.dʒən/",
+    "p": "n.",
+    "zh": "突變誘發物",
+    "tip": "u 念 [ju]（像英文字母 U）；g 念 [dʒ]。",
+    "en": "Put mutagens next to skills of the same color.",
+    "ez": "把突變誘發物放在同色技能旁邊。",
+    "game": true
+   },
+   {
+    "w": "Place of Power",
+    "s": [
+     "Place",
+     "of",
+     "Pow",
+     "er"
+    ],
+    "st": 2,
+    "kk": "[ˋples əv ˋpaʊɚ]",
+    "ipa": "/pleɪs əv ˈpaʊ.ɚ/",
+    "p": "n.",
+    "zh": "力量之地",
+    "tip": "of 輕讀 [əv]；power 的 ow 念 [aʊ]。",
+    "en": "You can get points at Places of Power.",
+    "ez": "你可以在力量之地獲得點數。",
+    "game": true
+   }
+  ],
+  "story": [
+   [
+    "Every time you level up, you get an ability point.",
+    "每次升級，你都會得到一個技能點數。"
+   ],
+   [
+    "You can also get points at Places of Power.",
+    "你也可以在力量之地獲得點數。"
+   ],
+   [
+    "There are four skill trees: Combat, Signs, Alchemy, and General.",
+    "技能樹有四種：戰鬥、法印、煉金和一般。"
+   ],
+   [
+    "Use your points to unlock new skills.",
+    "用點數解鎖新技能。"
+   ],
+   [
+    "But a skill only works when it is active, so put it in a slot.",
+    "但技能只有啟用時才有效，所以要把它放進欄位。"
+   ],
+   [
+    "At first you have only a few slots. You unlock more when you level up.",
+    "一開始只有幾個欄位，升級時會解鎖更多。"
+   ],
+   [
+    "Skills make Geralt stronger.",
+    "技能讓傑洛特變得更強。"
+   ],
+   [
+    "For example, one skill increases fast attack damage by 5 percent.",
+    "例如，有個技能讓快速攻擊傷害增加 5%。"
+   ],
+   [
+    "Another skill makes your toxicity go down faster.",
+    "另一個技能讓你的毒性降得更快。"
+   ],
+   [
+    "Mutagens give you more health, more damage, or stronger Signs.",
+    "突變誘發物讓你有更多生命值、更高傷害或更強的法印。"
+   ],
+   [
+    "Put them next to skills of the same color.",
+    "把它們放在同色的技能旁邊。"
+   ],
+   [
+    "You can't unlock every skill, so choose wisely!",
+    "你無法解鎖所有技能，所以要謹慎選擇！"
+   ]
+  ],
+  "patterns": [
+   {
+    "p": "increase / reduce + 名詞 + by + 數字 percent",
+    "d": "讓…增加／減少多少百分比（技能說明最常見的句型）",
+    "en": "Increases fast attack damage by 5 percent.",
+    "ez": "快速攻擊傷害增加 5%。"
+   },
+   {
+    "p": "比較級：形容詞 + er / more + 形容詞",
+    "d": "短的字加 -er（stronger, faster），長的字前面加 more（more powerful）",
+    "en": "Skills make Geralt stronger and more powerful.",
+    "ez": "技能讓傑洛特更強、更有力量。"
+   },
+   {
+    "p": "You need + 數量 + 名詞 + to + 動詞",
+    "d": "你需要多少…才能…",
+    "en": "You need 8 points to unlock the next row.",
+    "ez": "你需要 8 點才能解鎖下一排。"
+   }
+  ]
+ },
+ {
+  "id": "L8",
+  "title": "第 8 課　煉金術",
+  "words": [
+   {
+    "w": "potion",
+    "s": [
+     "po",
+     "tion"
+    ],
+    "st": 0,
+    "kk": "[ˋpoʃən]",
+    "ipa": "/ˈpoʊ.ʃən/",
+    "p": "n.",
+    "zh": "藥水",
+    "tip": "-tion 念 [ʃən]，像「深」。",
+    "en": "Swallow is a basic health potion.",
+    "ez": "燕子藥水是基本的回血藥水。"
+   },
+   {
+    "w": "recipe",
+    "s": [
+     "rec",
+     "i",
+     "pe"
+    ],
+    "st": 0,
+    "kk": "[ˋrɛsəpɪ]",
+    "ipa": "/ˈres.ə.pi/",
+    "p": "n.",
+    "zh": "配方；食譜",
+    "tip": "三個音節，結尾的 e 要念 [ɪ]，不是「瑞賽普」。",
+    "en": "First, you need a recipe.",
+    "ez": "首先，你需要一個配方。"
+   },
+   {
+    "w": "alcohol",
+    "s": [
+     "al",
+     "co",
+     "hol"
+    ],
+    "st": 0,
+    "kk": "[ˋælkəˌhɔl]",
+    "ipa": "/ˈæl.kə.hɑːl/",
+    "p": "n.",
+    "zh": "酒精；酒",
+    "tip": "重音在第一音節；h 要發音。",
+    "en": "Most potions need alcohol.",
+    "ez": "大部分藥水需要酒精。"
+   },
+   {
+    "w": "herb",
+    "s": [
+     "herb"
+    ],
+    "st": 0,
+    "kk": "[ɝb]",
+    "ipa": "/ɝːb/",
+    "p": "n.",
+    "zh": "草藥",
+    "tip": "美式 h 不發音，念 [ɝb]；英式念 [hɜːb]。",
+    "en": "You can pick herbs in the fields.",
+    "ez": "你可以在田野採草藥。"
+   },
+   {
+    "w": "herbalist",
+    "s": [
+     "herb",
+     "al",
+     "ist"
+    ],
+    "st": 0,
+    "kk": "[ˋɝbəlɪst]",
+    "ipa": "/ˈɝː.bəl.ɪst/",
+    "p": "n.",
+    "zh": "草藥師",
+    "tip": "重音在第一音節；美式常不念 h。",
+    "en": "You can buy recipes from a herbalist.",
+    "ez": "你可以向草藥師買配方。"
+   },
+   {
+    "w": "brew",
+    "s": [
+     "brew"
+    ],
+    "st": 0,
+    "kk": "[bru]",
+    "ipa": "/bruː/",
+    "p": "v.",
+    "zh": "調製；釀造",
+    "tip": "ew 念長音 [u]。",
+    "en": "Open the alchemy menu and brew the potion.",
+    "ez": "打開煉金選單調製藥水。"
+   },
+   {
+    "w": "dose",
+    "s": [
+     "dose"
+    ],
+    "st": 0,
+    "kk": "[dos]",
+    "ipa": "/doʊs/",
+    "p": "n.",
+    "zh": "一劑；一次的量",
+    "tip": "結尾 s 念 [s]；念成 [z] 就變成 doze（打瞌睡）。",
+    "en": "Each potion has a few doses.",
+    "ez": "每種藥水有幾劑。"
+   },
+   {
+    "w": "apply",
+    "s": [
+     "ap",
+     "ply"
+    ],
+    "st": 1,
+    "kk": "[əˋplaɪ]",
+    "ipa": "/əˈplaɪ/",
+    "p": "v.",
+    "zh": "塗上；應用；申請",
+    "tip": "重音在後；y 念 [aɪ]。",
+    "en": "Apply oil to your sword.",
+    "ez": "把劍油塗在劍上。"
+   },
+   {
+    "w": "bomb",
+    "s": [
+     "bomb"
+    ],
+    "st": 0,
+    "kk": "[bɑm]",
+    "ipa": "/bɑːm/",
+    "p": "n.",
+    "zh": "炸彈",
+    "tip": "結尾的 b 不發音。",
+    "en": "Meditation also refills your bombs.",
+    "ez": "冥想也會補充你的炸彈。"
+   },
+   {
+    "w": "recover",
+    "s": [
+     "re",
+     "cov",
+     "er"
+    ],
+    "st": 1,
+    "kk": "[rɪˋkʌvɚ]",
+    "ipa": "/rɪˈkʌv.ɚ/",
+    "p": "v.",
+    "zh": "恢復",
+    "tip": "重音在中間；o 念 [ʌ]。",
+    "en": "Swallow helps you recover health slowly.",
+    "ez": "燕子藥水幫你慢慢恢復生命值。"
+   },
+   {
+    "w": "limited",
+    "s": [
+     "lim",
+     "it",
+     "ed"
+    ],
+    "st": 0,
+    "kk": "[ˋlɪmɪtɪd]",
+    "ipa": "/ˈlɪm.ɪ.t̬ɪd/",
+    "p": "adj.",
+    "zh": "有限的",
+    "tip": "結尾 -ed 念 [ɪd]（第 6 課的規則）。",
+    "en": "You can only carry a limited number of potions.",
+    "ez": "你只能攜帶有限數量的藥水。"
+   },
+   {
+    "w": "Swallow",
+    "s": [
+     "Swal",
+     "low"
+    ],
+    "st": 0,
+    "kk": "[ˋswɑlo]",
+    "ipa": "/ˈswɑː.loʊ/",
+    "p": "n.",
+    "zh": "燕子藥水",
+    "tip": "sw 連在一起念；a 念 [ɑ]；原意是燕子，也有「吞嚥」的意思。",
+    "en": "Drink Swallow in a fight.",
+    "ez": "戰鬥時喝燕子藥水。",
+    "game": true
+   },
+   {
+    "w": "decoction",
+    "s": [
+     "de",
+     "coc",
+     "tion"
+    ],
+    "st": 1,
+    "kk": "[dɪˋkɑkʃən]",
+    "ipa": "/dɪˈkɑːk.ʃən/",
+    "p": "n.",
+    "zh": "煎藥（強效藥劑）",
+    "tip": "重音在中間；-tion 念 [ʃən]。",
+    "en": "Decoctions last longer than potions.",
+    "ez": "煎藥的效果比藥水持久。",
+    "game": true
+   },
+   {
+    "w": "alcohest",
+    "s": [
+     "al",
+     "co",
+     "hest"
+    ],
+    "st": 0,
+    "kk": "[ˋælkəˌhɛst]",
+    "ipa": "/ˈæl.kə.hest/",
+    "p": "n.",
+    "zh": "烈酒（煉金用）",
+    "tip": "alcohol 的遊戲版本，h 要發音。",
+    "en": "Meditate with alcohest in your inventory.",
+    "ez": "物品欄裡有烈酒時去冥想。",
+    "game": true
+   }
+  ],
+  "story": [
+   [
+    "Alchemy is very useful for a witcher. Here is how it works.",
+    "煉金術對獵魔士很有用，以下是它的運作方式。"
+   ],
+   [
+    "First, you need a recipe. You can find recipes in chests or buy them from a herbalist.",
+    "首先，你需要配方。你可以在箱子裡找到配方，或向草藥師購買。"
+   ],
+   [
+    "Then, collect the ingredients.",
+    "接著，收集材料。"
+   ],
+   [
+    "Most potions need alcohol, some herbs, and sometimes monster parts, like drowner brains.",
+    "大部分藥水需要酒精、一些草藥，有時還要怪物的部位，像是水鬼的腦。"
+   ],
+   [
+    "Next, open the alchemy menu and brew the potion.",
+    "然後，打開煉金選單調製藥水。"
+   ],
+   [
+    "Finally, drink it in a fight.",
+    "最後，在戰鬥中喝下它。"
+   ],
+   [
+    "Swallow is the basic health potion. It helps you recover health slowly.",
+    "燕子藥水是基本的回血藥水，能幫你慢慢恢復生命值。"
+   ],
+   [
+    "Remember: potions increase your toxicity, so don't drink too many at once.",
+    "記住：藥水會增加毒性，所以別一次喝太多。"
+   ],
+   [
+    "The best part? You only brew a potion once.",
+    "最棒的是什麼？每種藥水你只需要調製一次。"
+   ],
+   [
+    "After that, meditate with alcohol in your inventory, and your potions and bombs will refill.",
+    "之後，只要物品欄裡有酒精，冥想時藥水和炸彈就會補滿。"
+   ],
+   [
+    "Oils don't run out, so just apply them to your sword.",
+    "劍油不會用完，所以直接塗在劍上就好。"
+   ]
+  ],
+  "patterns": [
+   {
+    "p": "First, … Then, … Next, … Finally, …",
+    "d": "說明步驟的順序：首先、接著、然後、最後",
+    "en": "First, find a recipe. Then, collect the ingredients. Finally, brew the potion.",
+    "ez": "首先找配方，接著收集材料，最後調製藥水。"
+   },
+   {
+    "p": "Once you + 動詞, + 句子",
+    "d": "一旦…就…",
+    "en": "Once you brew a potion, you can refill it for free.",
+    "ez": "一旦調製過一種藥水，之後就能免費補充。"
+   },
+   {
+    "p": "As long as + 句子, + 句子",
+    "d": "只要…就…",
+    "en": "As long as you have alcohol, meditation refills your potions.",
+    "ez": "只要有酒精，冥想就會補充藥水。"
+   }
+  ]
+ },
+ {
+  "id": "L9",
+  "title": "第 9 課　鐵匠與製作",
+  "words": [
+   {
+    "w": "craft",
+    "s": [
+     "craft"
+    ],
+    "st": 0,
+    "kk": "[kræft]",
+    "ipa": "/kræft/",
+    "p": "v.",
+    "zh": "製作",
+    "tip": "a 念 [æ]，嘴角拉開；結尾 ft 都要發。",
+    "en": "Geralt can't craft weapons himself.",
+    "ez": "傑洛特自己不能製作武器。"
+   },
+   {
+    "w": "diagram",
+    "s": [
+     "di",
+     "a",
+     "gram"
+    ],
+    "st": 0,
+    "kk": "[ˋdaɪəˌgræm]",
+    "ipa": "/ˈdaɪ.ə.ɡræm/",
+    "p": "n.",
+    "zh": "設計圖；圖樣",
+    "tip": "重音在第一音節；di 念 [daɪ]。",
+    "en": "First, you need a diagram.",
+    "ez": "首先你需要一張設計圖。"
+   },
+   {
+    "w": "material",
+    "s": [
+     "ma",
+     "te",
+     "ri",
+     "al"
+    ],
+    "st": 1,
+    "kk": "[məˋtɪrɪəl]",
+    "ipa": "/məˈtɪr.i.əl/",
+    "p": "n.",
+    "zh": "材料",
+    "tip": "四個音節，重音在第二個。",
+    "en": "A diagram shows the materials you need.",
+    "ez": "設計圖會列出你需要的材料。"
+   },
+   {
+    "w": "component",
+    "s": [
+     "com",
+     "po",
+     "nent"
+    ],
+    "st": 1,
+    "kk": "[kəmˋponənt]",
+    "ipa": "/kəmˈpoʊ.nənt/",
+    "p": "n.",
+    "zh": "零件；組件",
+    "tip": "重音在中間；po 念 [po]。",
+    "en": "A sword needs several components.",
+    "ez": "一把劍需要好幾種零件。"
+   },
+   {
+    "w": "iron",
+    "s": [
+     "i",
+     "ron"
+    ],
+    "st": 0,
+    "kk": "[ˋaɪɚn]",
+    "ipa": "/ˈaɪ.ɚn/",
+    "p": "n.",
+    "zh": "鐵",
+    "tip": "不是「艾朗」；r 的捲舌音放在 n 前面，念 [ˋaɪɚn]。",
+    "en": "You need iron to make a sword.",
+    "ez": "做劍需要鐵。"
+   },
+   {
+    "w": "leather",
+    "s": [
+     "leath",
+     "er"
+    ],
+    "st": 0,
+    "kk": "[ˋlɛðɚ]",
+    "ipa": "/ˈleð.ɚ/",
+    "p": "n.",
+    "zh": "皮革",
+    "tip": "ea 念 [ɛ]；th 念有聲的 [ð]，舌尖輕咬並振動。",
+    "en": "Armor needs a lot of leather.",
+    "ez": "盔甲需要很多皮革。"
+   },
+   {
+    "w": "ore",
+    "s": [
+     "ore"
+    ],
+    "st": 0,
+    "kk": "[or]",
+    "ipa": "/ɔːr/",
+    "p": "n.",
+    "zh": "礦石",
+    "tip": "和 or（或）同音。",
+    "en": "A blacksmith can turn ore into iron.",
+    "ez": "鐵匠能把礦石變成鐵。"
+   },
+   {
+    "w": "armor",
+    "s": [
+     "ar",
+     "mor"
+    ],
+    "st": 0,
+    "kk": "[ˋɑrmɚ]",
+    "ipa": "/ˈɑːr.mɚ/",
+    "p": "n.",
+    "zh": "盔甲",
+    "tip": "重音在前；英式拼法是 armour。",
+    "en": "Only armorers can craft armor.",
+    "ez": "只有盔甲匠能製作盔甲。"
+   },
+   {
+    "w": "dismantle",
+    "s": [
+     "dis",
+     "man",
+     "tle"
+    ],
+    "st": 1,
+    "kk": "[dɪsˋmæntḷ]",
+    "ipa": "/dɪˈsmæn.t̬əl/",
+    "p": "v.",
+    "zh": "拆解",
+    "tip": "重音在中間；結尾 tle 念 [tḷ]。",
+    "en": "Dismantle old swords for materials.",
+    "ez": "拆解舊劍來取得材料。"
+   },
+   {
+    "w": "enough",
+    "s": [
+     "e",
+     "nough"
+    ],
+    "st": 1,
+    "kk": "[ɪˋnʌf]",
+    "ipa": "/ɪˈnʌf/",
+    "p": "adj./adv.",
+    "zh": "足夠的",
+    "tip": "gh 念 [f]；重音在後。",
+    "en": "You don't have enough money.",
+    "ez": "你的錢不夠。"
+   },
+   {
+    "w": "master",
+    "s": [
+     "mas",
+     "ter"
+    ],
+    "st": 0,
+    "kk": "[ˋmæstɚ]",
+    "ipa": "/ˈmæs.tɚ/",
+    "p": "n.",
+    "zh": "大師",
+    "tip": "美式 a 念 [æ]；英式念 [ɑː]。",
+    "en": "Some diagrams need a master.",
+    "ez": "有些設計圖需要大師級工匠。"
+   },
+   {
+    "w": "fee",
+    "s": [
+     "fee"
+    ],
+    "st": 0,
+    "kk": "[fi]",
+    "ipa": "/fiː/",
+    "p": "n.",
+    "zh": "費用",
+    "tip": "長音 [i]。",
+    "en": "Crafting costs a small fee.",
+    "ez": "製作要收一點費用。"
+   },
+   {
+    "w": "journeyman",
+    "s": [
+     "jour",
+     "ney",
+     "man"
+    ],
+    "st": 0,
+    "kk": "[ˋdʒɝnɪmən]",
+    "ipa": "/ˈdʒɝː.ni.mən/",
+    "p": "n.",
+    "zh": "熟練工匠",
+    "tip": "our 念捲舌 [ɝ]；man 輕讀 [mən]。",
+    "en": "A journeyman can make most items.",
+    "ez": "熟練工匠能做大部分物品。",
+    "game": true
+   },
+   {
+    "w": "crowns",
+    "s": [
+     "crowns"
+    ],
+    "st": 0,
+    "kk": "[kraʊnz]",
+    "ipa": "/kraʊnz/",
+    "p": "n.",
+    "zh": "克朗（遊戲貨幣）",
+    "tip": "ow 念 [aʊ]；結尾 s 念 [z]；原意是「王冠」。",
+    "en": "Crafting also costs crowns.",
+    "ez": "製作也要花克朗。",
+    "game": true
+   }
+  ],
+  "story": [
+   [
+    "Geralt can't make weapons or armor himself. He needs help from a craftsman.",
+    "傑洛特自己不能做武器或盔甲，他需要工匠幫忙。"
+   ],
+   [
+    "First, you need a diagram. A diagram shows the materials you need.",
+    "首先，你需要一張設計圖，設計圖會列出你需要的材料。"
+   ],
+   [
+    "For example, a sword may need iron, leather, and other components.",
+    "例如，一把劍可能需要鐵、皮革和其他零件。"
+   ],
+   [
+    "You can buy materials from merchants, find them in chests, or dismantle old items.",
+    "你可以向商人買材料、在箱子裡找，或是拆解舊物品。"
+   ],
+   [
+    "Only blacksmiths can craft weapons, and only armorers can craft armor.",
+    "只有鐵匠能做武器，只有盔甲匠能做盔甲。"
+   ],
+   [
+    "There are three levels of craftsmen: amateur, journeyman, and master.",
+    "工匠有三個等級：業餘、熟練和大師。"
+   ],
+   [
+    "Some diagrams need a master.",
+    "有些設計圖需要大師級工匠。"
+   ],
+   [
+    "Crafting also costs crowns. If you don't have enough money, you can't make the item.",
+    "製作也要花克朗，錢不夠就做不了。"
+   ],
+   [
+    "Tip: Don't sell your old swords right away. Dismantle them.",
+    "提示：舊劍別急著賣，把它們拆解掉。"
+   ],
+   [
+    "You'll get useful materials.",
+    "你會得到有用的材料。"
+   ]
+  ],
+  "patterns": [
+   {
+    "p": "You need + A, B, and C + to + 動詞",
+    "d": "做某事需要 A、B 和 C",
+    "en": "You need iron and leather to make a sword.",
+    "ez": "做劍需要鐵和皮革。"
+   },
+   {
+    "p": "enough 的位置：enough + 名詞／形容詞 + enough",
+    "d": "名詞放在 enough 後面；形容詞放在 enough 前面",
+    "en": "You don't have enough money. This blacksmith isn't skilled enough.",
+    "ez": "你的錢不夠。這個鐵匠的技術不夠好。"
+   },
+   {
+    "p": "Only + A + can + 動詞",
+    "d": "只有 A 能做某事",
+    "en": "Only blacksmiths can craft weapons.",
+    "ez": "只有鐵匠能製作武器。"
+   }
+  ]
+ },
+ {
+  "id": "L10",
+  "title": "第 10 課　盔甲與武器",
+  "words": [
+   {
+    "w": "weapon",
+    "s": [
+     "weap",
+     "on"
+    ],
+    "st": 0,
+    "kk": "[ˋwɛpən]",
+    "ipa": "/ˈwep.ən/",
+    "p": "n.",
+    "zh": "武器",
+    "tip": "ea 念短音 [ɛ]，不是 [i]。",
+    "en": "Geralt carries two weapons.",
+    "ez": "傑洛特帶著兩把武器。"
+   },
+   {
+    "w": "sword",
+    "s": [
+     "sword"
+    ],
+    "st": 0,
+    "kk": "[sord]",
+    "ipa": "/sɔːrd/",
+    "p": "n.",
+    "zh": "劍",
+    "tip": "w 不發音，念 [sord]。",
+    "en": "The silver sword is for monsters.",
+    "ez": "銀劍用來對付怪物。"
+   },
+   {
+    "w": "light",
+    "s": [
+     "light"
+    ],
+    "st": 0,
+    "kk": "[laɪt]",
+    "ipa": "/laɪt/",
+    "p": "adj.",
+    "zh": "輕的",
+    "tip": "gh 不發音；l 開頭，不要念成 right [raɪt]。",
+    "en": "Light armor is the best for stamina.",
+    "ez": "輕甲最有利於耐力。"
+   },
+   {
+    "w": "medium",
+    "s": [
+     "me",
+     "di",
+     "um"
+    ],
+    "st": 0,
+    "kk": "[ˋmidɪəm]",
+    "ipa": "/ˈmiː.di.əm/",
+    "p": "adj.",
+    "zh": "中等的",
+    "tip": "三個音節，重音在第一個。",
+    "en": "Medium armor is in the middle.",
+    "ez": "中甲介於兩者之間。"
+   },
+   {
+    "w": "weight",
+    "s": [
+     "weight"
+    ],
+    "st": 0,
+    "kk": "[wet]",
+    "ipa": "/weɪt/",
+    "p": "n.",
+    "zh": "重量",
+    "tip": "eigh 念 [e]，gh 不發音；和 wait 同音。",
+    "en": "Armor has three weight classes.",
+    "ez": "盔甲分成三種重量等級。"
+   },
+   {
+    "w": "protection",
+    "s": [
+     "pro",
+     "tec",
+     "tion"
+    ],
+    "st": 1,
+    "kk": "[prəˋtɛkʃən]",
+    "ipa": "/prəˈtek.ʃən/",
+    "p": "n.",
+    "zh": "保護；防護",
+    "tip": "第 4 課 protect 的名詞；-tion 念 [ʃən]。",
+    "en": "Heavy armor gives the most protection.",
+    "ez": "重甲的防護力最高。"
+   },
+   {
+    "w": "defense",
+    "s": [
+     "de",
+     "fense"
+    ],
+    "st": 1,
+    "kk": "[dɪˋfɛns]",
+    "ipa": "/dɪˈfens/",
+    "p": "n.",
+    "zh": "防禦",
+    "tip": "重音在後；英式拼法 defence。",
+    "en": "This armor has good defense.",
+    "ez": "這件盔甲防禦力很好。"
+   },
+   {
+    "w": "durability",
+    "s": [
+     "du",
+     "ra",
+     "bil",
+     "i",
+     "ty"
+    ],
+    "st": 2,
+    "kk": "[ˌdʊrəˋbɪlətɪ]",
+    "ipa": "/ˌdʊr.əˈbɪl.ə.t̬i/",
+    "p": "n.",
+    "zh": "耐久度",
+    "tip": "五個音節，重音在 bil（和第 7 課 ability 一樣）。",
+    "en": "Weapons lose durability when you fight.",
+    "ez": "武器戰鬥時會損失耐久度。"
+   },
+   {
+    "w": "rare",
+    "s": [
+     "rare"
+    ],
+    "st": 0,
+    "kk": "[rɛr]",
+    "ipa": "/rer/",
+    "p": "adj.",
+    "zh": "稀有的",
+    "tip": "兩個 r 都要捲舌。",
+    "en": "Some items are very rare.",
+    "ez": "有些物品非常稀有。"
+   },
+   {
+    "w": "balance",
+    "s": [
+     "bal",
+     "ance"
+    ],
+    "st": 0,
+    "kk": "[ˋbæləns]",
+    "ipa": "/ˈbæl.əns/",
+    "p": "n.",
+    "zh": "平衡",
+    "tip": "重音在前；a 念 [æ]。",
+    "en": "Medium armor is a good balance.",
+    "ez": "中甲是很好的平衡。"
+   },
+   {
+    "w": "boots",
+    "s": [
+     "boots"
+    ],
+    "st": 0,
+    "kk": "[buts]",
+    "ipa": "/buːts/",
+    "p": "n.",
+    "zh": "靴子",
+    "tip": "oo 念長音 [u]。",
+    "en": "Put on your new boots.",
+    "ez": "穿上你的新靴子。"
+   },
+   {
+    "w": "trousers",
+    "s": [
+     "trou",
+     "sers"
+    ],
+    "st": 0,
+    "kk": "[ˋtraʊzɚz]",
+    "ipa": "/ˈtraʊ.zɚz/",
+    "p": "n.",
+    "zh": "褲子",
+    "tip": "ou 念 [aʊ]；美國人通常說 pants。",
+    "en": "Armor has chest armor, gauntlets, trousers, and boots.",
+    "ez": "盔甲分成胸甲、手甲、褲子和靴子。"
+   },
+   {
+    "w": "gauntlets",
+    "s": [
+     "gaunt",
+     "lets"
+    ],
+    "st": 0,
+    "kk": "[ˋgɔntlɪts]",
+    "ipa": "/ˈɡɑːnt.ləts/",
+    "p": "n.",
+    "zh": "護手；鐵手套",
+    "tip": "au 念 [ɔ]。",
+    "en": "These gauntlets protect your hands.",
+    "ez": "這副護手保護你的手。",
+    "game": true
+   },
+   {
+    "w": "relic",
+    "s": [
+     "rel",
+     "ic"
+    ],
+    "st": 0,
+    "kk": "[ˋrɛlɪk]",
+    "ipa": "/ˈrel.ɪk/",
+    "p": "n.",
+    "zh": "遺物（遊戲中的稀有度等級）",
+    "tip": "重音在前。",
+    "en": "Relic items are some of the rarest in the game.",
+    "ez": "遺物級物品是遊戲中最稀有的之一。",
+    "game": true
+   }
+  ],
+  "story": [
+   [
+    "Geralt carries two swords: a steel sword for people and a silver sword for monsters.",
+    "傑洛特帶著兩把劍：鋼劍對付人，銀劍對付怪物。"
+   ],
+   [
+    "Armor has three weight classes: light, medium, and heavy.",
+    "盔甲有三種重量等級：輕、中、重。"
+   ],
+   [
+    "Light armor gives the least protection, but it is the best for stamina.",
+    "輕甲防護力最低，但最有利於耐力。"
+   ],
+   [
+    "You can dodge and use Signs more often.",
+    "你可以更常閃避和使用法印。"
+   ],
+   [
+    "Heavy armor gives the most protection, but your stamina comes back more slowly.",
+    "重甲防護力最高，但耐力恢復得比較慢。"
+   ],
+   [
+    "Medium armor is in the middle. For many players, it is the best balance.",
+    "中甲介於中間，對很多玩家來說是最好的平衡。"
+   ],
+   [
+    "Armor has four parts: chest armor, gauntlets, trousers, and boots.",
+    "盔甲分成四個部位：胸甲、護手、褲子和靴子。"
+   ],
+   [
+    "Weapons and armor lose durability when you fight, so repair them often.",
+    "武器和盔甲戰鬥時會損失耐久度，所以要常修理。"
+   ],
+   [
+    "Some items are rare. Relic items are some of the rarest in the game.",
+    "有些物品很稀有，遺物級是遊戲中最稀有的之一。"
+   ],
+   [
+    "But the best gear is usually witcher gear. You craft it from diagrams.",
+    "但最好的裝備通常是獵魔士裝備，要用設計圖製作。"
+   ]
+  ],
+  "patterns": [
+   {
+    "p": "最高級：the + 形容詞-est / the most + 形容詞",
+    "d": "最…的；短字加 -est（the rarest），長字前加 the most（the most powerful）",
+    "en": "Heavy armor gives the most protection.",
+    "ez": "重甲的防護力最高。"
+   },
+   {
+    "p": "不規則比較：good-better-best / bad-worse-worst / little-less-least",
+    "d": "要個別背",
+    "en": "Light armor gives the least protection, but it is the best for stamina.",
+    "ez": "輕甲防護最少，但最有利於耐力。"
+   },
+   {
+    "p": "A + gives more/less + 名詞 + than + B",
+    "d": "A 比 B 給更多／更少的…",
+    "en": "Heavy armor gives more protection than light armor.",
+    "ez": "重甲比輕甲提供更多防護。"
+   }
+  ]
+ },
+ {
+  "id": "L11",
+  "title": "第 11 課　主線：丁香與醋栗",
+  "words": [
+   {
+    "w": "tavern",
+    "s": [
+     "tav",
+     "ern"
+    ],
+    "st": 0,
+    "kk": "[ˋtævɚn]",
+    "ipa": "/ˈtæv.ɚn/",
+    "p": "n.",
+    "zh": "酒館",
+    "tip": "a 念 [æ]；ern 念捲舌 [ɚn]。",
+    "en": "Geralt goes to the tavern.",
+    "ez": "傑洛特走進酒館。"
+   },
+   {
+    "w": "inn",
+    "s": [
+     "inn"
+    ],
+    "st": 0,
+    "kk": "[ɪn]",
+    "ipa": "/ɪn/",
+    "p": "n.",
+    "zh": "旅店",
+    "tip": "和介系詞 in 同音。",
+    "en": "The inn is in the middle of the village.",
+    "ez": "旅店在村子中間。"
+   },
+   {
+    "w": "innkeeper",
+    "s": [
+     "inn",
+     "keep",
+     "er"
+    ],
+    "st": 0,
+    "kk": "[ˋɪnˌkipɚ]",
+    "ipa": "/ˈɪnˌkiː.pɚ/",
+    "p": "n.",
+    "zh": "旅店老闆",
+    "tip": "inn＋keeper（看管的人）。",
+    "en": "The innkeeper has no information.",
+    "ez": "旅店老闆沒有消息。"
+   },
+   {
+    "w": "traveler",
+    "s": [
+     "trav",
+     "el",
+     "er"
+    ],
+    "st": 0,
+    "kk": "[ˋtrævḷɚ]",
+    "ipa": "/ˈtræv.əl.ɚ/",
+    "p": "n.",
+    "zh": "旅客",
+    "tip": "重音在前；英式拼法 traveller。",
+    "en": "Geralt asks the travelers about Yennefer.",
+    "ez": "傑洛特向旅客打聽葉妮芙。"
+   },
+   {
+    "w": "information",
+    "s": [
+     "in",
+     "for",
+     "ma",
+     "tion"
+    ],
+    "st": 2,
+    "kk": "[ˌɪnfɚˋmeʃən]",
+    "ipa": "/ˌɪn.fɚˈmeɪ.ʃən/",
+    "p": "n.",
+    "zh": "資訊；消息",
+    "tip": "重音在 ma；不可數名詞，不能加 s。",
+    "en": "The captain has information about Yennefer.",
+    "ez": "隊長有葉妮芙的消息。"
+   },
+   {
+    "w": "captain",
+    "s": [
+     "cap",
+     "tain"
+    ],
+    "st": 0,
+    "kk": "[ˋkæptɪn]",
+    "ipa": "/ˈkæp.tɪn/",
+    "p": "n.",
+    "zh": "隊長；上尉",
+    "tip": "ai 念 [ɪ]，不是 [e]。",
+    "en": "Geralt talks to the Nilfgaardian captain.",
+    "ez": "傑洛特和尼弗迦德隊長談話。"
+   },
+   {
+    "w": "garrison",
+    "s": [
+     "gar",
+     "ri",
+     "son"
+    ],
+    "st": 0,
+    "kk": "[ˋgærəsn̩]",
+    "ipa": "/ˈɡer.ə.sən/",
+    "p": "n.",
+    "zh": "駐軍；要塞",
+    "tip": "重音在前；son 輕讀。",
+    "en": "Many soldiers live in the garrison.",
+    "ez": "很多士兵住在要塞裡。"
+   },
+   {
+    "w": "soldier",
+    "s": [
+     "sol",
+     "dier"
+    ],
+    "st": 0,
+    "kk": "[ˋsoldʒɚ]",
+    "ipa": "/ˈsoʊl.dʒɚ/",
+    "p": "n.",
+    "zh": "士兵",
+    "tip": "di 念 [dʒ]，不是「迪」。",
+    "en": "The soldiers guard the garrison.",
+    "ez": "士兵守衛著要塞。"
+   },
+   {
+    "w": "wounded",
+    "s": [
+     "wound",
+     "ed"
+    ],
+    "st": 0,
+    "kk": "[ˋwundɪd]",
+    "ipa": "/ˈwuːn.dɪd/",
+    "p": "adj.",
+    "zh": "受傷的",
+    "tip": "ou 念 [u]，不是 [aʊ]；-ed 念 [ɪd]。",
+    "en": "Vesemir is wounded in the fight.",
+    "ez": "維瑟米爾在戰鬥中受傷。"
+   },
+   {
+    "w": "exchange",
+    "s": [
+     "ex",
+     "change"
+    ],
+    "st": 1,
+    "kk": "[ɪksˋtʃendʒ]",
+    "ipa": "/ɪksˈtʃeɪndʒ/",
+    "p": "n./v.",
+    "zh": "交換",
+    "tip": "重音在後；ex 念 [ɪks]。",
+    "en": "It's information in exchange for work.",
+    "ez": "這是用工作交換情報。"
+   },
+   {
+    "w": "lilac",
+    "s": [
+     "li",
+     "lac"
+    ],
+    "st": 0,
+    "kk": "[ˋlaɪlək]",
+    "ipa": "/ˈlaɪ.lək/",
+    "p": "n.",
+    "zh": "丁香",
+    "tip": "i 念 [aɪ]；葉妮芙身上的香味。",
+    "en": "Yennefer smells of lilac.",
+    "ez": "葉妮芙身上有丁香的味道。",
+    "game": true
+   },
+   {
+    "w": "gooseberry",
+    "s": [
+     "goose",
+     "ber",
+     "ry"
+    ],
+    "st": 0,
+    "kk": "[ˋgusˌbɛrɪ]",
+    "ipa": "/ˈɡuːs.ber.i/",
+    "p": "n.",
+    "zh": "醋栗",
+    "tip": "goose（鵝）＋berry；英式常念 [ˈɡʊz.bər.i]。",
+    "en": "Lilac and gooseberries is Yennefer's scent.",
+    "ez": "丁香與醋栗是葉妮芙的氣味。",
+    "game": true
+   },
+   {
+    "w": "Nilfgaardian",
+    "s": [
+     "Nilf",
+     "gaar",
+     "di",
+     "an"
+    ],
+    "st": 1,
+    "kk": "[nɪlfˋgɑrdɪən]",
+    "ipa": "/nɪlfˈɡɑːr.di.ən/",
+    "p": "adj./n.",
+    "zh": "尼弗迦德的；尼弗迦德人",
+    "tip": "重音在 gaar；aa 念 [ɑ]。",
+    "en": "A Nilfgaardian captain knows something.",
+    "ez": "一個尼弗迦德隊長知道些什麼。",
+    "game": true
+   },
+   {
+    "w": "Gaunter O'Dimm",
+    "s": [
+     "Gaun",
+     "ter",
+     "O",
+     "Dimm"
+    ],
+    "st": 3,
+    "kk": "[ˋgɔntɚ oˋdɪm]",
+    "ipa": "/ˈɡɔːn.tɚ oʊˈdɪm/",
+    "p": "名",
+    "zh": "剛特・歐迪姆",
+    "tip": "au 念 [ɔ]；O' 念 [o]。",
+    "en": "Gaunter O'Dimm saw Yennefer.",
+    "ez": "剛特・歐迪姆看過葉妮芙。",
+    "game": true
+   }
+  ],
+  "story": [
+   [
+    "This is the first main quest in White Orchard.",
+    "這是白果園的第一個主線任務。"
+   ],
+   [
+    "Geralt and Vesemir are looking for Yennefer.",
+    "傑洛特和維瑟米爾正在尋找葉妮芙。"
+   ],
+   [
+    "On the road, they see a griffin attack a merchant. Vesemir is wounded in the fight.",
+    "路上他們看到獅鷲攻擊一個商人，維瑟米爾在戰鬥中受傷。"
+   ],
+   [
+    "In the village, Geralt goes to the tavern.",
+    "到了村子，傑洛特走進酒館。"
+   ],
+   [
+    "The innkeeper has no information about Yennefer, so Geralt asks the travelers.",
+    "旅店老闆沒有葉妮芙的消息，所以傑洛特去問旅客。"
+   ],
+   [
+    "Only one man knows something: a bald man named Gaunter O'Dimm.",
+    "只有一個人知道些什麼：一個叫剛特・歐迪姆的光頭男子。"
+   ],
+   [
+    "He says Yennefer spoke with a Nilfgaardian captain.",
+    "他說葉妮芙和一個尼弗迦德隊長談過話。"
+   ],
+   [
+    "Geralt goes to the Nilfgaardian garrison, where many soldiers live.",
+    "傑洛特前往尼弗迦德要塞，那裡住著很多士兵。"
+   ],
+   [
+    "The captain knows where Yennefer went, but he won't tell Geralt until Geralt kills the griffin.",
+    "隊長知道葉妮芙去了哪裡，但要等傑洛特殺了獅鷲才肯說。"
+   ],
+   [
+    "It's information in exchange for a witcher's work.",
+    "這是用獵魔士的工作交換情報。"
+   ]
+  ],
+  "patterns": [
+   {
+    "p": "ask + 人 + about + 事",
+    "d": "向某人打聽某事",
+    "en": "Geralt asks the travelers about Yennefer.",
+    "ez": "傑洛特向旅客打聽葉妮芙。"
+   },
+   {
+    "p": "won't + 動詞 + until + 句子",
+    "d": "要等到…才會…",
+    "en": "He won't tell Geralt until Geralt kills the griffin.",
+    "ez": "要等傑洛特殺了獅鷲，他才會說。"
+   },
+   {
+    "p": "A in exchange for B",
+    "d": "用 B 交換 A",
+    "en": "It's information in exchange for a witcher's work.",
+    "ez": "這是用獵魔士的工作交換情報。"
+   }
+  ]
+ },
+ {
+  "id": "L12",
+  "title": "第 12 課　白果園支線",
+  "words": [
+   {
+    "w": "secondary",
+    "s": [
+     "sec",
+     "ond",
+     "ar",
+     "y"
+    ],
+    "st": 0,
+    "kk": "[ˋsɛkənˌdɛrɪ]",
+    "ipa": "/ˈsek.ən.der.i/",
+    "p": "adj.",
+    "zh": "次要的",
+    "tip": "重音在第一音節。",
+    "en": "Side quests are called secondary quests.",
+    "ez": "支線任務在遊戲中叫次要任務。"
+   },
+   {
+    "w": "optional",
+    "s": [
+     "op",
+     "tion",
+     "al"
+    ],
+    "st": 0,
+    "kk": "[ˋɑpʃənḷ]",
+    "ipa": "/ˈɑːp.ʃən.əl/",
+    "p": "adj.",
+    "zh": "可選的；非必要的",
+    "tip": "o 念 [ɑ]；-tion 念 [ʃən]。",
+    "en": "Side quests are optional.",
+    "ez": "支線任務是可選的。"
+   },
+   {
+    "w": "missing",
+    "s": [
+     "miss",
+     "ing"
+    ],
+    "st": 0,
+    "kk": "[ˋmɪsɪŋ]",
+    "ipa": "/ˈmɪs.ɪŋ/",
+    "p": "adj.",
+    "zh": "失蹤的",
+    "tip": "短音 [ɪ]；ng 是鼻音。",
+    "en": "Some people are missing.",
+    "ez": "有些人失蹤了。"
+   },
+   {
+    "w": "villager",
+    "s": [
+     "vil",
+     "lag",
+     "er"
+    ],
+    "st": 0,
+    "kk": "[ˋvɪlɪdʒɚ]",
+    "ipa": "/ˈvɪl.ɪ.dʒɚ/",
+    "p": "n.",
+    "zh": "村民",
+    "tip": "lage 念 [lɪdʒ]，和 damage 的結尾一樣。",
+    "en": "Villagers will ask you for help.",
+    "ez": "村民會向你求助。"
+   },
+   {
+    "w": "request",
+    "s": [
+     "re",
+     "quest"
+    ],
+    "st": 1,
+    "kk": "[rɪˋkwɛst]",
+    "ipa": "/rɪˈkwest/",
+    "p": "n.",
+    "zh": "請求",
+    "tip": "重音在後；qu 念 [kw]。",
+    "en": "You can find requests on the notice board.",
+    "ez": "你可以在佈告欄找到請求。"
+   },
+   {
+    "w": "fail",
+    "s": [
+     "fail"
+    ],
+    "st": 0,
+    "kk": "[fel]",
+    "ipa": "/feɪl/",
+    "p": "v.",
+    "zh": "失敗",
+    "tip": "ai 念 [e]；不要和 fell、feel 搞混。",
+    "en": "Some quests will fail.",
+    "ez": "有些任務會失敗。"
+   },
+   {
+    "w": "complete",
+    "s": [
+     "com",
+     "plete"
+    ],
+    "st": 1,
+    "kk": "[kəmˋplit]",
+    "ipa": "/kəmˈpliːt/",
+    "p": "v.",
+    "zh": "完成",
+    "tip": "重音在後；結尾 e 不發音。",
+    "en": "Complete the side quests first.",
+    "ez": "先完成支線任務。"
+   },
+   {
+    "w": "journal",
+    "s": [
+     "jour",
+     "nal"
+    ],
+    "st": 0,
+    "kk": "[ˋdʒɝnḷ]",
+    "ipa": "/ˈdʒɝː.nəl/",
+    "p": "n.",
+    "zh": "日誌",
+    "tip": "our 念捲舌 [ɝ]，和第 9 課 journeyman 一樣。",
+    "en": "Open your journal to read about each quest.",
+    "ez": "打開日誌閱讀每個任務。"
+   },
+   {
+    "w": "marker",
+    "s": [
+     "mark",
+     "er"
+    ],
+    "st": 0,
+    "kk": "[ˋmɑrkɚ]",
+    "ipa": "/ˈmɑːr.kɚ/",
+    "p": "n.",
+    "zh": "標記",
+    "tip": "ar 念 [ɑr]。",
+    "en": "A marker will appear on your map.",
+    "ez": "地圖上會出現標記。"
+   },
+   {
+    "w": "track",
+    "s": [
+     "track"
+    ],
+    "st": 0,
+    "kk": "[træk]",
+    "ipa": "/træk/",
+    "p": "v.",
+    "zh": "追蹤",
+    "tip": "a 念 [æ]；tr 連在一起。",
+    "en": "Track a quest to see it on the map.",
+    "ez": "追蹤任務就能在地圖上看到它。"
+   },
+   {
+    "w": "priority",
+    "s": [
+     "pri",
+     "or",
+     "i",
+     "ty"
+    ],
+    "st": 1,
+    "kk": "[praɪˋɔrətɪ]",
+    "ipa": "/praɪˈɔːr.ə.t̬i/",
+    "p": "n.",
+    "zh": "優先事項",
+    "tip": "重音在第二音節 or。",
+    "en": "Make these quests a priority.",
+    "ez": "把這些任務列為優先。"
+   },
+   {
+    "w": "orchard",
+    "s": [
+     "or",
+     "chard"
+    ],
+    "st": 0,
+    "kk": "[ˋɔrtʃɚd]",
+    "ipa": "/ˈɔːr.tʃɚd/",
+    "p": "n.",
+    "zh": "果園",
+    "tip": "ch 念 [tʃ]；White Orchard 就是「白果園」。",
+    "en": "White Orchard is a quiet village.",
+    "ez": "白果園是一個安靜的村子。"
+   },
+   {
+    "w": "missing in action",
+    "s": [
+     "miss",
+     "ing",
+     "in",
+     "ac",
+     "tion"
+    ],
+    "st": 3,
+    "kk": "[ˋmɪsɪŋ ɪn ˋækʃən]",
+    "ipa": "/ˈmɪs.ɪŋ ɪn ˈæk.ʃən/",
+    "p": "phr.",
+    "zh": "作戰失蹤",
+    "tip": "軍事用語，縮寫 MIA；in 輕讀。",
+    "en": "Missing in Action is a side quest in White Orchard.",
+    "ez": "「作戰失蹤」是白果園的一個支線任務。"
+   }
+  ],
+  "story": [
+   [
+    "White Orchard has several side quests. In the game, they are called secondary quests.",
+    "白果園有好幾個支線任務，在遊戲中叫做次要任務。"
+   ],
+   [
+    "They are optional, but they give you experience, crowns, and good stories.",
+    "它們是可選的，但能給你經驗、克朗和好故事。"
+   ],
+   [
+    "Villagers will ask you to help them.",
+    "村民會請你幫忙。"
+   ],
+   [
+    "Some people are missing, and some need a witcher's help.",
+    "有些人失蹤了，有些人需要獵魔士的幫助。"
+   ],
+   [
+    "You can find requests on the notice board, or people will talk to you on the road.",
+    "你可以在佈告欄找到請求，或是路上會有人來找你。"
+   ],
+   [
+    "Open your journal to read about each quest.",
+    "打開日誌閱讀每個任務。"
+   ],
+   [
+    "Track a quest, and a marker will appear on your map.",
+    "追蹤一個任務，地圖上就會出現標記。"
+   ],
+   [
+    "Important: complete the side quests in White Orchard before you talk to Vesemir after the griffin hunt.",
+    "重要：獵完獅鷲後，在和維瑟米爾說話之前，先完成白果園的支線任務。"
+   ],
+   [
+    "If you don't, some of them will fail.",
+    "不然有些任務會失敗。"
+   ],
+   [
+    "Three quests to remember: Twisted Firestarter, Missing in Action, and On Death's Bed.",
+    "要記住三個任務：扭曲的縱火犯、作戰失蹤、臨終之床。"
+   ],
+   [
+    "Make them a priority!",
+    "把它們列為優先！"
+   ]
+  ],
+  "patterns": [
+   {
+    "p": "ask / help + 人 + (to) + 動詞",
+    "d": "請某人做某事／幫某人做某事（help 後面的 to 可省略）",
+    "en": "Villagers will ask you to help them.",
+    "ez": "村民會請你幫忙。"
+   },
+   {
+    "p": "before + 句子 / before + 動詞-ing",
+    "d": "在…之前",
+    "en": "Complete the side quests before you talk to Vesemir.",
+    "ez": "在和維瑟米爾說話之前，先完成支線任務。"
+   },
+   {
+    "p": "make + 受詞 + 名詞",
+    "d": "把…變成…；讓…成為…",
+    "en": "Make them a priority.",
+    "ez": "把它們列為優先。"
+   }
+  ]
+ },
+ {
+  "id": "L13",
+  "title": "第 13 課　感情與情緒",
+  "words": [
+   {
+    "w": "feel",
+    "s": [
+     "feel"
+    ],
+    "st": 0,
+    "kk": "[fil]",
+    "ipa": "/fiːl/",
+    "p": "v.",
+    "zh": "感覺",
+    "tip": "長音 [i]；念短了會變成 fill [fɪl]（填滿）。",
+    "en": "How does Geralt feel?",
+    "ez": "傑洛特有什麼感受？"
+   },
+   {
+    "w": "love",
+    "s": [
+     "love"
+    ],
+    "st": 0,
+    "kk": "[lʌv]",
+    "ipa": "/lʌv/",
+    "p": "v./n.",
+    "zh": "愛",
+    "tip": "o 念 [ʌ]，不是「樂夫」；結尾 v 要咬唇。",
+    "en": "He loves Yennefer.",
+    "ez": "他愛葉妮芙。"
+   },
+   {
+    "w": "miss",
+    "s": [
+     "miss"
+    ],
+    "st": 0,
+    "kk": "[mɪs]",
+    "ipa": "/mɪs/",
+    "p": "v.",
+    "zh": "想念",
+    "tip": "短音 [ɪ]；也有「錯過」的意思。",
+    "en": "He misses her very much.",
+    "ez": "他非常想念她。"
+   },
+   {
+    "w": "jealous",
+    "s": [
+     "jeal",
+     "ous"
+    ],
+    "st": 0,
+    "kk": "[ˋdʒɛləs]",
+    "ipa": "/ˈdʒel.əs/",
+    "p": "adj.",
+    "zh": "嫉妒的",
+    "tip": "ea 念 [ɛ]；-ous 念 [əs]。",
+    "en": "Some people are jealous.",
+    "ez": "有些人會嫉妒。"
+   },
+   {
+    "w": "lonely",
+    "s": [
+     "lone",
+     "ly"
+    ],
+    "st": 0,
+    "kk": "[ˋlonlɪ]",
+    "ipa": "/ˈloʊn.li/",
+    "p": "adj.",
+    "zh": "孤單的",
+    "tip": "o 念 [o]；lone＝孤單的。",
+    "en": "Some villagers are lonely.",
+    "ez": "有些村民很孤單。"
+   },
+   {
+    "w": "angry",
+    "s": [
+     "an",
+     "gry"
+    ],
+    "st": 0,
+    "kk": "[ˋæŋgrɪ]",
+    "ipa": "/ˈæŋ.ɡri/",
+    "p": "adj.",
+    "zh": "生氣的",
+    "tip": "n 在 g 前面念 [ŋ]。",
+    "en": "The captain looks angry.",
+    "ez": "隊長看起來很生氣。"
+   },
+   {
+    "w": "worried",
+    "s": [
+     "wor",
+     "ried"
+    ],
+    "st": 0,
+    "kk": "[ˋwɝɪd]",
+    "ipa": "/ˈwɝː.id/",
+    "p": "adj.",
+    "zh": "擔心的",
+    "tip": "第 5 課 worry 的形容詞；-ied 念 [ɪd]。",
+    "en": "Geralt feels worried about Ciri.",
+    "ez": "傑洛特很擔心希里。"
+   },
+   {
+    "w": "surprised",
+    "s": [
+     "sur",
+     "prised"
+    ],
+    "st": 1,
+    "kk": "[sɚˋpraɪzd]",
+    "ipa": "/sɚˈpraɪzd/",
+    "p": "adj.",
+    "zh": "（人）感到驚訝的",
+    "tip": "重音在後；-ed 念 [d]。",
+    "en": "I was surprised by her words.",
+    "ez": "她的話讓我很驚訝。"
+   },
+   {
+    "w": "boring",
+    "s": [
+     "bor",
+     "ing"
+    ],
+    "st": 0,
+    "kk": "[ˋborɪŋ]",
+    "ipa": "/ˈbɔːr.ɪŋ/",
+    "p": "adj.",
+    "zh": "（事物）無聊的",
+    "tip": "-ing 表示「事物讓人覺得無聊」；人覺得無聊要用 bored。",
+    "en": "The story is never boring.",
+    "ez": "這個故事一點也不無聊。"
+   },
+   {
+    "w": "relationship",
+    "s": [
+     "re",
+     "la",
+     "tion",
+     "ship"
+    ],
+    "st": 1,
+    "kk": "[rɪˋleʃənˌʃɪp]",
+    "ipa": "/rɪˈleɪ.ʃən.ʃɪp/",
+    "p": "n.",
+    "zh": "關係；戀愛關係",
+    "tip": "重音在 la；兩個 sh 音要分清楚。",
+    "en": "You can choose a relationship with Yennefer or Triss.",
+    "ez": "你可以選擇和葉妮芙或特莉絲交往。"
+   },
+   {
+    "w": "honest",
+    "s": [
+     "hon",
+     "est"
+    ],
+    "st": 0,
+    "kk": "[ˋɑnɪst]",
+    "ipa": "/ˈɑː.nɪst/",
+    "p": "adj.",
+    "zh": "誠實的",
+    "tip": "h 不發音，念 [ˋɑnɪst]。",
+    "en": "Be honest with her.",
+    "ez": "對她誠實。"
+   },
+   {
+    "w": "trust",
+    "s": [
+     "trust"
+    ],
+    "st": 0,
+    "kk": "[trʌst]",
+    "ipa": "/trʌst/",
+    "p": "v.",
+    "zh": "信任",
+    "tip": "u 念 [ʌ]；tr 連在一起。",
+    "en": "Do you trust him?",
+    "ez": "你信任他嗎？"
+   },
+   {
+    "w": "romance",
+    "s": [
+     "ro",
+     "mance"
+    ],
+    "st": 1,
+    "kk": "[roˋmæns]",
+    "ipa": "/roʊˈmæns/",
+    "p": "n.",
+    "zh": "愛情；戀愛",
+    "tip": "美式也常念 RO・mance。",
+    "en": "The game has two main romances.",
+    "ez": "遊戲有兩條主要的感情線。"
+   }
+  ],
+  "story": [
+   [
+    "Geralt doesn't show his feelings much, but he has a heart.",
+    "傑洛特不太表露感情，但他是有心的。"
+   ],
+   [
+    "He loves Yennefer, and he misses her.",
+    "他愛葉妮芙，也想念她。"
+   ],
+   [
+    "Triss is also an old friend, and she cares about him.",
+    "特莉絲也是老朋友，她很關心他。"
+   ],
+   [
+    "In the game, you can choose a relationship with Yennefer or Triss.",
+    "在遊戲中，你可以選擇和葉妮芙或特莉絲交往。"
+   ],
+   [
+    "Your words in conversations matter. Think carefully before you choose.",
+    "你在對話中說的話很重要，選擇之前要想清楚。"
+   ],
+   [
+    "People in the game have feelings too.",
+    "遊戲裡的人也有感情。"
+   ],
+   [
+    "Some are lonely, some are worried, and some are jealous.",
+    "有些人孤單，有些人擔心，有些人嫉妒。"
+   ],
+   [
+    "Listen to how they feel. It makes the story more exciting, not boring.",
+    "傾聽他們的感受，會讓故事更精彩，而不是無聊。"
+   ],
+   [
+    "And when you are surprised by a character's words, remember: that's good writing!",
+    "當角色的話讓你驚訝時，記住：那就是好的劇本！"
+   ]
+  ],
+  "patterns": [
+   {
+    "p": "-ed 和 -ing 形容詞",
+    "d": "-ed 是人的感受（I'm bored / surprised）；-ing 是事物給人的感覺（It's boring / surprising）",
+    "en": "I was surprised. The story was surprising.",
+    "ez": "我很驚訝。這個故事很令人驚訝。"
+   },
+   {
+    "p": "feel + 形容詞",
+    "d": "感覺…（feel 後面接形容詞，不接副詞）",
+    "en": "Geralt feels worried about Ciri.",
+    "ez": "傑洛特很擔心希里。"
+   },
+   {
+    "p": "care about / miss + 人",
+    "d": "關心某人／想念某人",
+    "en": "She cares about him, and he misses her.",
+    "ez": "她關心他，他也想念她。"
+   }
+  ]
+ },
+ {
+  "id": "L14",
+  "title": "第 14 課　選擇與後果",
+  "words": [
+   {
+    "w": "choice",
+    "s": [
+     "choice"
+    ],
+    "st": 0,
+    "kk": "[tʃɔɪs]",
+    "ipa": "/tʃɔɪs/",
+    "p": "n.",
+    "zh": "選擇",
+    "tip": "oi 念 [ɔɪ]；動詞是 choose [tʃuz]。",
+    "en": "It's your choice.",
+    "ez": "這是你的選擇。"
+   },
+   {
+    "w": "consequence",
+    "s": [
+     "con",
+     "se",
+     "quence"
+    ],
+    "st": 0,
+    "kk": "[ˋkɑnsəˌkwɛns]",
+    "ipa": "/ˈkɑːn.sə.kwens/",
+    "p": "n.",
+    "zh": "後果",
+    "tip": "重音在第一音節；qu 念 [kw]。",
+    "en": "Many decisions have consequences.",
+    "ez": "很多決定都有後果。"
+   },
+   {
+    "w": "decision",
+    "s": [
+     "de",
+     "ci",
+     "sion"
+    ],
+    "st": 1,
+    "kk": "[dɪˋsɪʒən]",
+    "ipa": "/dɪˈsɪʒ.ən/",
+    "p": "n.",
+    "zh": "決定",
+    "tip": "si 念 [ʒ]（像「日」的聲母但更輕）。",
+    "en": "This is a hard decision.",
+    "ez": "這是一個困難的決定。"
+   },
+   {
+    "w": "accept",
+    "s": [
+     "ac",
+     "cept"
+    ],
+    "st": 1,
+    "kk": "[əkˋsɛpt]",
+    "ipa": "/əkˈsept/",
+    "p": "v.",
+    "zh": "接受",
+    "tip": "cc 念 [ks]；不要和 except [ɪkˋsɛpt]（除了）搞混。",
+    "en": "If you accept, you will get fifty crowns.",
+    "ez": "如果你接受，你會拿到五十克朗。"
+   },
+   {
+    "w": "refuse",
+    "s": [
+     "re",
+     "fuse"
+    ],
+    "st": 1,
+    "kk": "[rɪˋfjuz]",
+    "ipa": "/rɪˈfjuːz/",
+    "p": "v.",
+    "zh": "拒絕",
+    "tip": "當動詞時重音在後；當名詞「垃圾」時念 [ˋrɛfjus]。",
+    "en": "If you refuse, you will get a free meal.",
+    "ez": "如果你拒絕，你會得到一頓免費餐點。"
+   },
+   {
+    "w": "depend",
+    "s": [
+     "de",
+     "pend"
+    ],
+    "st": 1,
+    "kk": "[dɪˋpɛnd]",
+    "ipa": "/dɪˈpend/",
+    "p": "v.",
+    "zh": "取決於",
+    "tip": "重音在後；常用 depend on。",
+    "en": "The result depends on what you do.",
+    "ez": "結果取決於你做了什麼。"
+   },
+   {
+    "w": "result",
+    "s": [
+     "re",
+     "sult"
+    ],
+    "st": 1,
+    "kk": "[rɪˋzʌlt]",
+    "ipa": "/rɪˈzʌlt/",
+    "p": "n.",
+    "zh": "結果",
+    "tip": "s 念 [z]；u 念 [ʌ]。",
+    "en": "The result may surprise you.",
+    "ez": "結果可能會讓你驚訝。"
+   },
+   {
+    "w": "future",
+    "s": [
+     "fu",
+     "ture"
+    ],
+    "st": 0,
+    "kk": "[ˋfjutʃɚ]",
+    "ipa": "/ˈfjuː.tʃɚ/",
+    "p": "n.",
+    "zh": "未來",
+    "tip": "u 念 [ju]；-ture 念 [tʃɚ]。",
+    "en": "Your choice can change the future.",
+    "ez": "你的選擇能改變未來。"
+   },
+   {
+    "w": "regret",
+    "s": [
+     "re",
+     "gret"
+    ],
+    "st": 1,
+    "kk": "[rɪˋgrɛt]",
+    "ipa": "/rɪˈɡret/",
+    "p": "v.",
+    "zh": "後悔",
+    "tip": "重音在後。",
+    "en": "Don't regret your choice.",
+    "ez": "別後悔你的選擇。"
+   },
+   {
+    "w": "matter",
+    "s": [
+     "mat",
+     "ter"
+    ],
+    "st": 0,
+    "kk": "[ˋmætɚ]",
+    "ipa": "/ˈmæt̬.ɚ/",
+    "p": "v.",
+    "zh": "要緊；有關係",
+    "tip": "美式的 t 念得像輕輕的 d。",
+    "en": "Some choices matter more.",
+    "ez": "有些選擇比較重要。"
+   },
+   {
+    "w": "discount",
+    "s": [
+     "dis",
+     "count"
+    ],
+    "st": 0,
+    "kk": "[ˋdɪskaʊnt]",
+    "ipa": "/ˈdɪs.kaʊnt/",
+    "p": "n.",
+    "zh": "折扣",
+    "tip": "當名詞時重音在前；ou 念 [aʊ]。",
+    "en": "The merchant will give you a discount.",
+    "ez": "商人會給你折扣。"
+   },
+   {
+    "w": "meal",
+    "s": [
+     "meal"
+    ],
+    "st": 0,
+    "kk": "[mil]",
+    "ipa": "/miːl/",
+    "p": "n.",
+    "zh": "一餐",
+    "tip": "長音 [i]。",
+    "en": "You get a free meal at the tavern.",
+    "ez": "你在酒館得到一頓免費餐點。"
+   },
+   {
+    "w": "lesser evil",
+    "s": [
+     "less",
+     "er",
+     "e",
+     "vil"
+    ],
+    "st": 2,
+    "kk": "[ˋlɛsɚ ˋivḷ]",
+    "ipa": "/ˈles.ɚ ˈiː.vəl/",
+    "p": "n.",
+    "zh": "兩害相權取其輕的選擇",
+    "tip": "evil 念 [ˋivḷ]，不是「A 維爾」；完整說法 the lesser of two evils。",
+    "en": "Sometimes there is only the lesser evil.",
+    "ez": "有時只有兩害相權取其輕。"
+   }
+  ],
+  "story": [
+   [
+    "The Witcher 3 is famous for its choices.",
+    "巫師3以它的選擇系統聞名。"
+   ],
+   [
+    "Many decisions have consequences, and some consequences come much later.",
+    "很多決定都有後果，有些後果很久之後才出現。"
+   ],
+   [
+    "Here is an easy example from the beginning of the game.",
+    "這裡有一個遊戲開頭的簡單例子。"
+   ],
+   [
+    "After the griffin attacks a merchant, the merchant offers Geralt a reward.",
+    "獅鷲攻擊商人之後，商人要給傑洛特報酬。"
+   ],
+   [
+    "If you accept, you will get fifty crowns.",
+    "如果你接受，你會拿到五十克朗。"
+   ],
+   [
+    "If you refuse, you will get a free meal at the tavern and a discount later.",
+    "如果你拒絕，你會在酒館得到一頓免費餐點，之後還有折扣。"
+   ],
+   [
+    "It's your choice, and neither answer is wrong.",
+    "這是你的選擇，兩個答案都沒錯。"
+   ],
+   [
+    "But other choices matter more. Sometimes there is no good answer, only the lesser evil.",
+    "但其他選擇更重要。有時沒有好答案，只能兩害相權取其輕。"
+   ],
+   [
+    "The result depends on what you say and what you do.",
+    "結果取決於你說了什麼、做了什麼。"
+   ],
+   [
+    "So think carefully. Then don't regret it. Your story is your own!",
+    "所以要想清楚，然後別後悔。你的故事屬於你自己！"
+   ]
+  ],
+  "patterns": [
+   {
+    "p": "If + 現在式, … will + 動詞（第一條件句）",
+    "d": "如果…就會…；if 那半句用現在式，不用 will",
+    "en": "If you accept, you will get fifty crowns.",
+    "ez": "如果你接受，你會拿到五十克朗。"
+   },
+   {
+    "p": "depend on + 名詞 / what 子句",
+    "d": "取決於…",
+    "en": "The result depends on what you say.",
+    "ez": "結果取決於你說了什麼。"
+   },
+   {
+    "p": "either A or B / neither",
+    "d": "either A or B＝A 或 B 其中之一；neither＝兩者都不",
+    "en": "You can either accept or refuse. Neither answer is wrong.",
+    "ez": "你可以接受或拒絕，兩個答案都沒錯。"
+   }
+  ]
+ },
+ {
+  "id": "L15",
+  "title": "第 15 課　主線：白果園的野獸",
+  "words": [
+   {
+    "w": "hunter",
+    "s": [
+     "hun",
+     "ter"
+    ],
+    "st": 0,
+    "kk": "[ˋhʌntɚ]",
+    "ipa": "/ˈhʌn.tɚ/",
+    "p": "n.",
+    "zh": "獵人",
+    "tip": "u 念 [ʌ]。",
+    "en": "Geralt talks to a hunter.",
+    "ez": "傑洛特和一個獵人談話。"
+   },
+   {
+    "w": "hut",
+    "s": [
+     "hut"
+    ],
+    "st": 0,
+    "kk": "[hʌt]",
+    "ipa": "/hʌt/",
+    "p": "n.",
+    "zh": "小屋",
+    "tip": "u 念 [ʌ]；不要和 hat [hæt]、hot [hɑt] 搞混。",
+    "en": "The hunter's hut is southwest of the village.",
+    "ez": "獵人的小屋在村子西南方。"
+   },
+   {
+    "w": "footprint",
+    "s": [
+     "foot",
+     "print"
+    ],
+    "st": 0,
+    "kk": "[ˋfʊtˌprɪnt]",
+    "ipa": "/ˈfʊt.prɪnt/",
+    "p": "n.",
+    "zh": "腳印",
+    "tip": "oo 念短音 [ʊ]。",
+    "en": "Geralt follows the footprints.",
+    "ez": "傑洛特跟著腳印走。"
+   },
+   {
+    "w": "blood",
+    "s": [
+     "blood"
+    ],
+    "st": 0,
+    "kk": "[blʌd]",
+    "ipa": "/blʌd/",
+    "p": "n.",
+    "zh": "血",
+    "tip": "oo 在這個字念 [ʌ]，是例外（flood 也是）。",
+    "en": "There is blood on the ground.",
+    "ez": "地上有血。"
+   },
+   {
+    "w": "nest",
+    "s": [
+     "nest"
+    ],
+    "st": 0,
+    "kk": "[nɛst]",
+    "ipa": "/nest/",
+    "p": "n.",
+    "zh": "巢",
+    "tip": "e 念 [ɛ]；結尾 st 都要發。",
+    "en": "He finds the griffin's nest.",
+    "ez": "他找到獅鷲的巢。"
+   },
+   {
+    "w": "bait",
+    "s": [
+     "bait"
+    ],
+    "st": 0,
+    "kk": "[bet]",
+    "ipa": "/beɪt/",
+    "p": "n.",
+    "zh": "誘餌",
+    "tip": "ai 念 [e]。",
+    "en": "Buckthorn is used as bait.",
+    "ez": "鼠李被拿來當誘餌。"
+   },
+   {
+    "w": "dive",
+    "s": [
+     "dive"
+    ],
+    "st": 0,
+    "kk": "[daɪv]",
+    "ipa": "/daɪv/",
+    "p": "v.",
+    "zh": "潛水",
+    "tip": "i 念 [aɪ]；結尾 v 要咬唇。",
+    "en": "Geralt has to dive to find the plant.",
+    "ez": "傑洛特必須潛水去找那株植物。"
+   },
+   {
+    "w": "riverbed",
+    "s": [
+     "riv",
+     "er",
+     "bed"
+    ],
+    "st": 0,
+    "kk": "[ˋrɪvɚˌbɛd]",
+    "ipa": "/ˈrɪv.ɚ.bed/",
+    "p": "n.",
+    "zh": "河床",
+    "tip": "river＋bed（床）＝河床。",
+    "en": "The plant grows on the riverbed.",
+    "ez": "那株植物長在河床上。"
+   },
+   {
+    "w": "wild",
+    "s": [
+     "wild"
+    ],
+    "st": 0,
+    "kk": "[waɪld]",
+    "ipa": "/waɪld/",
+    "p": "adj.",
+    "zh": "野生的",
+    "tip": "i 念 [aɪ]，不是 [ɪ]。",
+    "en": "The hunter is fighting wild dogs.",
+    "ez": "獵人正在和野狗戰鬥。"
+   },
+   {
+    "w": "hurry",
+    "s": [
+     "hur",
+     "ry"
+    ],
+    "st": 0,
+    "kk": "[ˋhɝɪ]",
+    "ipa": "/ˈhɝː.i/",
+    "p": "n./v.",
+    "zh": "匆忙；趕快",
+    "tip": "u 念捲舌的 [ɝ]，和第 5 課 worry 同韻。",
+    "en": "You can say you're in a hurry.",
+    "ez": "你可以說你在趕時間。"
+   },
+   {
+    "w": "examine",
+    "s": [
+     "ex",
+     "am",
+     "ine"
+    ],
+    "st": 1,
+    "kk": "[ɪgˋzæmɪn]",
+    "ipa": "/ɪɡˈzæm.ɪn/",
+    "p": "v.",
+    "zh": "檢查；仔細查看",
+    "tip": "ex 念 [ɪgz]；結尾 ine 念 [ɪn]，不是 [aɪn]。",
+    "en": "Geralt examines the area.",
+    "ez": "傑洛特仔細檢查這個區域。"
+   },
+   {
+    "w": "buckthorn",
+    "s": [
+     "buck",
+     "thorn"
+    ],
+    "st": 0,
+    "kk": "[ˋbʌkˌθɔrn]",
+    "ipa": "/ˈbʌk.θɔːrn/",
+    "p": "n.",
+    "zh": "鼠李（一種植物）",
+    "tip": "th 念 [θ]；thorn＝刺。",
+    "en": "Buckthorn grows under the water.",
+    "ez": "鼠李長在水底下。",
+    "game": true
+   }
+  ],
+  "story": [
+   [
+    "The captain wants the griffin dead. He tells Geralt to talk to a hunter and a herbalist.",
+    "隊長要獅鷲死。他叫傑洛特去找一個獵人和一個草藥師。"
+   ],
+   [
+    "First, Geralt visits the herbalist.",
+    "首先，傑洛特去拜訪草藥師。"
+   ],
+   [
+    "She says he needs a plant called buckthorn to use as bait.",
+    "她說他需要一種叫鼠李的植物當誘餌。"
+   ],
+   [
+    "It grows on the riverbed, so Geralt has to dive.",
+    "它長在河床上，所以傑洛特必須潛水。"
+   ],
+   [
+    "Next, Geralt goes to the hunter's hut, but the hunter isn't home.",
+    "接著，傑洛特去獵人的小屋，但獵人不在家。"
+   ],
+   [
+    "He must be out hunting.",
+    "他一定是出去打獵了。"
+   ],
+   [
+    "Geralt uses his Witcher Senses and follows the footprints.",
+    "傑洛特使用獵魔士感官，跟著腳印走。"
+   ],
+   [
+    "He finds the hunter fighting wild dogs. You can help him, or you can say you're in a hurry.",
+    "他發現獵人正在和野狗戰鬥。你可以幫他，也可以說你在趕時間。"
+   ],
+   [
+    "The hunter takes Geralt to the place where the griffin attacked some soldiers.",
+    "獵人帶傑洛特到獅鷲攻擊士兵的地點。"
+   ],
+   [
+    "Geralt examines the area. He finds bottles, blood, and footprints.",
+    "傑洛特仔細檢查這個區域，發現了酒瓶、血跡和腳印。"
+   ],
+   [
+    "The soldiers might have had a party before the attack.",
+    "士兵們在被攻擊前可能在開派對。"
+   ],
+   [
+    "He follows the tracks and finds the griffin's nest. Now it's time to hunt.",
+    "他跟著足跡找到獅鷲的巢。現在該去狩獵了。"
+   ]
+  ],
+  "patterns": [
+   {
+    "p": "must be + 名詞/形容詞/動詞-ing（很確定的推測）",
+    "d": "一定是…；根據證據推測",
+    "en": "He must be out hunting.",
+    "ez": "他一定是出去打獵了。"
+   },
+   {
+    "p": "might + 動詞（不太確定的推測）",
+    "d": "可能…；比 must 不確定",
+    "en": "The soldiers might have had a party.",
+    "ez": "士兵們可能開過派對。"
+   },
+   {
+    "p": "be in a hurry",
+    "d": "正在趕時間",
+    "en": "I'm in a hurry.",
+    "ez": "我在趕時間。"
+   }
+  ]
+ },
+ {
+  "id": "L16",
+  "title": "第 16 課　地圖與方向",
+  "words": [
+   {
+    "w": "north",
+    "s": [
+     "north"
+    ],
+    "st": 0,
+    "kk": "[nɔrθ]",
+    "ipa": "/nɔːrθ/",
+    "p": "n./adv.",
+    "zh": "北方",
+    "tip": "結尾 th 念 [θ]，舌尖輕咬吐氣。",
+    "en": "The garrison is north of the village.",
+    "ez": "要塞在村子北方。"
+   },
+   {
+    "w": "south",
+    "s": [
+     "south"
+    ],
+    "st": 0,
+    "kk": "[saʊθ]",
+    "ipa": "/saʊθ/",
+    "p": "n./adv.",
+    "zh": "南方",
+    "tip": "ou 念 [aʊ]；結尾 th 念 [θ]，不是 [s]。",
+    "en": "The tracks go south into the forest.",
+    "ez": "足跡往南進入森林。"
+   },
+   {
+    "w": "east",
+    "s": [
+     "east"
+    ],
+    "st": 0,
+    "kk": "[ist]",
+    "ipa": "/iːst/",
+    "p": "n./adv.",
+    "zh": "東方",
+    "tip": "ea 念長音 [i]。",
+    "en": "The sun rises in the east.",
+    "ez": "太陽從東方升起。"
+   },
+   {
+    "w": "west",
+    "s": [
+     "west"
+    ],
+    "st": 0,
+    "kk": "[wɛst]",
+    "ipa": "/west/",
+    "p": "n./adv.",
+    "zh": "西方",
+    "tip": "w 要圓唇；e 念 [ɛ]。",
+    "en": "Follow the road west.",
+    "ez": "沿著路往西走。"
+   },
+   {
+    "w": "direction",
+    "s": [
+     "di",
+     "rec",
+     "tion"
+    ],
+    "st": 1,
+    "kk": "[dəˋrɛkʃən]",
+    "ipa": "/dəˈrek.ʃən/",
+    "p": "n.",
+    "zh": "方向",
+    "tip": "重音在 rec；di 可念 [də] 或 [daɪ]。",
+    "en": "Open the map and check your direction.",
+    "ez": "打開地圖確認你的方向。"
+   },
+   {
+    "w": "road",
+    "s": [
+     "road"
+    ],
+    "st": 0,
+    "kk": "[rod]",
+    "ipa": "/roʊd/",
+    "p": "n.",
+    "zh": "道路",
+    "tip": "oa 念 [o]。",
+    "en": "Follow the road southwest.",
+    "ez": "沿著路往西南走。"
+   },
+   {
+    "w": "bridge",
+    "s": [
+     "bridge"
+    ],
+    "st": 0,
+    "kk": "[brɪdʒ]",
+    "ipa": "/brɪdʒ/",
+    "p": "n.",
+    "zh": "橋",
+    "tip": "dge 念 [dʒ]。",
+    "en": "You can cross the river on a bridge.",
+    "ez": "你可以從橋上過河。"
+   },
+   {
+    "w": "signpost",
+    "s": [
+     "sign",
+     "post"
+    ],
+    "st": 0,
+    "kk": "[ˋsaɪnˌpost]",
+    "ipa": "/ˈsaɪn.poʊst/",
+    "p": "n.",
+    "zh": "路標",
+    "tip": "g 不發音（和第 1 課 Sign 一樣）。",
+    "en": "Use signposts to fast travel.",
+    "ez": "用路標來快速旅行。"
+   },
+   {
+    "w": "across",
+    "s": [
+     "a",
+     "cross"
+    ],
+    "st": 1,
+    "kk": "[əˋkrɔs]",
+    "ipa": "/əˈkrɑːs/",
+    "p": "prep.",
+    "zh": "穿過；在對面",
+    "tip": "重音在後；a 輕讀。",
+    "en": "The inn is across the road.",
+    "ez": "旅店在馬路對面。"
+   },
+   {
+    "w": "toward",
+    "s": [
+     "toward"
+    ],
+    "st": 0,
+    "kk": "[tɔrd]",
+    "ipa": "/tɔːrd/",
+    "p": "prep.",
+    "zh": "朝向",
+    "tip": "美式常念成一個音節 [tɔrd]；也可念 [təˋwɔrd]。",
+    "en": "Ride toward the garrison.",
+    "ez": "朝要塞騎去。"
+   },
+   {
+    "w": "behind",
+    "s": [
+     "be",
+     "hind"
+    ],
+    "st": 1,
+    "kk": "[bɪˋhaɪnd]",
+    "ipa": "/bɪˈhaɪnd/",
+    "p": "prep.",
+    "zh": "在…後面",
+    "tip": "重音在後；i 念 [aɪ]。",
+    "en": "There is a chest behind the house.",
+    "ez": "房子後面有一個箱子。"
+   },
+   {
+    "w": "follow",
+    "s": [
+     "fol",
+     "low"
+    ],
+    "st": 0,
+    "kk": "[ˋfɑlo]",
+    "ipa": "/ˈfɑː.loʊ/",
+    "p": "v.",
+    "zh": "跟隨；沿著",
+    "tip": "o 念 [ɑ]；結尾 ow 念 [o]。",
+    "en": "Follow the tracks.",
+    "ez": "跟著足跡走。"
+   }
+  ],
+  "story": [
+   [
+    "Let's learn to read the map of White Orchard.",
+    "來學看白果園的地圖吧。"
+   ],
+   [
+    "The Nilfgaardian garrison is north of the village.",
+    "尼弗迦德要塞在村子的北方。"
+   ],
+   [
+    "The hunter's hut is southwest of the village.",
+    "獵人的小屋在村子的西南方。"
+   ],
+   [
+    "To get there, start at the notice board and follow the road southwest.",
+    "要去那裡，從佈告欄出發，沿著路往西南走。"
+   ],
+   [
+    "Near the door, you will find the hunter's tracks. They go south into the forest.",
+    "門附近會找到獵人的足跡，它們往南進入森林。"
+   ],
+   [
+    "There is a river near the village, and you can cross it on a bridge.",
+    "村子附近有一條河，你可以從橋上過河。"
+   ],
+   [
+    "There is even a signpost called Broken Bridge.",
+    "甚至有一個路標就叫「斷橋」。"
+   ],
+   [
+    "Look for signposts on the road. You can use them to fast travel.",
+    "留意路上的路標，你可以用它們快速旅行。"
+   ],
+   [
+    "If you are lost, open the map and check your direction.",
+    "如果迷路了，打開地圖確認方向。"
+   ]
+  ],
+  "patterns": [
+   {
+    "p": "A is + 方位 + of + B",
+    "d": "A 在 B 的某個方位（north of, southwest of）",
+    "en": "The garrison is north of the village.",
+    "ez": "要塞在村子北方。"
+   },
+   {
+    "p": "位置介系詞：next to / behind / across / near",
+    "d": "在旁邊／在後面／在對面／在附近",
+    "en": "The inn is across the road, next to the notice board.",
+    "ez": "旅店在馬路對面，佈告欄旁邊。"
+   },
+   {
+    "p": "指路命令句：Follow / Turn / Go + 方向",
+    "d": "沿著…走／轉彎／往…走",
+    "en": "Follow the road and turn left at the bridge.",
+    "ez": "沿著路走，到橋那裡左轉。"
+   }
+  ]
+ },
+ {
+  "id": "L17",
+  "title": "第 17 課　買賣與商人",
+  "words": [
+   {
+    "w": "buy",
+    "s": [
+     "buy"
+    ],
+    "st": 0,
+    "kk": "[baɪ]",
+    "ipa": "/baɪ/",
+    "p": "v.",
+    "zh": "買",
+    "tip": "u 不發音；和 by、bye 同音。",
+    "en": "Would you like to buy something?",
+    "ez": "你想買點什麼嗎？"
+   },
+   {
+    "w": "sell",
+    "s": [
+     "sell"
+    ],
+    "st": 0,
+    "kk": "[sɛl]",
+    "ipa": "/sel/",
+    "p": "v.",
+    "zh": "賣",
+    "tip": "e 念 [ɛ]；過去式 sold [sold]。",
+    "en": "I'd like to sell some things.",
+    "ez": "我想賣一些東西。"
+   },
+   {
+    "w": "how much",
+    "s": [
+     "how",
+     "much"
+    ],
+    "st": 1,
+    "kk": "[haʊ mʌtʃ]",
+    "ipa": "/haʊ mʌtʃ/",
+    "p": "phr.",
+    "zh": "多少錢",
+    "tip": "問價錢；重音在 much。",
+    "en": "How much is this sword?",
+    "ez": "這把劍多少錢？"
+   },
+   {
+    "w": "cost",
+    "s": [
+     "cost"
+    ],
+    "st": 0,
+    "kk": "[kɔst]",
+    "ipa": "/kɑːst/",
+    "p": "v./n.",
+    "zh": "花費；價錢",
+    "tip": "過去式也是 cost。",
+    "en": "It costs two hundred crowns.",
+    "ez": "它要兩百克朗。"
+   },
+   {
+    "w": "cheap",
+    "s": [
+     "cheap"
+    ],
+    "st": 0,
+    "kk": "[tʃip]",
+    "ipa": "/tʃiːp/",
+    "p": "adj.",
+    "zh": "便宜的",
+    "tip": "長音 [i]；念短了變成 chip（晶片、薯片）。",
+    "en": "Gwent cards are cheap.",
+    "ez": "昆特牌卡片很便宜。"
+   },
+   {
+    "w": "expensive",
+    "s": [
+     "ex",
+     "pen",
+     "sive"
+    ],
+    "st": 1,
+    "kk": "[ɪkˋspɛnsɪv]",
+    "ipa": "/ɪkˈspen.sɪv/",
+    "p": "adj.",
+    "zh": "昂貴的",
+    "tip": "重音在中間；結尾 v 要咬唇。",
+    "en": "That's too expensive.",
+    "ez": "那太貴了。"
+   },
+   {
+    "w": "afford",
+    "s": [
+     "af",
+     "ford"
+    ],
+    "st": 1,
+    "kk": "[əˋford]",
+    "ipa": "/əˈfɔːrd/",
+    "p": "v.",
+    "zh": "負擔得起",
+    "tip": "重音在後；常用 can't afford。",
+    "en": "I can't afford it.",
+    "ez": "我買不起。"
+   },
+   {
+    "w": "trade",
+    "s": [
+     "trade"
+    ],
+    "st": 0,
+    "kk": "[tred]",
+    "ipa": "/treɪd/",
+    "p": "v./n.",
+    "zh": "交易",
+    "tip": "a 念 [e]。",
+    "en": "Merchants trade with travelers.",
+    "ez": "商人和旅客做交易。"
+   },
+   {
+    "w": "coin",
+    "s": [
+     "coin"
+    ],
+    "st": 0,
+    "kk": "[kɔɪn]",
+    "ipa": "/kɔɪn/",
+    "p": "n.",
+    "zh": "硬幣",
+    "tip": "oi 念 [ɔɪ]。",
+    "en": "He pays with a few coins.",
+    "ez": "他付了幾枚硬幣。"
+   },
+   {
+    "w": "offer",
+    "s": [
+     "of",
+     "fer"
+    ],
+    "st": 0,
+    "kk": "[ˋɔfɚ]",
+    "ipa": "/ˈɑː.fɚ/",
+    "p": "n./v.",
+    "zh": "出價；提議",
+    "tip": "重音在前。",
+    "en": "I'll make you an offer.",
+    "ez": "我給你一個價錢。"
+   },
+   {
+    "w": "worth",
+    "s": [
+     "worth"
+    ],
+    "st": 0,
+    "kk": "[wɝθ]",
+    "ipa": "/wɝːθ/",
+    "p": "adj.",
+    "zh": "值…",
+    "tip": "or 念捲舌 [ɝ]；結尾 th 念 [θ]。",
+    "en": "This old armor isn't worth much.",
+    "ez": "這件舊盔甲不值多少錢。"
+   },
+   {
+    "w": "half",
+    "s": [
+     "half"
+    ],
+    "st": 0,
+    "kk": "[hæf]",
+    "ipa": "/hæf/",
+    "p": "n.",
+    "zh": "一半",
+    "tip": "l 不發音。",
+    "en": "I'll give you half the price.",
+    "ez": "我給你半價。"
+   }
+  ],
+  "story": [
+   [
+    "Geralt meets a merchant on the road.",
+    "傑洛特在路上遇到一個商人。"
+   ],
+   [
+    "Merchant: Good day, witcher! Would you like to buy something?",
+    "商人：你好，獵魔士！想買點什麼嗎？"
+   ],
+   [
+    "Geralt: How much is this sword?",
+    "傑洛特：這把劍多少錢？"
+   ],
+   [
+    "Merchant: It costs two hundred crowns.",
+    "商人：兩百克朗。"
+   ],
+   [
+    "Geralt: That's too expensive. I can't afford it.",
+    "傑洛特：太貴了，我買不起。"
+   ],
+   [
+    "Merchant: Then I'll make you an offer. One hundred and fifty.",
+    "商人：那我給你一個價錢，一百五十。"
+   ],
+   [
+    "Geralt: Hm. I'd like to sell some things too.",
+    "傑洛特：嗯，我也想賣一些東西。"
+   ],
+   [
+    "Merchant: Let me see. This old armor isn't worth much. I'll give you half the price.",
+    "商人：我看看。這件舊盔甲不值多少錢，我給你半價。"
+   ],
+   [
+    "Tip: Some items are cheap but hard to find, like Gwent cards. Buy them when you see them!",
+    "提示：有些東西很便宜但很難找，像是昆特牌卡片。看到就買！"
+   ]
+  ],
+  "patterns": [
+   {
+    "p": "How much is + 單數 / How much are + 複數?",
+    "d": "…多少錢？",
+    "en": "How much is this sword? How much are these boots?",
+    "ez": "這把劍多少錢？這雙靴子多少錢？"
+   },
+   {
+    "p": "I'd like to + 動詞",
+    "d": "我想要…（比 I want 禮貌）；I'd＝I would",
+    "en": "I'd like to sell some things.",
+    "ez": "我想賣一些東西。"
+   },
+   {
+    "p": "too + 形容詞",
+    "d": "太…了（負面）；比較第 9 課的 形容詞 + enough",
+    "en": "That's too expensive.",
+    "ez": "那太貴了。"
+   }
+  ]
+ },
+ {
+  "id": "L18",
+  "title": "第 18 課　昆特牌",
+  "words": [
+   {
+    "w": "card",
+    "s": [
+     "card"
+    ],
+    "st": 0,
+    "kk": "[kɑrd]",
+    "ipa": "/kɑːrd/",
+    "p": "n.",
+    "zh": "卡片；紙牌",
+    "tip": "ar 念 [ɑr]。",
+    "en": "Each card has a strength.",
+    "ez": "每張卡都有一個戰力值。"
+   },
+   {
+    "w": "deck",
+    "s": [
+     "deck"
+    ],
+    "st": 0,
+    "kk": "[dɛk]",
+    "ipa": "/dek/",
+    "p": "n.",
+    "zh": "一副牌；牌組",
+    "tip": "e 念 [ɛ]。",
+    "en": "Each player has a deck of cards.",
+    "ez": "每個玩家都有一副牌。"
+   },
+   {
+    "w": "round",
+    "s": [
+     "round"
+    ],
+    "st": 0,
+    "kk": "[raʊnd]",
+    "ipa": "/raʊnd/",
+    "p": "n.",
+    "zh": "回合；一局",
+    "tip": "ou 念 [aʊ]。",
+    "en": "You have to win two rounds.",
+    "ez": "你必須贏兩個回合。"
+   },
+   {
+    "w": "pass",
+    "s": [
+     "pass"
+    ],
+    "st": 0,
+    "kk": "[pæs]",
+    "ipa": "/pæs/",
+    "p": "v.",
+    "zh": "跳過；放棄這回合",
+    "tip": "美式 a 念 [æ]；英式念 [ɑː]。",
+    "en": "You can pass if you don't want to play.",
+    "ez": "不想出牌的話可以跳過。"
+   },
+   {
+    "w": "score",
+    "s": [
+     "score"
+    ],
+    "st": 0,
+    "kk": "[skor]",
+    "ipa": "/skɔːr/",
+    "p": "n.",
+    "zh": "分數",
+    "tip": "s 後面的 c 不送氣，聽起來接近 [g]。",
+    "en": "The player with the higher score wins.",
+    "ez": "分數比較高的玩家獲勝。"
+   },
+   {
+    "w": "row",
+    "s": [
+     "row"
+    ],
+    "st": 0,
+    "kk": "[ro]",
+    "ipa": "/roʊ/",
+    "p": "n.",
+    "zh": "一排；一列",
+    "tip": "「一排」念 [ro]；念 [raʊ] 是「吵架」。",
+    "en": "The board has three rows on each side.",
+    "ez": "每邊的桌面有三排。"
+   },
+   {
+    "w": "weather",
+    "s": [
+     "weath",
+     "er"
+    ],
+    "st": 0,
+    "kk": "[ˋwɛðɚ]",
+    "ipa": "/ˈweð.ɚ/",
+    "p": "n.",
+    "zh": "天氣",
+    "tip": "和 whether（是否）同音；th 念有聲 [ð]。",
+    "en": "Weather cards make one row weak.",
+    "ez": "天氣卡會讓一整排變弱。"
+   },
+   {
+    "w": "strength",
+    "s": [
+     "strength"
+    ],
+    "st": 0,
+    "kk": "[strɛŋθ]",
+    "ipa": "/streŋθ/",
+    "p": "n.",
+    "zh": "力量；戰力",
+    "tip": "只有一個音節；ng 鼻音後接 th [θ]。",
+    "en": "Each card has a strength from 0 to 15.",
+    "ez": "每張卡的戰力從 0 到 15。"
+   },
+   {
+    "w": "opponent",
+    "s": [
+     "op",
+     "po",
+     "nent"
+    ],
+    "st": 1,
+    "kk": "[əˋponənt]",
+    "ipa": "/əˈpoʊ.nənt/",
+    "p": "n.",
+    "zh": "對手",
+    "tip": "重音在中間。",
+    "en": "Your opponent plays a card.",
+    "ez": "你的對手出了一張牌。"
+   },
+   {
+    "w": "draw",
+    "s": [
+     "draw"
+    ],
+    "st": 0,
+    "kk": "[drɔ]",
+    "ipa": "/drɑː/",
+    "p": "v.",
+    "zh": "抽（牌）；畫",
+    "tip": "aw 念 [ɔ]；過去式 drew [dru]。",
+    "en": "At the start, you draw ten cards.",
+    "ez": "一開始你抽十張牌。"
+   },
+   {
+    "w": "lose",
+    "s": [
+     "lose"
+    ],
+    "st": 0,
+    "kk": "[luz]",
+    "ipa": "/luːz/",
+    "p": "v.",
+    "zh": "輸；失去",
+    "tip": "o 念 [u]，s 念 [z]；loose [lus] 是「鬆的」。",
+    "en": "If you lose two rounds, you lose the game.",
+    "ez": "輸兩個回合就輸了整局。"
+   },
+   {
+    "w": "turn",
+    "s": [
+     "turn"
+    ],
+    "st": 0,
+    "kk": "[tɝn]",
+    "ipa": "/tɝːn/",
+    "p": "n.",
+    "zh": "輪次；輪到",
+    "tip": "ur 念捲舌 [ɝ]。",
+    "en": "It's your turn.",
+    "ez": "輪到你了。"
+   },
+   {
+    "w": "Gwent",
+    "s": [
+     "Gwent"
+    ],
+    "st": 0,
+    "kk": "[gwɛnt]",
+    "ipa": "/ɡwent/",
+    "p": "n.",
+    "zh": "昆特牌",
+    "tip": "gw 連在一起念。",
+    "en": "Gwent is a card game inside the game.",
+    "ez": "昆特牌是遊戲裡的紙牌遊戲。",
+    "game": true
+   },
+   {
+    "w": "siege",
+    "s": [
+     "siege"
+    ],
+    "st": 0,
+    "kk": "[sidʒ]",
+    "ipa": "/siːdʒ/",
+    "p": "n.",
+    "zh": "攻城",
+    "tip": "ie 念長音 [i]；ge 念 [dʒ]。",
+    "en": "The third row is for siege units.",
+    "ez": "第三排是攻城單位。",
+    "game": true
+   }
+  ],
+  "story": [
+   [
+    "Gwent is a card game inside The Witcher 3.",
+    "昆特牌是巫師3裡的紙牌遊戲。"
+   ],
+   [
+    "You can learn it from a scholar in the White Orchard tavern.",
+    "你可以跟白果園酒館裡的一位學者學。"
+   ],
+   [
+    "Each player has a deck of cards. At the start, you draw ten cards.",
+    "每個玩家都有一副牌，一開始抽十張。"
+   ],
+   [
+    "The board has three rows on each side: close combat, ranged, and siege.",
+    "每一邊的桌面有三排：近戰、遠程和攻城。"
+   ],
+   [
+    "Take turns. On your turn, you play one card.",
+    "輪流出牌，輪到你時出一張牌。"
+   ],
+   [
+    "Each card has a strength from 0 to 15.",
+    "每張卡的戰力從 0 到 15。"
+   ],
+   [
+    "At the end of a round, the player with the higher score wins the round.",
+    "回合結束時，分數比較高的玩家贏得這回合。"
+   ],
+   [
+    "If you don't want to play more cards, you can pass.",
+    "不想再出牌的話，可以跳過。"
+   ],
+   [
+    "To win the game, you have to win two of the three rounds.",
+    "要贏得整局，你必須贏三回合中的兩回合。"
+   ],
+   [
+    "Be careful with weather cards. They make all cards in one row weak.",
+    "小心天氣卡，它們會讓一整排的卡都變弱。"
+   ],
+   [
+    "Tip: Innkeepers and merchants sell cards. Buy them early!",
+    "提示：旅店老闆和商人都有賣卡，早點買！"
+   ]
+  ],
+  "patterns": [
+   {
+    "p": "序數：first / second / third",
+    "d": "第一／第二／第三（first round, the third round）",
+    "en": "You have to win two of the three rounds.",
+    "ez": "你必須贏三回合中的兩回合。"
+   },
+   {
+    "p": "have to + 動詞",
+    "d": "必須…（規則要求）",
+    "en": "To win the game, you have to win two rounds.",
+    "ez": "要贏整局，你必須贏兩回合。"
+   },
+   {
+    "p": "It's + 人 + turn",
+    "d": "輪到某人了（your / my / his turn）",
+    "en": "It's your turn.",
+    "ez": "輪到你了。"
+   }
+  ]
+ },
+ {
+  "id": "L19",
+  "title": "第 19 課　對話與提問",
+  "words": [
+   {
+    "w": "who",
+    "s": [
+     "who"
+    ],
+    "st": 0,
+    "kk": "[hu]",
+    "ipa": "/huː/",
+    "p": "pron.",
+    "zh": "誰",
+    "tip": "w 不發音，h 要發音，念 [hu]。",
+    "en": "Who are you?",
+    "ez": "你是誰？"
+   },
+   {
+    "w": "whose",
+    "s": [
+     "whose"
+    ],
+    "st": 0,
+    "kk": "[huz]",
+    "ipa": "/huːz/",
+    "p": "pron.",
+    "zh": "誰的",
+    "tip": "和 who 一樣 w 不發音；結尾 se 念 [z]。",
+    "en": "Whose sword is this?",
+    "ez": "這是誰的劍？"
+   },
+   {
+    "w": "what",
+    "s": [
+     "what"
+    ],
+    "st": 0,
+    "kk": "[hwɑt]",
+    "ipa": "/wɑːt/",
+    "p": "pron.",
+    "zh": "什麼",
+    "tip": "現代美式大多念 [wɑt]，h 不發音。",
+    "en": "What do you want?",
+    "ez": "你想要什麼？"
+   },
+   {
+    "w": "where",
+    "s": [
+     "where"
+    ],
+    "st": 0,
+    "kk": "[hwɛr]",
+    "ipa": "/wer/",
+    "p": "adv.",
+    "zh": "哪裡",
+    "tip": "大多念 [wɛr]，和 wear 同音。",
+    "en": "Where is Yennefer?",
+    "ez": "葉妮芙在哪裡？"
+   },
+   {
+    "w": "when",
+    "s": [
+     "when"
+    ],
+    "st": 0,
+    "kk": "[hwɛn]",
+    "ipa": "/wen/",
+    "p": "adv.",
+    "zh": "什麼時候",
+    "tip": "大多念 [wɛn]。",
+    "en": "When did she leave?",
+    "ez": "她什麼時候離開的？"
+   },
+   {
+    "w": "why",
+    "s": [
+     "why"
+    ],
+    "st": 0,
+    "kk": "[hwaɪ]",
+    "ipa": "/waɪ/",
+    "p": "adv.",
+    "zh": "為什麼",
+    "tip": "大多念 [waɪ]，和字母 Y 同音。",
+    "en": "Why are you here?",
+    "ez": "你為什麼在這裡？"
+   },
+   {
+    "w": "which",
+    "s": [
+     "which"
+    ],
+    "st": 0,
+    "kk": "[hwɪtʃ]",
+    "ipa": "/wɪtʃ/",
+    "p": "pron.",
+    "zh": "哪一個",
+    "tip": "大多念 [wɪtʃ]，和 witch（女巫）同音。",
+    "en": "Which way did she go?",
+    "ez": "她往哪條路走了？"
+   },
+   {
+    "w": "how",
+    "s": [
+     "how"
+    ],
+    "st": 0,
+    "kk": "[haʊ]",
+    "ipa": "/haʊ/",
+    "p": "adv.",
+    "zh": "如何；多麼",
+    "tip": "h 要發音；ow 念 [aʊ]。",
+    "en": "How long ago did she leave?",
+    "ez": "她多久以前離開的？"
+   },
+   {
+    "w": "answer",
+    "s": [
+     "an",
+     "swer"
+    ],
+    "st": 0,
+    "kk": "[ˋænsɚ]",
+    "ipa": "/ˈæn.sɚ/",
+    "p": "n./v.",
+    "zh": "回答",
+    "tip": "w 不發音。",
+    "en": "Listen to the answer.",
+    "ez": "仔細聽回答。"
+   },
+   {
+    "w": "conversation",
+    "s": [
+     "con",
+     "ver",
+     "sa",
+     "tion"
+    ],
+    "st": 2,
+    "kk": "[ˌkɑnvɚˋseʃən]",
+    "ipa": "/ˌkɑːn.vɚˈseɪ.ʃən/",
+    "p": "n.",
+    "zh": "對話",
+    "tip": "重音在 sa。",
+    "en": "Conversations are a big part of the game.",
+    "ez": "對話是遊戲很重要的一部分。"
+   },
+   {
+    "w": "option",
+    "s": [
+     "op",
+     "tion"
+    ],
+    "st": 0,
+    "kk": "[ˋɑpʃən]",
+    "ipa": "/ˈɑːp.ʃən/",
+    "p": "n.",
+    "zh": "選項",
+    "tip": "o 念 [ɑ]；第 12 課 optional 的名詞。",
+    "en": "Choose your next dialogue option.",
+    "ez": "選擇你的下一個對話選項。"
+   },
+   {
+    "w": "stranger",
+    "s": [
+     "stran",
+     "ger"
+    ],
+    "st": 0,
+    "kk": "[ˋstrendʒɚ]",
+    "ipa": "/ˈstreɪn.dʒɚ/",
+    "p": "n.",
+    "zh": "陌生人",
+    "tip": "a 念 [e]；ge 念 [dʒ]。",
+    "en": "A stranger asks Geralt a question.",
+    "ez": "一個陌生人問傑洛特問題。"
+   }
+  ],
+  "story": [
+   [
+    "Conversations are a big part of The Witcher 3. Many dialogue options are questions.",
+    "對話是巫師3很重要的一部分，很多對話選項都是問句。"
+   ],
+   [
+    "When Geralt looks for Yennefer, he asks many questions.",
+    "傑洛特尋找葉妮芙時，問了很多問題。"
+   ],
+   [
+    "Where is Yennefer? When did she leave? Which way did she go?",
+    "葉妮芙在哪裡？她什麼時候離開的？她往哪條路走了？"
+   ],
+   [
+    "Sometimes strangers ask Geralt questions too.",
+    "有時陌生人也會問傑洛特問題。"
+   ],
+   [
+    "Who are you? What do you want? Why are you here?",
+    "你是誰？你想要什麼？你為什麼在這裡？"
+   ],
+   [
+    "Listen to the answer before you choose your next option.",
+    "選下一個選項之前，先仔細聽回答。"
+   ],
+   [
+    "Remember: in who and whose, you say the h, and the w is silent.",
+    "記住：who 和 whose 要念 h，w 不發音。"
+   ],
+   [
+    "In what, where, when, why, and which, most people say the w, and the h is silent.",
+    "what、where、when、why、which 大多數人念 w，h 不發音。"
+   ],
+   [
+    "Good questions give you good information.",
+    "好問題帶來好情報。"
+   ]
+  ],
+  "patterns": [
+   {
+    "p": "疑問詞 + be + 主詞",
+    "d": "問「是什麼／在哪裡」",
+    "en": "Where is Yennefer? Who are you?",
+    "ez": "葉妮芙在哪裡？你是誰？"
+   },
+   {
+    "p": "疑問詞 + do / does / did + 主詞 + 動詞",
+    "d": "一般動詞的問句；過去用 did，後面動詞用原形",
+    "en": "Where did she go? What do you want?",
+    "ez": "她去哪裡了？你想要什麼？"
+   },
+   {
+    "p": "How + 形容詞／副詞",
+    "d": "How long（多久）、How far（多遠）、How much（多少錢）",
+    "en": "How long ago did she leave?",
+    "ez": "她多久以前離開的？"
+   }
+  ]
+ },
+ {
+  "id": "L20",
+  "title": "第 20 課　時間與晝夜",
+  "words": [
+   {
+    "w": "morning",
+    "s": [
+     "morn",
+     "ing"
+    ],
+    "st": 0,
+    "kk": "[ˋmɔrnɪŋ]",
+    "ipa": "/ˈmɔːr.nɪŋ/",
+    "p": "n.",
+    "zh": "早上",
+    "tip": "or 念 [ɔr]；和 mourning（哀悼）同音。",
+    "en": "In the morning, villagers go to work.",
+    "ez": "早上村民去工作。"
+   },
+   {
+    "w": "afternoon",
+    "s": [
+     "af",
+     "ter",
+     "noon"
+    ],
+    "st": 2,
+    "kk": "[ˌæftɚˋnun]",
+    "ipa": "/ˌæf.tɚˈnuːn/",
+    "p": "n.",
+    "zh": "下午",
+    "tip": "重音在最後的 noon。",
+    "en": "The merchant comes in the afternoon.",
+    "ez": "商人下午會來。"
+   },
+   {
+    "w": "evening",
+    "s": [
+     "eve",
+     "ning"
+    ],
+    "st": 0,
+    "kk": "[ˋivnɪŋ]",
+    "ipa": "/ˈiːv.nɪŋ/",
+    "p": "n.",
+    "zh": "傍晚；晚上",
+    "tip": "只有兩個音節，不是 e-ve-ning。",
+    "en": "In the evening, many people go to the tavern.",
+    "ez": "傍晚很多人去酒館。"
+   },
+   {
+    "w": "night",
+    "s": [
+     "night"
+    ],
+    "st": 0,
+    "kk": "[naɪt]",
+    "ipa": "/naɪt/",
+    "p": "n.",
+    "zh": "夜晚",
+    "tip": "gh 不發音。",
+    "en": "A nightwraith appears at night.",
+    "ez": "夜之妖靈在夜晚出現。"
+   },
+   {
+    "w": "midnight",
+    "s": [
+     "mid",
+     "night"
+    ],
+    "st": 0,
+    "kk": "[ˋmɪdˌnaɪt]",
+    "ipa": "/ˈmɪd.naɪt/",
+    "p": "n.",
+    "zh": "午夜",
+    "tip": "mid（中間）＋night。",
+    "en": "Meditate until midnight.",
+    "ez": "冥想到午夜。"
+   },
+   {
+    "w": "hour",
+    "s": [
+     "hour"
+    ],
+    "st": 0,
+    "kk": "[aʊr]",
+    "ipa": "/aʊr/",
+    "p": "n.",
+    "zh": "小時",
+    "tip": "h 不發音；和 our 同音。",
+    "en": "Wait one hour.",
+    "ez": "等一個小時。"
+   },
+   {
+    "w": "minute",
+    "s": [
+     "min",
+     "ute"
+    ],
+    "st": 0,
+    "kk": "[ˋmɪnɪt]",
+    "ipa": "/ˈmɪn.ɪt/",
+    "p": "n.",
+    "zh": "分鐘",
+    "tip": "念 [ˋmɪnɪt]；念 [maɪˋnut] 是另一個字「微小的」。",
+    "en": "Give me a minute.",
+    "ez": "給我一分鐘。"
+   },
+   {
+    "w": "until",
+    "s": [
+     "un",
+     "til"
+    ],
+    "st": 1,
+    "kk": "[ənˋtɪl]",
+    "ipa": "/ənˈtɪl/",
+    "p": "prep.",
+    "zh": "直到",
+    "tip": "重音在後。",
+    "en": "Geralt will meditate until that time.",
+    "ez": "傑洛特會冥想到那個時間。"
+   },
+   {
+    "w": "o'clock",
+    "s": [
+     "o",
+     "clock"
+    ],
+    "st": 1,
+    "kk": "[əˋklɑk]",
+    "ipa": "/əˈklɑːk/",
+    "p": "adv.",
+    "zh": "…點鐘",
+    "tip": "o' 輕讀 [ə]；只用在整點。",
+    "en": "It is eight o'clock now.",
+    "ez": "現在八點。"
+   },
+   {
+    "w": "dawn",
+    "s": [
+     "dawn"
+    ],
+    "st": 0,
+    "kk": "[dɔn]",
+    "ipa": "/dɑːn/",
+    "p": "n.",
+    "zh": "黎明",
+    "tip": "aw 念 [ɔ]。",
+    "en": "Meditate until dawn.",
+    "ez": "冥想到黎明。"
+   },
+   {
+    "w": "dusk",
+    "s": [
+     "dusk"
+    ],
+    "st": 0,
+    "kk": "[dʌsk]",
+    "ipa": "/dʌsk/",
+    "p": "n.",
+    "zh": "黃昏",
+    "tip": "u 念 [ʌ]。",
+    "en": "At dusk, the sky turns red.",
+    "ez": "黃昏時天空變紅。"
+   },
+   {
+    "w": "knight",
+    "s": [
+     "knight"
+    ],
+    "st": 0,
+    "kk": "[naɪt]",
+    "ipa": "/naɪt/",
+    "p": "n.",
+    "zh": "騎士",
+    "tip": "k 和 gh 都不發音；和 night 同音。",
+    "en": "A knight is not the same as a witcher.",
+    "ez": "騎士和獵魔士不一樣。"
+   }
+  ],
+  "story": [
+   [
+    "The world of The Witcher 3 has day and night.",
+    "巫師3的世界有白天和黑夜。"
+   ],
+   [
+    "In the morning, villagers go to work. In the evening, many of them go to the tavern.",
+    "早上村民去工作，傍晚很多人去酒館。"
+   ],
+   [
+    "Some monsters only come out at certain times.",
+    "有些怪物只在特定時間出現。"
+   ],
+   [
+    "A noonwraith appears at noon, and a nightwraith appears at night.",
+    "午時妖靈在正午出現，夜之妖靈在夜晚出現。"
+   ],
+   [
+    "If you need a different time, you can meditate.",
+    "如果你需要換個時間，可以冥想。"
+   ],
+   [
+    "Choose an hour, and Geralt will meditate until that time.",
+    "選一個時間，傑洛特會冥想到那個時候。"
+   ],
+   [
+    "For example, meditate until midnight, or until dawn.",
+    "例如，冥想到午夜，或冥想到黎明。"
+   ],
+   [
+    "It is eight o'clock now. Wait one hour, and it will be nine o'clock.",
+    "現在八點，等一個小時就九點了。"
+   ],
+   [
+    "Be careful at night. It's dark, so it's harder to see.",
+    "晚上要小心，天很黑，比較看不清楚。"
+   ]
+  ],
+  "patterns": [
+   {
+    "p": "at / in / on + 時間",
+    "d": "at + 時刻（at noon, at night）；in + 時段（in the morning）；on + 日期（on Monday）",
+    "en": "A noonwraith appears at noon. Villagers work in the morning.",
+    "ez": "午時妖靈在正午出現。村民早上工作。"
+   },
+   {
+    "p": "until + 時間",
+    "d": "直到某個時間",
+    "en": "Meditate until midnight.",
+    "ez": "冥想到午夜。"
+   },
+   {
+    "p": "It is + 數字 + o'clock",
+    "d": "現在幾點（只用在整點）",
+    "en": "It is eight o'clock now.",
+    "ez": "現在八點。"
+   }
+  ]
+ },
+ {
+  "id": "L21",
+  "title": "第 21 課　天氣與自然",
+  "words": [
+   {
+    "w": "rain",
+    "s": [
+     "rain"
+    ],
+    "st": 0,
+    "kk": "[ren]",
+    "ipa": "/reɪn/",
+    "p": "n./v.",
+    "zh": "雨；下雨",
+    "tip": "ai 念 [e]。",
+    "en": "It's raining.",
+    "ez": "正在下雨。"
+   },
+   {
+    "w": "storm",
+    "s": [
+     "storm"
+    ],
+    "st": 0,
+    "kk": "[stɔrm]",
+    "ipa": "/stɔːrm/",
+    "p": "n.",
+    "zh": "暴風雨",
+    "tip": "s 後面的 t 不送氣。",
+    "en": "A storm is coming.",
+    "ez": "暴風雨要來了。"
+   },
+   {
+    "w": "fog",
+    "s": [
+     "fog"
+    ],
+    "st": 0,
+    "kk": "[fɑg]",
+    "ipa": "/fɑːɡ/",
+    "p": "n.",
+    "zh": "霧",
+    "tip": "o 念 [ɑ]。",
+    "en": "There is fog over the lake.",
+    "ez": "湖面上有霧。"
+   },
+   {
+    "w": "wind",
+    "s": [
+     "wind"
+    ],
+    "st": 0,
+    "kk": "[wɪnd]",
+    "ipa": "/wɪnd/",
+    "p": "n.",
+    "zh": "風",
+    "tip": "「風」念 [wɪnd]；動詞「纏繞」念 [waɪnd]。",
+    "en": "Listen to the wind.",
+    "ez": "聽聽風聲。"
+   },
+   {
+    "w": "howl",
+    "s": [
+     "howl"
+    ],
+    "st": 0,
+    "kk": "[haʊl]",
+    "ipa": "/haʊl/",
+    "p": "v.",
+    "zh": "嚎叫；呼嘯",
+    "tip": "ow 念 [aʊ]。",
+    "en": "The wind is howling.",
+    "ez": "風在呼嘯。"
+   },
+   {
+    "w": "forest",
+    "s": [
+     "for",
+     "est"
+    ],
+    "st": 0,
+    "kk": "[ˋfɔrɪst]",
+    "ipa": "/ˈfɔːr.ɪst/",
+    "p": "n.",
+    "zh": "森林",
+    "tip": "重音在前。",
+    "en": "The hunter lives near the forest.",
+    "ez": "獵人住在森林附近。"
+   },
+   {
+    "w": "swamp",
+    "s": [
+     "swamp"
+    ],
+    "st": 0,
+    "kk": "[swɑmp]",
+    "ipa": "/swɑːmp/",
+    "p": "n.",
+    "zh": "沼澤",
+    "tip": "w 後面的 a 念 [ɑ]（和 swallow 一樣）。",
+    "en": "Swamps are full of drowners.",
+    "ez": "沼澤裡到處都是水鬼。"
+   },
+   {
+    "w": "cave",
+    "s": [
+     "cave"
+    ],
+    "st": 0,
+    "kk": "[kev]",
+    "ipa": "/keɪv/",
+    "p": "n.",
+    "zh": "洞穴",
+    "tip": "a 念 [e]；結尾 v 要咬唇。",
+    "en": "Caves are dark.",
+    "ez": "洞穴很暗。"
+   },
+   {
+    "w": "lake",
+    "s": [
+     "lake"
+    ],
+    "st": 0,
+    "kk": "[lek]",
+    "ipa": "/leɪk/",
+    "p": "n.",
+    "zh": "湖",
+    "tip": "a 念 [e]。",
+    "en": "There is a lake near the village.",
+    "ez": "村子附近有一座湖。"
+   },
+   {
+    "w": "mountain",
+    "s": [
+     "moun",
+     "tain"
+    ],
+    "st": 0,
+    "kk": "[ˋmaʊntn̩]",
+    "ipa": "/ˈmaʊn.tən/",
+    "p": "n.",
+    "zh": "山",
+    "tip": "結尾 tain 念 [tn̩]，不是 [ten]。",
+    "en": "Kaer Morhen is in the mountains.",
+    "ez": "凱爾莫罕在山裡。"
+   },
+   {
+    "w": "island",
+    "s": [
+     "is",
+     "land"
+    ],
+    "st": 0,
+    "kk": "[ˋaɪlənd]",
+    "ipa": "/ˈaɪ.lənd/",
+    "p": "n.",
+    "zh": "島",
+    "tip": "s 不發音。",
+    "en": "You can even explore islands.",
+    "ez": "你甚至可以探索島嶼。"
+   },
+   {
+    "w": "dark",
+    "s": [
+     "dark"
+    ],
+    "st": 0,
+    "kk": "[dɑrk]",
+    "ipa": "/dɑːrk/",
+    "p": "adj.",
+    "zh": "黑暗的",
+    "tip": "ar 念 [ɑr]。",
+    "en": "It's getting dark.",
+    "ez": "天漸漸黑了。"
+   }
+  ],
+  "story": [
+   [
+    "The weather in The Witcher 3 changes all the time.",
+    "巫師3的天氣隨時在變化。"
+   ],
+   [
+    "Sometimes it's sunny. Sometimes it's raining, and sometimes there is a big storm.",
+    "有時晴天，有時下雨，有時還有大暴風雨。"
+   ],
+   [
+    "Listen to the wind. When the wind is howling, a storm is coming.",
+    "聽聽風聲，風在呼嘯時，暴風雨就要來了。"
+   ],
+   [
+    "In the morning, there may be fog over the lake.",
+    "早上湖面上可能有霧。"
+   ],
+   [
+    "The world has many places to explore: forests, swamps, caves, lakes, mountains, and even islands.",
+    "這個世界有很多地方可以探索：森林、沼澤、洞穴、湖泊、山脈，甚至島嶼。"
+   ],
+   [
+    "Swamps are wet and full of drowners.",
+    "沼澤很濕，到處都是水鬼。"
+   ],
+   [
+    "Caves are dark, so drink a Cat potion to see better.",
+    "洞穴很暗，喝一瓶貓藥水就能看得比較清楚。"
+   ],
+   [
+    "It's getting dark. Time to find an inn!",
+    "天漸漸黑了，該找間旅店了！"
+   ]
+  ],
+  "patterns": [
+   {
+    "p": "It's + 動詞-ing（描述現在的天氣）",
+    "d": "It's raining（正在下雨）；天氣的主詞用 it",
+    "en": "It's raining, and the wind is howling.",
+    "ez": "正在下雨，風在呼嘯。"
+   },
+   {
+    "p": "It's getting + 形容詞",
+    "d": "漸漸變得…",
+    "en": "It's getting dark.",
+    "ez": "天漸漸黑了。"
+   },
+   {
+    "p": "There is + 單數 / There are + 複數",
+    "d": "有…（存在）",
+    "en": "There is fog over the lake. There are many caves.",
+    "ez": "湖面上有霧。有很多洞穴。"
+   }
+  ]
+ },
+ {
+  "id": "L22",
+  "title": "第 22 課　身體與受傷",
+  "words": [
+   {
+    "w": "head",
+    "s": [
+     "head"
+    ],
+    "st": 0,
+    "kk": "[hɛd]",
+    "ipa": "/hed/",
+    "p": "n.",
+    "zh": "頭",
+    "tip": "ea 念 [ɛ]（和 heavy 一樣）。",
+    "en": "Protect your head.",
+    "ez": "保護你的頭。"
+   },
+   {
+    "w": "arm",
+    "s": [
+     "arm"
+    ],
+    "st": 0,
+    "kk": "[ɑrm]",
+    "ipa": "/ɑːrm/",
+    "p": "n.",
+    "zh": "手臂",
+    "tip": "ar 念 [ɑr]；armor 就是從這個字來的。",
+    "en": "His arm hurts.",
+    "ez": "他的手臂痛。"
+   },
+   {
+    "w": "leg",
+    "s": [
+     "leg"
+    ],
+    "st": 0,
+    "kk": "[lɛg]",
+    "ipa": "/leɡ/",
+    "p": "n.",
+    "zh": "腿",
+    "tip": "e 念 [ɛ]。",
+    "en": "His legs are tired.",
+    "ez": "他的腿很累。"
+   },
+   {
+    "w": "chest",
+    "s": [
+     "chest"
+    ],
+    "st": 0,
+    "kk": "[tʃɛst]",
+    "ipa": "/tʃest/",
+    "p": "n.",
+    "zh": "胸部；箱子",
+    "tip": "也有「箱子」的意思（loot a chest）。",
+    "en": "Chest armor protects your body.",
+    "ez": "胸甲保護你的身體。"
+   },
+   {
+    "w": "hand",
+    "s": [
+     "hand"
+    ],
+    "st": 0,
+    "kk": "[hænd]",
+    "ipa": "/hænd/",
+    "p": "n.",
+    "zh": "手",
+    "tip": "a 念 [æ]。",
+    "en": "Gauntlets protect your hands.",
+    "ez": "護手保護你的手。"
+   },
+   {
+    "w": "heart",
+    "s": [
+     "heart"
+    ],
+    "st": 0,
+    "kk": "[hɑrt]",
+    "ipa": "/hɑːrt/",
+    "p": "n.",
+    "zh": "心；心臟",
+    "tip": "ea 在這裡念 [ɑ]，是例外。",
+    "en": "A witcher's heart is strong.",
+    "ez": "獵魔士的心很堅強。"
+   },
+   {
+    "w": "hurt",
+    "s": [
+     "hurt"
+    ],
+    "st": 0,
+    "kk": "[hɝt]",
+    "ipa": "/hɝːt/",
+    "p": "v.",
+    "zh": "痛；使受傷",
+    "tip": "ur 念捲舌 [ɝ]；過去式也是 hurt。",
+    "en": "Geralt often gets hurt.",
+    "ez": "傑洛特常常受傷。"
+   },
+   {
+    "w": "injured",
+    "s": [
+     "in",
+     "jured"
+    ],
+    "st": 0,
+    "kk": "[ˋɪndʒɚd]",
+    "ipa": "/ˈɪn.dʒɚd/",
+    "p": "adj.",
+    "zh": "受傷的",
+    "tip": "重音在前；-ed 念 [d]。",
+    "en": "When Geralt is injured, he can drink a potion.",
+    "ez": "傑洛特受傷時可以喝藥水。"
+   },
+   {
+    "w": "poison",
+    "s": [
+     "poi",
+     "son"
+    ],
+    "st": 0,
+    "kk": "[ˋpɔɪzn̩]",
+    "ipa": "/ˈpɔɪ.zən/",
+    "p": "n.",
+    "zh": "毒",
+    "tip": "s 念 [z]。",
+    "en": "Some monsters use poison.",
+    "ez": "有些怪物會用毒。"
+   },
+   {
+    "w": "bleed",
+    "s": [
+     "bleed"
+    ],
+    "st": 0,
+    "kk": "[blid]",
+    "ipa": "/bliːd/",
+    "p": "v.",
+    "zh": "流血",
+    "tip": "長音 [i]；過去式 bled [blɛd]；名詞 blood（第 15 課）。",
+    "en": "You will start to bleed.",
+    "ez": "你會開始流血。"
+   },
+   {
+    "w": "pain",
+    "s": [
+     "pain"
+    ],
+    "st": 0,
+    "kk": "[pen]",
+    "ipa": "/peɪn/",
+    "p": "n.",
+    "zh": "疼痛",
+    "tip": "ai 念 [e]。",
+    "en": "Even a witcher feels pain.",
+    "ez": "就連獵魔士也會感到疼痛。"
+   },
+   {
+    "w": "stomach",
+    "s": [
+     "stom",
+     "ach"
+    ],
+    "st": 0,
+    "kk": "[ˋstʌmək]",
+    "ipa": "/ˈstʌm.ək/",
+    "p": "n.",
+    "zh": "胃；肚子",
+    "tip": "o 念 [ʌ]；ch 念 [k]。",
+    "en": "My stomach hurts.",
+    "ez": "我肚子痛。"
+   }
+  ],
+  "story": [
+   [
+    "Fighting monsters is dangerous. Geralt often gets hurt.",
+    "和怪物戰鬥很危險，傑洛特常常受傷。"
+   ],
+   [
+    "A griffin can hit you with its claws, and you will start to bleed.",
+    "獅鷲會用爪子攻擊你，你會開始流血。"
+   ],
+   [
+    "Some monsters use poison. If you get poisoned, your health goes down slowly.",
+    "有些怪物會用毒，中毒的話，生命值會慢慢下降。"
+   ],
+   [
+    "Watch out for attacks to your head and chest.",
+    "小心頭部和胸部受到的攻擊。"
+   ],
+   [
+    "Good armor protects your body: chest, arms, hands, and legs.",
+    "好的盔甲保護你的身體：胸部、手臂、手和腿。"
+   ],
+   [
+    "When Geralt is injured, he can drink a potion, eat food, or meditate.",
+    "傑洛特受傷時，可以喝藥水、吃東西或冥想。"
+   ],
+   [
+    "After a long fight, his arm hurts and his legs are tired.",
+    "長時間戰鬥後，他的手臂痛，腿也很累。"
+   ],
+   [
+    "Even a witcher feels pain. But a witcher's heart is strong.",
+    "就連獵魔士也會痛，但獵魔士的心很堅強。"
+   ]
+  ],
+  "patterns": [
+   {
+    "p": "My + 身體部位 + hurts / hurt",
+    "d": "我的…痛（單數用 hurts，複數用 hurt）",
+    "en": "My arm hurts. My legs hurt.",
+    "ez": "我的手臂痛。我的腿痛。"
+   },
+   {
+    "p": "get + 過去分詞",
+    "d": "變得…；遭受…（get hurt, get poisoned）",
+    "en": "If you get poisoned, your health goes down.",
+    "ez": "如果中毒，生命值會下降。"
+   },
+   {
+    "p": "Watch out (for + 名詞)!",
+    "d": "小心…！",
+    "en": "Watch out for attacks to your head!",
+    "ez": "小心頭部受到攻擊！"
+   }
+  ]
+ },
+ {
+  "id": "L23",
+  "title": "第 23 課　食物與飲料",
+  "words": [
+   {
+    "w": "food",
+    "s": [
+     "food"
+    ],
+    "st": 0,
+    "kk": "[fud]",
+    "ipa": "/fuːd/",
+    "p": "n.",
+    "zh": "食物",
+    "tip": "oo 念長音 [u]。",
+    "en": "Food is important.",
+    "ez": "食物很重要。"
+   },
+   {
+    "w": "bread",
+    "s": [
+     "bread"
+    ],
+    "st": 0,
+    "kk": "[brɛd]",
+    "ipa": "/bred/",
+    "p": "n.",
+    "zh": "麵包",
+    "tip": "ea 念 [ɛ]。",
+    "en": "Have a piece of bread.",
+    "ez": "吃一塊麵包吧。"
+   },
+   {
+    "w": "meat",
+    "s": [
+     "meat"
+    ],
+    "st": 0,
+    "kk": "[mit]",
+    "ipa": "/miːt/",
+    "p": "n.",
+    "zh": "肉",
+    "tip": "ea 念 [i]；和 meet（見面）同音。",
+    "en": "You can buy meat from the innkeeper.",
+    "ez": "你可以向旅店老闆買肉。"
+   },
+   {
+    "w": "cheese",
+    "s": [
+     "cheese"
+    ],
+    "st": 0,
+    "kk": "[tʃiz]",
+    "ipa": "/tʃiːz/",
+    "p": "n.",
+    "zh": "起司",
+    "tip": "結尾 se 念 [z]。",
+    "en": "Cheese is good for a long trip.",
+    "ez": "起司適合長途旅行。"
+   },
+   {
+    "w": "water",
+    "s": [
+     "wa",
+     "ter"
+    ],
+    "st": 0,
+    "kk": "[ˋwɔtɚ]",
+    "ipa": "/ˈwɑː.t̬ɚ/",
+    "p": "n.",
+    "zh": "水",
+    "tip": "美式的 t 念得像輕輕的 d。",
+    "en": "Is he thirsty? Give him some water.",
+    "ez": "他渴了嗎？給他一些水。"
+   },
+   {
+    "w": "beer",
+    "s": [
+     "beer"
+    ],
+    "st": 0,
+    "kk": "[bɪr]",
+    "ipa": "/bɪr/",
+    "p": "n.",
+    "zh": "啤酒",
+    "tip": "念 [bɪr]；念 [bɛr] 就變成 bear（熊）。",
+    "en": "The villagers drink beer at the tavern.",
+    "ez": "村民在酒館喝啤酒。"
+   },
+   {
+    "w": "wine",
+    "s": [
+     "wine"
+    ],
+    "st": 0,
+    "kk": "[waɪn]",
+    "ipa": "/waɪn/",
+    "p": "n.",
+    "zh": "葡萄酒",
+    "tip": "i 念 [aɪ]。",
+    "en": "Wine is also alcohol.",
+    "ez": "葡萄酒也是酒精飲料。"
+   },
+   {
+    "w": "hungry",
+    "s": [
+     "hun",
+     "gry"
+    ],
+    "st": 0,
+    "kk": "[ˋhʌŋgrɪ]",
+    "ipa": "/ˈhʌŋ.ɡri/",
+    "p": "adj.",
+    "zh": "餓的",
+    "tip": "u 念 [ʌ]；和第 13 課 angry 只差開頭。",
+    "en": "Are you hungry?",
+    "ez": "你餓了嗎？"
+   },
+   {
+    "w": "thirsty",
+    "s": [
+     "thirst",
+     "y"
+    ],
+    "st": 0,
+    "kk": "[ˋθɝstɪ]",
+    "ipa": "/ˈθɝː.sti/",
+    "p": "adj.",
+    "zh": "渴的",
+    "tip": "th 念 [θ]；ir 念捲舌 [ɝ]。",
+    "en": "I'm thirsty.",
+    "ez": "我渴了。"
+   },
+   {
+    "w": "delicious",
+    "s": [
+     "de",
+     "li",
+     "cious"
+    ],
+    "st": 1,
+    "kk": "[dɪˋlɪʃəs]",
+    "ipa": "/dɪˈlɪʃ.əs/",
+    "p": "adj.",
+    "zh": "美味的",
+    "tip": "重音在中間；ci 念 [ʃ]。",
+    "en": "The roast chicken is delicious.",
+    "ez": "烤雞很好吃。"
+   },
+   {
+    "w": "piece",
+    "s": [
+     "piece"
+    ],
+    "st": 0,
+    "kk": "[pis]",
+    "ipa": "/piːs/",
+    "p": "n.",
+    "zh": "一塊；一片",
+    "tip": "和 peace（和平）同音。",
+    "en": "Give him a piece of bread.",
+    "ez": "給他一塊麵包。"
+   },
+   {
+    "w": "bottle",
+    "s": [
+     "bot",
+     "tle"
+    ],
+    "st": 0,
+    "kk": "[ˋbɑtḷ]",
+    "ipa": "/ˈbɑː.t̬əl/",
+    "p": "n.",
+    "zh": "瓶子",
+    "tip": "美式 tt 念得像輕輕的 d。",
+    "en": "Carry a bottle of water.",
+    "ez": "帶一瓶水。"
+   }
+  ],
+  "story": [
+   [
+    "Food is important in The Witcher 3. When Geralt eats, his health comes back.",
+    "食物在巫師3很重要，傑洛特吃東西時生命值會恢復。"
+   ],
+   [
+    "You can buy food from innkeepers and merchants: bread, meat, cheese, and fruit.",
+    "你可以向旅店老闆和商人買食物：麵包、肉、起司和水果。"
+   ],
+   [
+    "Water and milk are good too. Beer and wine are alcohol.",
+    "水和牛奶也不錯，啤酒和葡萄酒則是酒精飲料。"
+   ],
+   [
+    "Remember, you can use strong alcohol for alchemy.",
+    "記得，烈酒可以用在煉金術上。"
+   ],
+   [
+    "Are you hungry? Have a piece of bread. Are you thirsty? Have a bottle of water.",
+    "餓了嗎？吃一塊麵包。渴了嗎？喝一瓶水。"
+   ],
+   [
+    "Some food is very delicious, like the roast chicken at the White Orchard inn.",
+    "有些食物很好吃，像是白果園旅店的烤雞。"
+   ],
+   [
+    "Tip: You don't need much food, but carry some in your inventory.",
+    "提示：你不需要很多食物，但物品欄裡要帶一些。"
+   ]
+  ],
+  "patterns": [
+   {
+    "p": "a piece of / a bottle of / a cup of + 不可數名詞",
+    "d": "不可數名詞要用單位來數：a piece of bread, a bottle of water",
+    "en": "Have a piece of bread and a bottle of water.",
+    "ez": "吃一塊麵包，喝一瓶水。"
+   },
+   {
+    "p": "much + 不可數 / many + 可數",
+    "d": "much food, much water；many potions, many cards",
+    "en": "You don't need much food, but you have many potions.",
+    "ez": "你不需要很多食物，但你有很多藥水。"
+   },
+   {
+    "p": "some（肯定句）/ any（否定、疑問句）",
+    "d": "Do you have any food? Yes, I have some.",
+    "en": "Do you have any bread? Yes, I have some.",
+    "ez": "你有麵包嗎？有，我有一些。"
+   }
+  ]
+ },
+ {
+  "id": "L24",
+  "title": "第 24 課　現在完成式與常用回應",
+  "words": [
+   {
+    "w": "seen",
+    "s": [
+     "seen"
+    ],
+    "st": 0,
+    "kk": "[sin]",
+    "ipa": "/siːn/",
+    "p": "v.",
+    "zh": "看見（see 的過去分詞）",
+    "tip": "see-saw-seen；和 scene（場景）同音。",
+    "en": "Have you seen this woman?",
+    "ez": "你見過這個女人嗎？"
+   },
+   {
+    "w": "heard",
+    "s": [
+     "heard"
+    ],
+    "st": 0,
+    "kk": "[hɝd]",
+    "ipa": "/hɝːd/",
+    "p": "v.",
+    "zh": "聽到（hear 的過去式和過去分詞）",
+    "tip": "ea 念捲舌 [ɝ]，不是 [i]；和 herd（獸群）同音。",
+    "en": "Have you heard the news?",
+    "ez": "你聽說那個消息了嗎？"
+   },
+   {
+    "w": "ever",
+    "s": [
+     "ev",
+     "er"
+    ],
+    "st": 0,
+    "kk": "[ˋɛvɚ]",
+    "ipa": "/ˈev.ɚ/",
+    "p": "adv.",
+    "zh": "曾經",
+    "tip": "e 念 [ɛ]。",
+    "en": "Have you ever seen a griffin?",
+    "ez": "你曾經見過獅鷲嗎？"
+   },
+   {
+    "w": "never",
+    "s": [
+     "nev",
+     "er"
+    ],
+    "st": 0,
+    "kk": "[ˋnɛvɚ]",
+    "ipa": "/ˈnev.ɚ/",
+    "p": "adv.",
+    "zh": "從來沒有",
+    "tip": "v 要咬唇。",
+    "en": "Some villagers have never seen a witcher.",
+    "ez": "有些村民從來沒見過獵魔士。"
+   },
+   {
+    "w": "already",
+    "s": [
+     "al",
+     "read",
+     "y"
+    ],
+    "st": 1,
+    "kk": "[ɔlˋrɛdɪ]",
+    "ipa": "/ɑːlˈred.i/",
+    "p": "adv.",
+    "zh": "已經",
+    "tip": "重音在中間；read 在這裡念 [rɛd]。",
+    "en": "He has already learned a lot.",
+    "ez": "他已經學到很多了。"
+   },
+   {
+    "w": "yet",
+    "s": [
+     "yet"
+    ],
+    "st": 0,
+    "kk": "[jɛt]",
+    "ipa": "/jet/",
+    "p": "adv.",
+    "zh": "還（沒）；已經（問句）",
+    "tip": "y 念 [j]；用在否定句和問句。",
+    "en": "Not yet.",
+    "ez": "還沒。"
+   },
+   {
+    "w": "sure",
+    "s": [
+     "sure"
+    ],
+    "st": 0,
+    "kk": "[ʃʊr]",
+    "ipa": "/ʃʊr/",
+    "p": "adv.",
+    "zh": "當然；好啊",
+    "tip": "s 念 [ʃ]，不是 [s]。",
+    "en": "Sure, I can help.",
+    "ez": "好啊，我可以幫忙。"
+   },
+   {
+    "w": "fine",
+    "s": [
+     "fine"
+    ],
+    "st": 0,
+    "kk": "[faɪn]",
+    "ipa": "/faɪn/",
+    "p": "adj.",
+    "zh": "好的；沒問題",
+    "tip": "i 念 [aɪ]。",
+    "en": "Fine. I'll do it.",
+    "ez": "好吧，我來做。"
+   },
+   {
+    "w": "of course",
+    "s": [
+     "of",
+     "course"
+    ],
+    "st": 1,
+    "kk": "[əv ˋkors]",
+    "ipa": "/əv ˈkɔːrs/",
+    "p": "phr.",
+    "zh": "當然",
+    "tip": "of 輕讀 [əv]；重音在 course。",
+    "en": "Of course I'll help you.",
+    "ez": "我當然會幫你。"
+   },
+   {
+    "w": "never mind",
+    "s": [
+     "nev",
+     "er",
+     "mind"
+    ],
+    "st": 2,
+    "kk": "[ˋnɛvɚ ˌmaɪnd]",
+    "ipa": "/ˌnev.ɚ ˈmaɪnd/",
+    "p": "phr.",
+    "zh": "沒關係；算了",
+    "tip": "意思是「沒關係、算了」。",
+    "en": "Never mind. It's not important.",
+    "ez": "沒關係，不重要。"
+   },
+   {
+    "w": "I see",
+    "s": [
+     "I",
+     "see"
+    ],
+    "st": 1,
+    "kk": "[aɪ ˋsi]",
+    "ipa": "/aɪ ˈsiː/",
+    "p": "phr.",
+    "zh": "我明白了",
+    "tip": "表示「我懂了」，不是「我看見」。",
+    "en": "I see. Thank you.",
+    "ez": "我明白了，謝謝。"
+   },
+   {
+    "w": "rumor",
+    "s": [
+     "ru",
+     "mor"
+    ],
+    "st": 0,
+    "kk": "[ˋrumɚ]",
+    "ipa": "/ˈruː.mɚ/",
+    "p": "n.",
+    "zh": "謠言；傳聞",
+    "tip": "u 念長音 [u]；英式拼法 rumour。",
+    "en": "People in the tavern talk about rumors.",
+    "ez": "酒館裡的人在聊傳聞。"
+   }
+  ],
+  "story": [
+   [
+    "Geralt travels a lot, so he often asks, \"Have you seen this woman?\"",
+    "傑洛特到處旅行，所以常問：「你見過這個女人嗎？」"
+   ],
+   [
+    "In the tavern, people talk about rumors.",
+    "在酒館裡，人們在聊傳聞。"
+   ],
+   [
+    "\"Have you heard the news? A griffin has attacked the road again!\"",
+    "「你聽說了嗎？獅鷲又在路上攻擊人了！」"
+   ],
+   [
+    "Some villagers have never seen a witcher before. They are surprised.",
+    "有些村民從來沒見過獵魔士，他們很驚訝。"
+   ],
+   [
+    "When someone asks for help, Geralt might say, \"Sure,\" or \"Of course.\"",
+    "有人求助時，傑洛特可能會說「好啊」或「當然」。"
+   ],
+   [
+    "If someone says sorry, he might say, \"Never mind.\"",
+    "有人道歉時，他可能會說「沒關係」。"
+   ],
+   [
+    "When he understands, he says, \"I see.\"",
+    "他明白時會說「我懂了」。"
+   ],
+   [
+    "Has Geralt found Yennefer yet? Not yet, but he has already learned a lot.",
+    "傑洛特找到葉妮芙了嗎？還沒，但他已經打聽到很多了。"
+   ],
+   [
+    "And you? Have you finished the White Orchard quests yet?",
+    "那你呢？白果園的任務完成了嗎？"
+   ]
+  ],
+  "patterns": [
+   {
+    "p": "Have you (ever) + 過去分詞?",
+    "d": "你（曾經）…過嗎？（現在完成式問經驗）",
+    "en": "Have you ever seen a griffin?",
+    "ez": "你見過獅鷲嗎？"
+   },
+   {
+    "p": "have / has + already + 過去分詞；… yet?",
+    "d": "already（已經）用在肯定句；yet 用在否定句（還沒）和問句（了沒）",
+    "en": "He has already learned a lot. Has he found her yet?",
+    "ez": "他已經學到很多了。他找到她了沒？"
+   },
+   {
+    "p": "常用回應：Sure / Of course / Never mind / I see",
+    "d": "好啊／當然／沒關係／我明白了",
+    "en": "Sure. Of course. Never mind. I see.",
+    "ez": "好啊。當然。沒關係。我懂了。"
+   }
+  ]
+ }
+];
+
+/* storage (per-viewer convenience) */
+const store={get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}},
+             set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let state={lesson:store.get("lesson",0),idx:0,rate:store.get("rate",0.8),acc:store.get("acc","en-US"),done:store.get("done",{})};
+if(!LESSONS[state.lesson]) state.lesson=0;
+const $=id=>document.getElementById(id);
+const L=()=>LESSONS[state.lesson];
+
+/* speech */
+const synth=window.speechSynthesis;
+let voices=[];
+function loadVoices(){ if(!synth) return; voices=synth.getVoices().filter(v=>/^en[-_]/i.test(v.lang)); $("warn").style.display=(synth.getVoices().length && !voices.length)?"block":"none"; }
+if(synth){ loadVoices(); synth.onvoiceschanged=loadVoices; } else { $("warn").style.display="block"; }
+function pickVoice(){
+  const want=state.acc.toLowerCase();
+  const m=voices.filter(v=>v.lang.replace("_","-").toLowerCase()===want);
+  const pref=m.find(v=>/samantha|google us|daniel|google uk|aria|jenny|libby|sonia|natural/i.test(v.name));
+  return pref||m[0]||voices[0]||null;
+}
+let runId=0;
+const NAME_SAY={"Geralt": "Gairalt", "Ciri": "Siri", "Yennefer": "Yennifer", "Vesemir": "Vessemeer", "Aard": "Ard", "Igni": "Ignee", "Yrden": "Eerden", "Quen": "Kwen", "Axii": "Axee"};
+const NAME_RE=Object.keys(NAME_SAY).length?new RegExp("\\b("+Object.keys(NAME_SAY).map(k=>k.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")).join("|")+")\\b","g"):null;
+function fixNames(t){return NAME_RE?t.replace(NAME_RE,m=>NAME_SAY[m]):t}
+function speak(text,rate){
+  text=fixNames(text);
+  return new Promise(res=>{
+    if(!synth){res();return;}
+    const u=new SpeechSynthesisUtterance(text);
+    const v=pickVoice(); if(v){u.voice=v;u.lang=v.lang}else{u.lang=state.acc}
+    u.rate=rate||state.rate; u.onend=res; u.onerror=res;
+    synth.speak(u);
+  });
+}
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+function stopAll(){ runId++; if(synth) synth.cancel(); setAuto(false); status(""); document.querySelectorAll(".sent.on").forEach(e=>e.classList.remove("on")); }
+function status(t){$("status").textContent=t}
+
+function beat(rate){
+  const syls=[...document.querySelectorAll("#word .syl")];
+  const per=Math.max(220,340/(rate||state.rate));
+  syls.forEach((el,i)=>{ setTimeout(()=>{el.classList.add("beat");setTimeout(()=>el.classList.remove("beat"),per)},i*per); });
+}
+async function sayWord(rate){ const w=L().words[state.idx]; beat(rate); await speak(w.w,rate); }
+
+/* render */
+function renderStage(){
+  const w=L().words[state.idx], n=L().words.length;
+  $("pos").textContent=`${state.idx+1} / ${n}`;
+  $("word").innerHTML=w.s.map((s,i)=>`<span class="syl${i===w.st?" stress":""}">${s}</span>`).join("");
+  $("word").setAttribute("aria-label",w.w);
+  $("kk").textContent=w.kk; $("ipa").textContent=w.ipa;
+  $("ptag").textContent=w.p; $("zh").textContent=w.zh;
+  $("tip").textContent=w.tip; $("sen").textContent=w.en; $("senzh").textContent=w.ez;
+  const key=L().id+":"+w.w, d=!!state.done[key];
+  $("mark").setAttribute("aria-pressed",d); $("mark").textContent=d?"已練 ✓":"標記已練";
+  document.querySelectorAll(".row").forEach((r,i)=>r.setAttribute("aria-current",i===state.idx));
+}
+function renderList(){
+  $("list").innerHTML=L().words.map((w,i)=>{
+    const d=state.done[L().id+":"+w.w];
+    return `<li><button class="row${w.game?" game":""}" data-i="${i}"><span><span class="w">${w.w}</span><span class="k">${w.kk}</span></span><span class="m">${w.zh}</span><span class="ok">${d?"已練":""}</span></button></li>`;
+  }).join("");
+}
+function renderStory(){
+  $("story").innerHTML=L().story.map((s,i)=>`<button class="sent" data-i="${i}">${s[0]}<small>${s[1]}</small></button>`).join("");
+  $("pats").innerHTML=L().patterns.map((p,i)=>`<div class="pat"><b>${p.p}</b><div class="d">${p.d}</div><button data-i="${i}">🔊 ${p.en}</button><div class="d">${p.ez}</div></div>`).join("");
+}
+function renderAll(){ $("lesson").value=state.lesson; renderList(); renderStory(); renderStage(); }
+
+/* controls */
+$("lesson").innerHTML=LESSONS.map((l,i)=>`<option value="${i}">${l.title}</option>`).join("");
+$("lesson").onchange=e=>{stopAll();state.lesson=+e.target.value;state.idx=0;store.set("lesson",state.lesson);renderAll()};
+$("rate").value=state.rate; $("rateVal").textContent=state.rate+"×";
+$("rate").oninput=e=>{state.rate=+e.target.value;$("rateVal").textContent=state.rate.toFixed(1)+"×";store.set("rate",state.rate)};
+document.querySelectorAll("[data-acc]").forEach(b=>{
+  b.setAttribute("aria-pressed",b.dataset.acc===state.acc);
+  b.onclick=()=>{state.acc=b.dataset.acc;store.set("acc",state.acc);document.querySelectorAll("[data-acc]").forEach(x=>x.setAttribute("aria-pressed",x===b));speak(L().words[state.idx].w)};
+});
+$("playWord").onclick=()=>{stopAll();sayWord()};
+$("playSlow").onclick=()=>{stopAll();sayWord(0.5)};
+$("playSen").onclick=()=>{stopAll();speak(L().words[state.idx].en)};
+function go(d){state.idx=(state.idx+d+L().words.length)%L().words.length;renderStage()}
+$("prev").onclick=()=>{stopAll();go(-1)};
+$("next").onclick=()=>{stopAll();go(1)};
+$("mark").onclick=()=>{const k=L().id+":"+L().words[state.idx].w;if(state.done[k])delete state.done[k];else state.done[k]=1;store.set("done",state.done);renderList();renderStage()};
+$("list").onclick=e=>{const b=e.target.closest(".row");if(!b)return;stopAll();state.idx=+b.dataset.i;renderStage();sayWord();window.scrollTo({top:0,behavior:"smooth"})};
+
+/* auto shadowing: word → pause → slow → pause → sentence → pause → next */
+function setAuto(on){ $("auto").setAttribute("aria-pressed",on); $("auto").textContent=on?"停止跟讀":"自動跟讀"; }
+$("auto").onclick=async()=>{
+  if($("auto").getAttribute("aria-pressed")==="true"){stopAll();return;}
+  stopAll(); const my=++runId; setAuto(true);
+  while(my===runId){
+    const w=L().words[state.idx];
+    status("聽"); await sayWord(); if(my!==runId)break;
+    status("換你念"); await wait(1800); if(my!==runId)break;
+    status("慢速再聽一次"); await sayWord(0.5); if(my!==runId)break;
+    status("換你念"); await wait(2000); if(my!==runId)break;
+    status("例句"); await speak(w.en); if(my!==runId)break;
+    status("換你念例句"); await wait(1200+w.en.split(" ").length*450); if(my!==runId)break;
+    if(state.idx===L().words.length-1){status("這一課跑完一輪了");setAuto(false);break;}
+    go(1);
+  }
+};
+
+/* story */
+$("story").onclick=async e=>{const b=e.target.closest(".sent");if(!b)return;stopAll();b.classList.add("on");await speak(L().story[+b.dataset.i][0]);b.classList.remove("on")};
+$("storyAll").onclick=async()=>{
+  stopAll(); const my=++runId; const els=[...document.querySelectorAll(".sent")];
+  for(let i=0;i<els.length&&my===runId;i++){
+    els[i].classList.add("on"); els[i].scrollIntoView({block:"nearest",behavior:"smooth"});
+    await speak(L().story[i][0]); if(my!==runId)break;
+    await wait(800+L().story[i][0].split(" ").length*420);
+    els[i].classList.remove("on");
+  }
+};
+$("pats").onclick=e=>{const b=e.target.closest("button");if(!b)return;stopAll();speak(L().patterns[+b.dataset.i].en)};
+
+renderAll();
+</script>
+</body>
+</html>
